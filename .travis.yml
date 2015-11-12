@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+- 4.2.0
+env:
+- NODE_ENV=test
+cache:
+  directories:
+  - node_modules
+before_install:
+- 
+before_script:
+-
