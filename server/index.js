@@ -1,7 +1,7 @@
 var express = require('express');
 var Path = require('path');
 var routes = express.Router();
-var sass = require('node-sass-endpoint');
+var sessions = require('./routes/sessions');
 
 //route to your index.html
 var assetFolder = Path.resolve(__dirname, '../client/');
@@ -17,33 +17,43 @@ if(process.env.NODE_ENV !== 'test') {
   // This is for supporting browser history pushstate.
   // NOTE: Make sure this route is always LAST.
   routes.get('/*', function(req, res){
-    res.sendFile( assetFolder + '/index.html' )
+    res.sendFile( assetFolder + '/bandout/www/index.html' )
   })
+
 
   // We're in development or production mode;
   // create and run a real server.
   var app = express();
+
+  app.all('*', function(req, res, next) {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Headers", "X-Requested-With");
+      next();
+  });
+
+  app.get('/sessions', sessions.findAll);
+  app.get('/sessions/:id', sessions.findById);
 
   // Parse incoming request bodies as JSON
   app.use( require('body-parser').json() );
 
   // This compiles your Sass files
   // Remember to change file paths or directories
-  app.get(
-    '/main.css',
-    sass.serve('./client/sass/main.scss', {
+  // app.get(
+  //   '/main.css',
+  //   sass.serve('./client/sass/main.scss', {
 
-      // (dev only) defaults to parent folder of scss file.
-      // Any sass file changes in this directory will clear the output cache.
-      watchDir: './client/sass/',
+  //     // (dev only) defaults to parent folder of scss file.
+  //     // Any sass file changes in this directory will clear the output cache.
+  //     watchDir: './client/sass/',
 
-      // defaults to parent folder of scss file
-      includePaths: ['./client/sass/'],
+  //     // defaults to parent folder of scss file
+  //     includePaths: ['./client/sass/'],
 
-      // defaults to false
-      debug: false
-    })
-  )
+  //     // defaults to false
+  //     debug: false
+  //   })
+  // )
 
   // Mount our main router
   app.use('/', routes);
