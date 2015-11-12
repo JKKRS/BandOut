@@ -1,0 +1,1 @@
+sidebarDirective.js
