@@ -12,8 +12,9 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
   // Form data for the login modal
   $scope.loginData = {};
 
+
   // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('login.html', {
+  $ionicModal.fromTemplateUrl('/components/login/login.html', {
     scope: $scope
   }).then(function(modal) {
     $scope.modal = modal;
