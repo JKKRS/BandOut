@@ -24,7 +24,7 @@ var openFB = (function () {
         baseURL = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + context,
 
     // Default OAuth redirect URL. Can be overriden in init()
-        oauthRedirectURL = baseURL + '/' + 'oauthcallback.html',
+        oauthRedirectURL = baseURL + '/components/auth/' + 'oauthcallback.html',
 
     // Default Cordova OAuth redirect URL. Can be overriden in init()
         cordovaOAuthRedirectURL = "https://www.facebook.com/connect/login_success.html",
