@@ -41,7 +41,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.session', 's
       }
     }
   })
-
   .state('app.browse', {
       url: '/browse',
       views: {
