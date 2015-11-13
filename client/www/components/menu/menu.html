@@ -5,21 +5,25 @@
       </ion-nav-back-button>
     </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>
+
   </ion-side-menu-content>
 
   <ion-tabs class="tabs-positive tabs-icon-only">
 
-  <ion-tab title="Profile" icon-on="ion-ios-information" icon-off="ion-ios-information-outline">
-    <!-- Tab 1 content -->
+  <ion-tab title="Profile" icon-on="ion-ios-information" icon-off="ion-ios-information-outline" href= "#/app/profile">
+  <ion-nav-view name= "profile"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab title="Home" icon-on="ion-ios-home" icon-off="ion-ios-home-outline">
-    <!-- Tab 2 content -->
+  <ion-tab title="Home" icon-on="ion-ios-home" icon-off="ion-ios-home-outline" href="#/app/sessions">
+    <ion-nav-view name= "home"></ion-nav-view>
+    <ion-nav-view name="session"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab title="Settings" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
-    <!-- Tab 3 content -->
+  <ion-tab title="Settings" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline" href= "#/app/browse">
+    <ion-nav-view name= "browse"></ion-nav-view>
   </ion-tab>
 
 </ion-tabs>
 </ion-side-menus>
+
+

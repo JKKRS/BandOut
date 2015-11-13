@@ -45,15 +45,24 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.session', 's
   .state('app.browse', {
       url: '/browse',
       views: {
-        'menuContent': {
+        'browse': {
           templateUrl: 'components/browse/browse.html'
         }
       }
     })
+  .state('app.profile', {
+    url: '/profile',
+    views: {
+      'profile': {
+        templateUrl: 'components/profile/profile.html',
+        // controller: 'ProfileCtrl'
+      }
+    }
+  })
     .state('app.sessions', {
       url: '/sessions',
       views: {
-        'menuContent': {
+        'home': {
           templateUrl: 'components/sessions/sessions.html',
           controller: 'SessionsCtrl'
         }
@@ -73,21 +82,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.session', 's
   .state('app.session', {
     url: '/sessions/:sessionId',
     views: {
-      'menuContent': {
+      'session': {
         templateUrl: 'components/session/session.html',
         controller: 'SessionCtrl'
       }
     }
   })
-  .state('app.profile', {
-    url: "/profile",
-    views: {
-      'menuContent': {
-        templateUrl: "components/profile/profile.html",
-        controller: "ProfileCtrl"
-      }
-    }
-  });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/sessions');
 });
