@@ -65,6 +65,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.session', 's
       views: {
         'menuContent': {
           templateUrl: 'components/editProfile/editProfile.html',
+          controller: 'editProfileCtrl'
         }
       }
     })

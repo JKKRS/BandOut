@@ -1,10 +1,30 @@
-<ion-view view-title="Edit Profile">
-  <ion-content>
-    <label class="toggle">
-     <input type="checkbox">
-     <div class="track">
-       <div class="handle"></div>
-     </div>
-    </label>
-  </ion-content>
+<ion-view title="Edit Profile">
+    <ion-content padding="true" class="has-header">
+        <form class="list">
+            <ion-toggle toggle-class="toggle-positive" name="ArtistToggle" ng-model='user.artist'>Artist</ion-toggle>
+        </form>
+        <form class="list">
+            <label class="item item-input" name="Name">
+                <input type="text" placeholder="Name">
+            </label>
+            <label class="item item-input" name="Email">
+                <input type="email" placeholder="Email">
+            </label>
+            <label class="item item-input" name="Twitter">
+                <input type="text" placeholder="Twitter ID">
+            </label>
+        </form>
+        <form class="list" ng-show='user.artist'>
+            <label class="item item-input" name="Paypal">
+                <input type="text" placeholder="Paypal ID">
+            </label>
+            <label class="item item-input" name="Website">
+                <input type="text" placeholder="Website">
+            </label>
+        </form>
+        <button class="button button-stable button-block  icon-left ion-ios-plus button-full">Add Show</button>
+        <div class="spacer" style="height: 10px;"></div>
+        <button class="button button-stable button-block  icon-left ion-checkmark">Save Profile</button>
+        <div class="spacer" style="height: 100px;"></div>
+    </ion-content>
 </ion-view>
