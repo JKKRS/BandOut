@@ -1,4 +1,4 @@
-angular.module('starter')
+angular.module('starter.addEvent', [])
 
 .controller('addEventCtrl', addEventCtrl);
 

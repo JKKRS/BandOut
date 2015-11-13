@@ -2,7 +2,7 @@ angular.module('starter.editProfile', [])
 
 .controller('editProfileCtrl', editProfileCtrl);
 
-function editProfileCtrl($scope) {
+function editProfileCtrl($scope, $state) {
   $scope.user = {};
   $scope.user.artist = false;
   $scope.user.name = "";
@@ -10,4 +10,7 @@ function editProfileCtrl($scope) {
   $scope.user.twitter = "";
   $scope.user.paypal = "";
   $scope.user.website = "";
+  $scope.create = function() {
+    $state.go('app.addEvent');
+  };
 }

@@ -13,6 +13,7 @@ angular.module('starter', [
   'starter.session',
   'starter.sessions',
   'starter.editProfile',
+  'starter.addEvent',
   'ngOpenFB'
 ])
 
