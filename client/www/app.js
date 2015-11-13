@@ -60,6 +60,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.session', 's
       }
     })
 
+    .state('app.editProfile', {
+      url: '/editProfile',
+      views: {
+        'menuContent': {
+          templateUrl: 'components/editProfile/editProfile.html',
+        }
+      }
+    })
+
   .state('app.session', {
     url: '/sessions/:sessionId',
     views: {
