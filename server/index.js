@@ -1,25 +1,10 @@
-var express = require('express');
-var Path = require('path');
-var routes = express.Router();
+var express  = require('express');
+var Path     = require('path');
+var routes   = express.Router();
 var sessions = require('./routes/sessions');
-
-//route to your index.html
-var assetFolder = Path.resolve(__dirname, '../client/');
-routes.use(express.static(assetFolder));
-
-// Example endpoint (also tested in test/server/index_test.js)
-routes.get('/api/tags-example', function(req, res) {
-  res.send(['node', 'express', 'angular']);
-});
+var morgan   = require('morgan');
 
 if(process.env.NODE_ENV !== 'test') {
-  // The Catch-all Route
-  // This is for supporting browser history pushstate.
-  // NOTE: Make sure this route is always LAST.
-  routes.get('/*', function(req, res){
-    res.sendFile( assetFolder + '/bandout/www/index.html' );
-  });
-
 
   // We're in development or production mode;
   // create and run a real server.
@@ -31,32 +16,13 @@ if(process.env.NODE_ENV !== 'test') {
       next();
   });
 
-  app.get('/sessions', sessions.findAll);
-  app.get('/sessions/:id', sessions.findById);
+  require('./routes.js')(app);
+
+  // Morgan for logging server requests
+  app.use(morgan('dev'));
 
   // Parse incoming request bodies as JSON
   app.use( require('body-parser').json() );
-
-  // This compiles your Sass files
-  // Remember to change file paths or directories
-  // app.get(
-  //   '/main.css',
-  //   sass.serve('./client/sass/main.scss', {
-
-  //     // (dev only) defaults to parent folder of scss file.
-  //     // Any sass file changes in this directory will clear the output cache.
-  //     watchDir: './client/sass/',
-
-  //     // defaults to parent folder of scss file
-  //     includePaths: ['./client/sass/'],
-
-  //     // defaults to false
-  //     debug: false
-  //   })
-  // )
-
-  // Mount our main router
-  app.use('/', routes);
 
   // Start the server!
   var port = process.env.PORT || 5000;
@@ -64,5 +30,9 @@ if(process.env.NODE_ENV !== 'test') {
   console.log("Listening on port", port);
 } else {
   // We're in test mode; make this file importable instead.
+  routes.get('/api/tags-example', function(req, res) {
+    res.send(['node', 'express', 'angular']);
+  });
+
   module.exports = routes;
 }
