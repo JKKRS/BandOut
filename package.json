@@ -1,8 +1,8 @@
 {
-  "name": "Node-Catapult-Angular-Sass",
+  "name": "BandOut",
   "version": "1.0.0",
   "main": "server/index.js",
-  "description": "A rapid project starter for Node, Express, Angular and Sass.",
+  "description": "A better way to tip musicians",
   "engines": {
     "node": ">=4.0.0"
   },
@@ -20,14 +20,14 @@
     "supertest": "^1.1.0",
     "supertest-as-promised": "^2.0.2"
   },
-  "author": "Gilbert Garza, Dan Corman and Farah Maredia",
+  "author": "Scott Schwartz, Rob Soule, James Hicks, Kang Lee, Kevin Saldana",
   "license": "MIT",
   "scripts": {
     "start": "./node_modules/.bin/nodemon server/index.js --ignore client/ --ignore node_modules/",
     "test": "./test/run.sh"
   },
   "bugs": {
-    "url": "https://github.com/node-catapult/node-catapult-angular-sass/issues"
+    "url": "https://github.com/JKKRS/BandOut"
   },
-  "homepage": "https://github.com/node-catapult/node-catapult-angular-sass/"
+  "homepage": "https://github.com/JKKRS/BandOut"
 }
