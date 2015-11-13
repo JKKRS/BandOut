@@ -1,0 +1,11 @@
+<ion-view view-title="artists">
+  <ion-content>
+    <div class="list">
+      <a ng-repeat="artist in artists" href="#/app/artists/{{artist.fbid}}">
+        <img nrg-src="{{ artist.image }}">
+        <h2>{{ artist.name }}</h2>
+        <h4>{{ artist.email }}</h4>
+      </a>
+    </div>
+  </ion-content>
+</ion-view>
