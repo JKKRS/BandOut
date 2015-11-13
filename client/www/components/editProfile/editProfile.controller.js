@@ -11,6 +11,6 @@ function editProfileCtrl($scope, $state) {
   $scope.user.paypal = "";
   $scope.user.website = "";
   $scope.create = function() {
-    $state.go('app.addEvent');
+    $state.go('app.editProfile.addEvent');
   };
 }

@@ -95,22 +95,24 @@ angular.module('starter', [
 
   .state('app.editProfile', {
     url: '/editProfile',
+    abstract: true,
     views: {
       'editProfile': {
-        templateUrl: 'components/editProfile/editProfile.html',
-        controller: 'editProfileCtrl'
+        template: '<ion-nav-view></ion-nav-view>'
       }
     }
   })
 
-  .state('app.addEvent', {
+  .state('app.editProfile.index', {
+    url: '',
+    templateUrl: 'components/editProfile/editProfile.html',
+    controller: 'editProfileCtrl'
+  })
+
+  .state('app.editProfile.addEvent', {
     url: '/addEvent',
-    views: {
-      'addEvent': {
-        templateUrl: 'components/addEvent/addEvent.html',
-        controller: 'addEventCtrl'
-      }
-    }
+    templateUrl: 'components/addEvent/addEvent.html',
+    controller: 'addEventCtrl'
   })
 
   .state('app.session', {
