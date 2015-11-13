@@ -9,7 +9,7 @@ routes.use(express.static(assetFolder));
 
 // Example endpoint (also tested in test/server/index_test.js)
 routes.get('/api/tags-example', function(req, res) {
-  res.send(['node', 'express', 'angular'])
+  res.send(['node', 'express', 'angular']);
 });
 
 if(process.env.NODE_ENV !== 'test') {
@@ -17,8 +17,8 @@ if(process.env.NODE_ENV !== 'test') {
   // This is for supporting browser history pushstate.
   // NOTE: Make sure this route is always LAST.
   routes.get('/*', function(req, res){
-    res.sendFile( assetFolder + '/bandout/www/index.html' )
-  })
+    res.sendFile( assetFolder + '/bandout/www/index.html' );
+  });
 
 
   // We're in development or production mode;
