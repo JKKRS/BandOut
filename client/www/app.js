@@ -4,6 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
+
 angular.module('starter', [
   'ionic',
   'starter.controllers',
@@ -11,8 +12,11 @@ angular.module('starter', [
   'starter.artists',
   'starter.session',
   'starter.sessions',
+  'starter.editProfile',
+  'starter.addEvent',
   'ngOpenFB'
 ])
+
 
 .run(function($ionicPlatform, ngFB) {
   ngFB.init({ appId: '924056997681768' });
@@ -91,12 +95,24 @@ angular.module('starter', [
 
   .state('app.editProfile', {
     url: '/editProfile',
+    abstract: true,
     views: {
       'editProfile': {
-        templateUrl: 'components/editProfile/editProfile.html',
-        controller: 'editProfileCtrl'
+        template: '<ion-nav-view></ion-nav-view>'
       }
     }
+  })
+
+  .state('app.editProfile.index', {
+    url: '',
+    templateUrl: 'components/editProfile/editProfile.html',
+    controller: 'editProfileCtrl'
+  })
+
+  .state('app.editProfile.addEvent', {
+    url: '/addEvent',
+    templateUrl: 'components/addEvent/addEvent.html',
+    controller: 'addEventCtrl'
   })
 
   .state('app.session', {
