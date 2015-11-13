@@ -103,15 +103,15 @@ angular.module('starter', [
     }
   })
 
-    .state('app.addEvent', {
-      url: '/addEvent',
-      views: {
-        'addEvent': {
-          templateUrl: 'components/addEvent/addEvent.html',
-          controller: 'addEventCtrl'
-        }
+  .state('app.addEvent', {
+    url: '/addEvent',
+    views: {
+      'addEvent': {
+        templateUrl: 'components/addEvent/addEvent.html',
+        controller: 'addEventCtrl'
       }
-    })
+    }
+  })
 
   .state('app.session', {
     url: '/sessions/:sessionId',
