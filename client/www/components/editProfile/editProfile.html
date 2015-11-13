@@ -4,21 +4,21 @@
             <ion-toggle toggle-class="toggle-positive" name="ArtistToggle" ng-model='user.artist'>Artist</ion-toggle>
         </form>
         <form class="list">
-            <label class="item item-input" name="Name">
+            <label class="item item-input" name="Name" ng-model='user.name'>
                 <input type="text" placeholder="Name">
             </label>
-            <label class="item item-input" name="Email">
+            <label class="item item-input" name="Email" ng-model='user.email'>
                 <input type="email" placeholder="Email">
             </label>
-            <label class="item item-input" name="Twitter">
+            <label class="item item-input" name="Twitter" ng-model='user.twitter'>
                 <input type="text" placeholder="Twitter ID">
             </label>
         </form>
         <form class="list" ng-show='user.artist'>
-            <label class="item item-input" name="Paypal">
+            <label class="item item-input" name="Paypal" ng-model='user.paypal'>
                 <input type="text" placeholder="Paypal ID">
             </label>
-            <label class="item item-input" name="Website">
+            <label class="item item-input" name="Website" ng-model='user.website'>
                 <input type="text" placeholder="Website">
             </label>
         </form>
