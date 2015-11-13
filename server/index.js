@@ -2,6 +2,7 @@ var express = require('express');
 var Path = require('path');
 var routes = express.Router();
 var sessions = require('./routes/sessions');
+var artists = require('./routes/artist_faked'); // rob temp
 
 //route to your index.html
 var assetFolder = Path.resolve(__dirname, '../client/');
@@ -33,6 +34,8 @@ if(process.env.NODE_ENV !== 'test') {
 
   app.get('/sessions', sessions.findAll);
   app.get('/sessions/:id', sessions.findById);
+  app.get('/artists', artists.findAll); // rob temp
+  app.get('/artists/:id', artists.findById); // rob temp
 
   // Parse incoming request bodies as JSON
   app.use( require('body-parser').json() );
