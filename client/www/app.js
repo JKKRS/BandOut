@@ -29,7 +29,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.session', 's
     .state('app', {
     url: '/app',
     abstract: true,
-    templateUrl: 'shared/menu/menu.html',
+    templateUrl: 'components/menu/menu.html',
     controller: 'AppCtrl'
   })
 
