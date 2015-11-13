@@ -50,15 +50,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.session', 's
         }
       }
     })
-  .state('app.profile', {
-    url: '/profile',
-    views: {
-      'profile': {
-        templateUrl: 'components/profile/profile.html',
-        // controller: 'ProfileCtrl'
-      }
-    }
-  })
     .state('app.sessions', {
       url: '/sessions',
       views: {
@@ -72,7 +63,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.session', 's
     .state('app.editProfile', {
       url: '/editProfile',
       views: {
-        'menuContent': {
+        'editProfile': {
           templateUrl: 'components/editProfile/editProfile.html',
           controller: 'editProfileCtrl'
         }
