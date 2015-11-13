@@ -8,5 +8,4 @@ angular.module('starter')
   $scope.user.twitter = "";
   $scope.user.paypal = "";
   $scope.user.website = "";
-
 });
