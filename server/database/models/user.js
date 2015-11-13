@@ -26,6 +26,8 @@ var userSchema = new Schema({
   }
 });
 
+var User = mongoose.model('User', userSchema);
+
 module.exports = User;
 
 // GET  /users/all     -> returns all users in array

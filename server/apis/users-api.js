@@ -1,5 +1,5 @@
 var express = require('express');
-// var User    = require('../models/user');
+var User    = require('../database/models/user');
 
 var UsersAPI = express.Router();
 
