@@ -1,6 +1,8 @@
 angular.module('starter')
 
-.controller('editProfileCtrl', function($scope) {
+.controller('editProfileCtrl', editProfileCtrl);
+
+function editProfileCtrl($scope) {
   $scope.user = {};
   $scope.user.artist = false;
   $scope.user.name = "";
@@ -8,4 +10,4 @@ angular.module('starter')
   $scope.user.twitter = "";
   $scope.user.paypal = "";
   $scope.user.website = "";
-});
+}
