@@ -54,6 +54,7 @@ exports.findAll = function (req, res, next) {
 };
 
 exports.findById = function (req, res, next) {
-  var id = req.params.id;
-  res.send(artists[fbid]);
+  console.log(req.params);
+  var fbid = req.params.id;
+  res.send(artists.filter(e => e.fbid === fbid)[0]);
 };
