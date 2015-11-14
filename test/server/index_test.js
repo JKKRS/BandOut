@@ -171,6 +171,46 @@ describe("The Server", function() {
           done(err);
         });
     });
+
+    it("doesn't return a single artist", function(done) {
+      return request(app)
+        .post('/apis/users')
+        .send(artist1)
+        .expect(201)
+        .then(function(response) {
+          var id = response.body.fbid
+          return request(app)
+            .get('/apis/users/' + id)
+            .expect(200)
+            .then(function(response) {
+              expect(response.body).to.be.empty;
+              done();
+            })
+        })
+        .catch(function(err) {
+          done(err);
+        });
+    });
+
+    it("doesn't return any artists", function(done) {
+      return request(app)
+        .post('/apis/users')
+        .send(artist1)
+        .expect(201)
+        .then(function(response) {
+          var id = response.body.fbid
+          return request(app)
+            .get('/apis/users/' + id)
+            .expect(200)
+            .then(function(response) {
+              expect(response.body).to.be.empty;
+              done();
+            })
+        })
+        .catch(function(err) {
+          done(err);
+        });
+    });
   });
 
   describe('Artists API', function() {
@@ -253,6 +293,46 @@ describe("The Server", function() {
             .expect(200)
             .then(function(response) {
               expect(response.body.fbid).to.equal(id);
+              done();
+            })
+        })
+        .catch(function(err) {
+          done(err);
+        });
+    });
+
+    it("doesn't return a single non-artist", function(done) {
+      return request(app)
+        .post('/apis/artists')
+        .send(user1)
+        .expect(201)
+        .then(function(response) {
+          var id = response.body.fbid
+          return request(app)
+            .get('/apis/artists/' + id)
+            .expect(200)
+            .then(function(response) {
+              expect(response.body).to.be.empty;
+              done();
+            })
+        })
+        .catch(function(err) {
+          done(err);
+        });
+    });
+
+    it("doesn't return any non-artists", function(done) {
+      return request(app)
+        .post('/apis/artists')
+        .send(user1)
+        .expect(201)
+        .then(function(response) {
+          var id = response.body.fbid
+          return request(app)
+            .get('/apis/artists/')
+            .expect(200)
+            .then(function(response) {
+              expect(response.body).to.be.empty;
               done();
             })
         })
