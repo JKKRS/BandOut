@@ -9,14 +9,14 @@ UsersAPI.post('/', function(req, res) {
   newUser.save(function(err, user) {
     if (err) { console.log('error', err); }
     res.status(201).send(user);
-  })
-})
+  });
+});
 
 UsersAPI.get('/', function(req, res) {
   User.find({}, function(err, user) {
-    if (err) { console.log('error', err) }
-    res.status(200).send(user)
-  })
-})
+    if (err) { console.log('error', err); }
+    res.status(200).send(user);
+  });
+});
 
 module.exports = UsersAPI;
