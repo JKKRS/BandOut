@@ -20,7 +20,36 @@ var artists = [
           latitude: 24,
           longitude: 24
         }
-      }]
+      },
+      {
+        id: 3,
+        title: 'Be show',
+        datetime: new Date(),
+        description: 'Description and stuff',
+        venue: {
+          name: 'Fire HOtel',
+          city: 'ko, TX',
+          country: 'USA',
+          latitude: 60,
+          longitude: 24
+        }
+      },
+      {
+        id: 4,
+        title: 'See show',
+        datetime: new Date(),
+        description: 'stuff',
+        venue: {
+          name: 'Water HOtel',
+          city: 'so, TX',
+          country: 'USA',
+          latitude: 40,
+          longitude: 24
+        }
+      }
+
+
+    ]
     }
   },
   {
