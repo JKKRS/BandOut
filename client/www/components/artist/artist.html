@@ -1,3 +1,4 @@
+
 <ion-view view-title="Artist">
   <ion-content>
     <div class="list card">
@@ -7,6 +8,11 @@
         <h4>{{ artist.email }}</h4>
         <h4>{{ artist.twitter }}</h4>
       </div>
+      <div class="item tabs tabs-secondary tabs-icon-left" ng-click="payPal(artist.artist_info.paypal_link)">
+        <a class="tab-item">
+          <i class="icon ion-social-usd-outline"></i> PayPal
+        </a>
+      </div>
       <div>
         Upcoming Events:
       <div class="item item-body" ng-repeat="artist in artist.artist_info.upcoming_events">
@@ -14,11 +20,6 @@
         <br> {{ artist.datetime }}
       </div>
     </div>
-      <div class="item tabs tabs-secondary tabs-icon-left">
-        <a class="tab-item">
-          <i class="icon ion-social-usd-outline"></i> PayPal
-        </a>
-      </div>
     </div>
   </ion-content>
 </ion-view>
