@@ -127,34 +127,25 @@ describe("The Server", function() {
     it("posts to the /apis/users endpoint", function(done) {
       return request(app)
         .post('/apis/users')
-        .expect(201834756)
-        .then(done)
-        // done()
-        // .then(function(res) {
-        //   console.log('response', res)
-        //   done();
-        // })
+        .send(user1)
+        .expect(201, done)
+    });
+
+    it("creates a non-artist user and returns it", function(done) {
+      return request(app)
+        .post('/apis/users')
+        .send(user1)
+        .expect(201)
+        .then(function(response) {
+            var returnedUser = response.body;
+            expect(returnedUser.fb_id).to.equal(user1.fb_id);
+            done();
+        })
         .catch(function(err) {
           // console.log(err);
           done(err);
         })
     });
-
-  //   it("creates a non-artist user and returns it", function(done) {
-  //     return request(app)
-  //       .post('/apis/users')
-  //       .send(user1)
-  //       .expect(201)
-  //       .then(function(response) {
-  //           var returnedUser = response.body;
-  //           expect(returnedUser.fb_id).to.equal(user1.fb_id);
-  //           done();
-  //       })
-  //       .catch(function(err) {
-  //         // console.log(err);
-  //         done(err);
-  //       })
-  //   });
   })
 
   describe('Artists API', function() {
