@@ -10,6 +10,12 @@ if(process.env.NODE_ENV !== 'test') {
   // create and run a real server.
   var app = express();
 
+  // Morgan for logging server requests
+  app.use(morgan('dev'));
+
+  // Parse incoming request bodies as JSON
+  app.use(require('body-parser').json())
+  
   app.all('*', function(req, res, next) {
       res.header("Access-Control-Allow-Origin", "*");
       res.header("Access-Control-Allow-Headers", "X-Requested-With");
@@ -18,11 +24,6 @@ if(process.env.NODE_ENV !== 'test') {
 
   require('./routes.js')(app);
 
-  // Morgan for logging server requests
-  app.use(morgan('dev'));
-
-  // Parse incoming request bodies as JSON
-  app.use( require('body-parser').json() );
 
   // Start the server!
   var port = process.env.PORT || 5000;

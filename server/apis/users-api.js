@@ -1,16 +1,22 @@
 var express = require('express');
+var mongoose = require('../database/config');
 var User    = require('../database/models/user');
 
 var UsersAPI = express.Router();
 
 UsersAPI.post('/', function(req, res) {
-  console.log('this is a POST to /')
-  res.status(201).send('201 user created')
+  var newUser = new User(req.body);
+  newUser.save(function(err, user) {
+    if (err) { console.log('error', err); }
+    res.status(201).send(user);
+  })
 })
 
 UsersAPI.get('/', function(req, res) {
-  console.log('this is a GET on the / route');
-  res.status(200).send('heyo')
+  User.find({}, function(err, user) {
+    if (err) { console.log('error', err) }
+    res.status(200).send(user)
+  })
 })
 
 module.exports = UsersAPI;
