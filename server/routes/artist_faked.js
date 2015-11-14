@@ -7,7 +7,7 @@ var artists = [
     twitter: '@nanner',
     artist: true,
     artist_info: {
-      paypal_link: 'paypal.com',
+      paypal_link: 'https://www.paypal.com/home',
       upcoming_events: [{
         id: 2,
         title: 'Awesome show',
@@ -60,7 +60,7 @@ var artists = [
     twitter: '@skrillsauce',
     artist: true,
     artist_info: {
-      paypal_link: 'anotherlink.paypal.com',
+      paypal_link: 'https://www.paypal.com/home',
       upcoming_events: [{
         id: 3,
         title: 'A later awesome show',
