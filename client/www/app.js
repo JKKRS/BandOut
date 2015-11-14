@@ -65,22 +65,25 @@ angular.module('starter', [
 
   .state('app.artists', {
     url: '/artists',
+    abstract: true,
     views: {
       'artists': {
-        templateUrl: 'components/artists/artists.html',
-        controller: 'ArtistsCtrl'
+        template: '<ion-nav-view></ion-nav-view>'
       }
     }
   })
 
-  .state('app.artist', {
-    url: '/artists/:artistsId',
-    views: {
-      'artist': {
-        templateUrl: 'components/artist/artist.html',
-        controller: 'ArtistCtrl'
-      }
-    }
+  .state('app.artists.index', {
+    url: '',
+    templateUrl: 'components/artists/artists.html',
+    controller: 'ArtistsCtrl'
+  })
+
+  .state('app.artists.artist', {
+    url: '/:artistId',
+    params: {artist: null},
+    templateUrl: 'components/artist/artist.html',
+    controller: 'ArtistCtrl'
   })
 
   .state('app.sessions', {

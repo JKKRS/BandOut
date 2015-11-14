@@ -7,7 +7,7 @@ var artists = [
     twitter: '@nanner',
     artist: true,
     artist_info: {
-      paypal_link: 'paypal.com',
+      paypal_link: 'https://www.paypal.com/home',
       upcoming_events: [{
         id: 2,
         title: 'Awesome show',
@@ -20,7 +20,36 @@ var artists = [
           latitude: 24,
           longitude: 24
         }
-      }]
+      },
+      {
+        id: 3,
+        title: 'Be show',
+        datetime: new Date(),
+        description: 'Description and stuff',
+        venue: {
+          name: 'Fire HOtel',
+          city: 'ko, TX',
+          country: 'USA',
+          latitude: 60,
+          longitude: 24
+        }
+      },
+      {
+        id: 4,
+        title: 'See show',
+        datetime: new Date(),
+        description: 'stuff',
+        venue: {
+          name: 'Water HOtel',
+          city: 'so, TX',
+          country: 'USA',
+          latitude: 40,
+          longitude: 24
+        }
+      }
+
+
+    ]
     }
   },
   {
@@ -31,7 +60,7 @@ var artists = [
     twitter: '@skrillsauce',
     artist: true,
     artist_info: {
-      paypal_link: 'anotherlink.paypal.com',
+      paypal_link: 'https://www.paypal.com/home',
       upcoming_events: [{
         id: 3,
         title: 'A later awesome show',
@@ -53,7 +82,11 @@ exports.findAll = function (req, res, next) {
   res.send(artists);
 };
 
+exports.findAllEvents = function(req, res, next) {
+  res.send(artists.map(element => element.artist_info.upcoming_events));
+};
+
 exports.findById = function (req, res, next) {
-  var id = req.params.id;
-  res.send(artists[fbid]);
+  var fbid = req.params.id;
+  res.send(artists.filter(element => element.fbid === fbid)[0]);
 };

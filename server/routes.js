@@ -16,6 +16,7 @@ module.exports = function(app) {
   // TEMPORARY
   app.get('/artists', artists.findAll);
   app.get('/artists/:id', artists.findById);
+  app.get('/events', artists.findAllEvents);
 
   // The Catch-all Route
   // This is for supporting browser history pushstate.
@@ -23,4 +24,4 @@ module.exports = function(app) {
   app.get('/*', function(req, res){
     res.sendFile( assetFolder + '/www/index.html' );
   });
-}
+};

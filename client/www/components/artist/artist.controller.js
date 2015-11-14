@@ -1,5 +1,11 @@
 angular.module('starter.artist', ['starter.services', 'ngOpenFB'])
 
-.controller('ArtistCtrl', function($scope, $stateParams, Session) {
-  $scope.session = Artist.get({fbid : $stateParams.artistId});
-});
+.controller('ArtistCtrl', ArtistCtrl);
+
+function ArtistCtrl($scope, $stateParams, $window, Artist) {
+  $scope.artist = $stateParams.artist;
+  $scope.payPal = function(link) {
+    link = link.toString();
+      $window.open( link, '_system', 'location=yes');
+  };
+}
