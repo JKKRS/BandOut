@@ -1,5 +1,7 @@
 angular.module('starter.artist', ['starter.services', 'ngOpenFB'])
 
-.controller('ArtistCtrl', function($scope, $stateParams, Session) {
-  $scope.session = Artist.get({fbid : $stateParams.artistId});
-});
+.controller('ArtistCtrl', ArtistCtrl);
+
+function ArtistCtrl($scope, $stateParams, Artist) {
+  $scope.artist = $stateParams.artist;
+}

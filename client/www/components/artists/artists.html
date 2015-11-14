@@ -2,7 +2,7 @@
   <ion-content>
     <div class="list">
       <a class="item item-thumbnail-left"
-        ng-repeat="artist in artists" href="#/app/artists/{{artist.fbid}}">
+        ng-repeat="artist in artists" ng-click="artistDetail(artist)">
         <img ng-src="{{ artist.image }}">
         <h2>{{ artist.name }}</h2>
         <h4>{{ artist.email }}</h4>
