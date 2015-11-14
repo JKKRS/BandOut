@@ -81,30 +81,6 @@ var postUser = function(user) {
 
 describe("The Server", function() {
 
-  before(function (done) {
-      userModel.remove({}, function(err, rmd) {} )
-      .then(done())
-  });
-
-  it('returns all users', function(done) {
-    // userModel.remove({}, function(err, rmd) {})
-    return request(app)
-    .post('/apis/users')
-      .send(user1)
-      .expect(201)
-      .then(function() {
-        return request(app)
-          .get('/apis/users')
-          .expect(200)
-        })
-        .then(function(res, err) {
-          // console.log(res.body)
-          expect(res.body.length).to.equal(1)
-          expect(res.body._id).to.equal(user1._id)
-        })
-      .then(done())
-  });
-
   it("serves an example endpoint", function(done) {
 
     // Mocha will wait for returned promises to complete
@@ -117,29 +93,65 @@ describe("The Server", function() {
       .then(done())
   });
 
-  it("posts to the /apis/users endpoint", function(done) {
-    return request(app)
+  describe("User API", function() {
+
+    before(function (done) {
+        userModel.remove({}, function(err, rmd) {} )
+        .then(done())
+    });
+
+    it('returns all users', function(done) {
+      // userModel.remove({}, function(err, rmd) {})
+      return request(app)
       .post('/apis/users')
-      .expect(201)
-      .then(done())
-  });
+        .send(user1)
+        .expect(201)
+        .then(function() {
+          return request(app)
+            .get('/apis/users')
+            .expect(200)
+          })
+          .then(function(res, err) {
+            // console.log(res.body)
+            expect(res.body.length).to.equal(1)
+            expect(res.body._id).to.equal(user1._id)
+          })
+        .then(done())
+    });
 
-  it("creates a non-artist user and returns it", function(done) {
-    return request(app)
-      .post('/apis/users')
-      .send(user1)
-      .expect(201)
-      .expect(function(response) {
-          var returnedUser = response.body;
+    it("posts to the /apis/users endpoint", function(done) {
+      return request(app)
+        .post('/apis/users')
+        .expect(201)
+        .then(done())
+    });
 
-          expect(returnedUser._id).to.not.be.undefined;
-          expect(returnedUser.name).to.equal(user1.name);
-          expect(returnedUser.image).to.equal(user1.image);
-          expect(returnedUser.email).to.equal(user1.email);
-          expect(returnedUser.twitter).to.equal(user1.twitter);
-          expect(returnedUser.artist).to.equal(user1.artist);
-
+    it("creates a non-artist user and returns it", function(done) {
+      return request(app)
+        .post('/apis/users')
+        .send(user1)
+        .expect(201)
+        .expect(function(response) {
+            var returnedUser = response.body;
+            expect(returnedUser).to.deep.equal(user1);
         })
-      .then(done());
-  });
+        .then(done());
+    });
+  })
+
+  describe('Artists API', function() {
+
+    it("posts an artist to the database", function(done) {
+      return request(app)
+        .post('/apis/artists')
+        .send(artist1)
+        .expect(201)
+        .expect(function(response) {
+          var returnedArtist = response.body;
+          expect(returnedArtist).to.deep.equal(artist1)
+        })
+        .then(done());
+    })
+
+  })
 })

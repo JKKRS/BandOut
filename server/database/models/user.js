@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
-  fbid: String, // not null and unique
-  name: String, // not null
+  fbid: { type : String, unique : true, required : true },
+  name: { type : String, required : true },
   image: String,
   email: String,
   twitter: String,
