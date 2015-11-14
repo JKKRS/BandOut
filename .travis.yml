@@ -6,7 +6,11 @@ env:
 cache:
   directories:
   - node_modules
+services:
+  - mongodb
 before_install:
 - 
 before_script:
--
+  - sleep 15
+  - mongo bandout --eval 'db.addUser("travis", "test");'
+
