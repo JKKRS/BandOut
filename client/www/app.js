@@ -4,10 +4,22 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.session', 'starter.sessions', 'ngOpenFB'])
+
+angular.module('starter', [
+  'ionic',
+  'starter.controllers',
+  'starter.artist',
+  'starter.artists',
+  'starter.session',
+  'starter.sessions',
+  'starter.editProfile',
+  'starter.addEvent',
+  'ngOpenFB'
+])
+
 
 .run(function($ionicPlatform, ngFB) {
-  ngFB.init({ appId: '924056997681768' })
+  ngFB.init({ appId: '924056997681768' });
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -26,7 +38,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.session', 's
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
-    .state('app', {
+  .state('app', {
     url: '/app',
     abstract: true,
     templateUrl: 'components/menu/menu.html',
@@ -41,6 +53,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.session', 's
       }
     }
   })
+
   .state('app.browse', {
       url: '/browse',
       views: {
@@ -48,26 +61,59 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.session', 's
           templateUrl: 'components/browse/browse.html'
         }
       }
-    })
-    .state('app.sessions', {
-      url: '/sessions',
-      views: {
-        'home': {
-          templateUrl: 'components/sessions/sessions.html',
-          controller: 'SessionsCtrl'
-        }
-      }
-    })
+  })
 
-    .state('app.editProfile', {
-      url: '/editProfile',
-      views: {
-        'editProfile': {
-          templateUrl: 'components/editProfile/editProfile.html',
-          controller: 'editProfileCtrl'
-        }
+  .state('app.artists', {
+    url: '/artists',
+    views: {
+      'artists': {
+        templateUrl: 'components/artists/artists.html',
+        controller: 'ArtistsCtrl'
       }
-    })
+    }
+  })
+
+  .state('app.artist', {
+    url: '/artists/:artistsId',
+    views: {
+      'artist': {
+        templateUrl: 'components/artist/artist.html',
+        controller: 'ArtistCtrl'
+      }
+    }
+  })
+
+  .state('app.sessions', {
+    url: '/sessions',
+    views: {
+      'home': {
+        templateUrl: 'components/sessions/sessions.html',
+        controller: 'SessionsCtrl'
+      }
+    }
+  })
+
+  .state('app.editProfile', {
+    url: '/editProfile',
+    abstract: true,
+    views: {
+      'editProfile': {
+        template: '<ion-nav-view></ion-nav-view>'
+      }
+    }
+  })
+
+  .state('app.editProfile.index', {
+    url: '',
+    templateUrl: 'components/editProfile/editProfile.html',
+    controller: 'editProfileCtrl'
+  })
+
+  .state('app.editProfile.addEvent', {
+    url: '/addEvent',
+    templateUrl: 'components/addEvent/addEvent.html',
+    controller: 'addEventCtrl'
+  })
 
   .state('app.session', {
     url: '/sessions/:sessionId',
@@ -77,7 +123,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.session', 's
         controller: 'SessionCtrl'
       }
     }
-  })
+  });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/sessions');
+  $urlRouterProvider.otherwise('/app/artists');
 });
