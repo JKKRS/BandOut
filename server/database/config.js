@@ -9,7 +9,7 @@ var config = {
 mongoose.connect(config.mongoUrl);
 
 mongoose.connection.on('error', function(err){
-  console.log('Mango problem', err)
+  console.log('Mango problem', err);
 })
 
 module.exports = mongoose;

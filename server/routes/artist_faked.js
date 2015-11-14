@@ -82,8 +82,11 @@ exports.findAll = function (req, res, next) {
   res.send(artists);
 };
 
+exports.findAllEvents = function(req, res, next) {
+  res.send(artists.map(element => element.artist_info.upcoming_events));
+};
+
 exports.findById = function (req, res, next) {
-  console.log(req.params);
   var fbid = req.params.id;
-  res.send(artists.filter(e => e.fbid === fbid)[0]);
+  res.send(artists.filter(element => element.fbid === fbid)[0]);
 };
