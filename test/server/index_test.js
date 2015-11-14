@@ -55,7 +55,7 @@ var Artist = function(user, events, paypal_link) {
   newArtist = user;
   newArtist.artist_info = {
       "paypal_link" : paypal_link,
-      upcoming_events : [events]
+      upcoming_events : events
   }
   return newArtist;
 }
