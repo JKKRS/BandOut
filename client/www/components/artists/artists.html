@@ -1,16 +1,22 @@
 <ion-view view-title="Artists">
-  <ion-content>
-    <div class="list">
-      <a class="item item-thumbnail-left"
-        ng-repeat="artist in artists" ng-click="artistDetail(artist)">
-        <img ng-src="{{ artist.image }}">
-        <h2>{{ artist.name }}</h2>
-        <h4>{{ artist.email }}</h4>
-        <h4>{{ artist.twitter }}</h4>
-        <h4>Upcoming Event: {{ artist.artist_info.upcoming_events[0].title }}
-          Date: {{ artist.artist_info.upcoming_events[0].datetime }}
-        </h4>
-      </a>
-    </div>
-  </ion-content>
+<ion-content>
+<div class="list list-inset">
+  <label class="item item-input">
+    <i class="icon ion-search placeholder-icon"></i>
+    <input type="text" placeholder="Search" ng-model="searchText">
+  </label>
+</div>
+<div class="list">
+  <a class="item item-thumbnail-left"
+    ng-repeat="artist in artists | filter:searchText" ng-click="artistDetail(artist)">
+    <img ng-src="{{ artist.image }}">
+    <h2>{{ artist.name }}</h2>
+    <h4>{{ artist.email }}</h4>
+    <h4>{{ artist.twitter }}</h4>
+    <h4>Upcoming Event: {{ artist.artist_info.upcoming_events[0].title }}
+    Date: {{ artist.artist_info.upcoming_events[0].datetime }}
+    </h4>
+  </a>
+</div>
+</ion-content>
 </ion-view>
