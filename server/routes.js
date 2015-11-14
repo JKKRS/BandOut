@@ -6,10 +6,12 @@ var artists       = require('./routes/artist_faked');
 // Routers
 var routes        = express.Router();
 var userRouter    = require('./apis/users-api');
+var artistsRouter = require('./apis/artists-api');
 var assetFolder   = Path.resolve(__dirname, '../client/');
 
 module.exports = function(app) {
   app.use('/apis/users', userRouter);
+  app.use('/apis/artists', artistsRouter);
 
   // TEMPORARY
   app.get('/artists', artists.findAll);

@@ -15,7 +15,7 @@ UsersAPI.post('/', function(req, res) {
 UsersAPI.get('/', function(req, res) {
   User.find({}, function(err, user) {
     if (err) { return err }
-    res.status(200).send(user)
+    res.status(200).send(user);
   })
 })
 
