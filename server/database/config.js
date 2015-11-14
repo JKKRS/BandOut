@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 
+// TODO: setup local test DB
+
 var config = {
   mongoUrl: process.env.MONGOLAB_URI || 'mongodb://localhost/bandout'
 };
