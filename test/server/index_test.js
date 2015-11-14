@@ -86,17 +86,20 @@ var artist2 = Artist(user4, event2, 'http://google.com');
 
 describe("The Server", function() {
 
-  // it("serves an example endpoint", function(done) {
+  it("serves an example endpoint", function(done) {
 
-  //   // Mocha will wait for returned promises to complete
-  //   return request(app)
-  //     .get('/api/tags-example')
-  //     .expect(200)
-  //     .then(function(response) {
-  //       expect(response.body).to.include('node')
-  //     })
-  //     .then(done())
-  // });
+    // Mocha will wait for returned promises to complete
+    return request(app)
+      .get('/api/tags-example')
+      .expect(200)
+      .then(function(response) {
+        expect(response.body).to.include('node')
+        done();
+      })
+      .catch(function(err) {
+        done(err)
+      })
+  });
 
   describe("User API", function() {
 
@@ -121,8 +124,8 @@ describe("The Server", function() {
             // console.log(res.body)
             expect(res.body.length).to.equal(1)
             expect(res.body._id).to.equal(user1._id)
+            done();
           })
-        .then(done)
         .catch(function(err) { done(err) })
     });
 
@@ -139,23 +142,43 @@ describe("The Server", function() {
         .send(user1)
         .expect(201)
         .then(function(response) {
-            var returnedUser = response.body;
-            expect(returnedUser.fb_id).to.equal(user1.fb_id);
-            done();
+          var returnedUser = response.body;
+          expect(returnedUser.fb_id).to.equal(user1.fb_id);
+          done();
         })
         .catch(function(err) {
           // console.log(err);
           done(err);
-        })
+        });
     });
-  })
+
+    it("returns the user by specified ID", function(done) {
+      return request(app)
+        .post('/apis/users')
+        .send(user1)
+        .expect(201)
+        .then(function(response) {
+          var id = response.body.fbid
+          return request(app)
+            .get('/apis/users/' + id)
+            .expect(200)
+            .then(function(response) {
+              expect(response.body.fbid).to.equal(id);
+              done();
+            })
+        })
+        .catch(function(err) {
+          done(err);
+        });
+    });
+  });
 
   describe('Artists API', function() {
 
     beforeEach(function (done) {
-        userModel.remove({}, function(err, rmd) {} )
-        .then(done())
-        // .catch(function(err) { done(err) })
+      userModel.remove({}, function(err, rmd) {} )
+      .then(done())
+      // .catch(function(err) { done(err) })
     });
 
     it("posts an artist to the database and returns it", function(done) {
@@ -217,6 +240,26 @@ describe("The Server", function() {
           done(err)
         })
     })
+
+    it("returns the artist by specified ID", function(done) {
+      return request(app)
+        .post('/apis/artists')
+        .send(artist1)
+        .expect(201)
+        .then(function(response) {
+          var id = response.body.fbid
+          return request(app)
+            .get('/apis/artists/' + id)
+            .expect(200)
+            .then(function(response) {
+              expect(response.body.fbid).to.equal(id);
+              done();
+            })
+        })
+        .catch(function(err) {
+          done(err);
+        });
+    });
 
   })
 })

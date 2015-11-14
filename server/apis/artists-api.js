@@ -19,4 +19,12 @@ ArtistsAPI.get('/', function(req, res) {
   })
 })
 
+ArtistsAPI.get('/:id', function(req, res) {
+  var id = req.params.id;
+  User.findOne({ fbid : id }, function(err, artist) {
+    if (err) { return err }
+    res.status(200).send(artist);
+  })
+})
+
 module.exports = ArtistsAPI;

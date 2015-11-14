@@ -19,4 +19,12 @@ UsersAPI.get('/', function(req, res) {
   })
 })
 
+UsersAPI.get('/:id', function(req, res) {
+  var id = req.params.id;
+  User.findOne({ fbid : id }, function(err, user) {
+    if (err) { return err }
+    res.status(200).send(user);
+  })
+})
+
 module.exports = UsersAPI;
