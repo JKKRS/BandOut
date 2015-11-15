@@ -8,8 +8,12 @@ var config = {
 
 mongoose.connect(config.mongoUrl);
 
-mongoose.connection.on('error', function(err){
-  console.log('Mango problem', err);
-})
+var db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'connection error:'));
+
+db.once('open', function (callback) {
+  //console.log('connected to mongo');
+});
 
 module.exports = mongoose;
