@@ -27,4 +27,12 @@ UsersAPI.get('/:id', function(req, res) {
   })
 })
 
+UsersAPI.put('/:id', function(req, res) {
+  var id = req.params.id;
+  User.update( { fbid : id }, { $set : req.body }, null, function(err, msg) {
+    if (err) { return err }
+    res.status(202).send(msg)
+  })
+})
+
 module.exports = UsersAPI;

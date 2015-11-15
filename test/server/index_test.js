@@ -211,6 +211,28 @@ describe("The Server", function() {
           done(err);
         });
     });
+
+    it("should update the user which is entered", function(done) {
+      return request(app)
+        .post('/apis/users')
+        .send(user1)
+        .expect(201)
+        .then(function(response) {
+          var id = response.body.fbid
+          return request(app)
+            .put('/apis/users/' + id)
+            .send(user2)
+            .expect(202)
+            .then(function(response) {
+              expect(response.body.ok).to.equal(1);
+              expect(response.body.nModified).to.equal(1);
+              done();
+            })
+        })
+        .catch(function(err) {
+          done(err);
+        });
+    })
   });
 
   describe('Artists API', function() {
@@ -340,6 +362,28 @@ describe("The Server", function() {
           done(err);
         });
     });
+
+    it("should update the user which is entered", function(done) {
+      return request(app)
+        .post('/apis/artists')
+        .send(artist1)
+        .expect(201)
+        .then(function(response) {
+          var id = response.body.fbid
+          return request(app)
+            .put('/apis/artists/' + id)
+            .send(artist2)
+            .expect(202)
+            .then(function(response) {
+              expect(response.body.ok).to.equal(1);
+              expect(response.body.nModified).to.equal(1);
+              done();
+            })
+        })
+        .catch(function(err) {
+          done(err);
+        });
+    })
 
   })
 })
