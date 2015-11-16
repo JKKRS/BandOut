@@ -12,7 +12,8 @@ angular.module('starter', [
   'starter.artist',
   'starter.artists',
   'starter.editProfile',
-  'starter.addEvent'
+  'starter.addEvent',
+  'starter.eventView'
 ])
 
 .run(function($ionicPlatform, $rootScope, $state, UserService) {
@@ -145,6 +146,13 @@ angular.module('starter', [
     data: {
       authenticate: true
     }
+  })
+
+  .state('app.artists.artist.event', {
+    url: '/:eventId',
+    params: {artist: null},
+    templateUrl: 'components/eventView/eventView.html',
+    controller: 'eventViewCtrl'
   })
 
   .state('app.editProfile.index', {
