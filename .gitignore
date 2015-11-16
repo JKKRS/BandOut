@@ -1,5 +1,6 @@
 client/lib/
 .env
+.env.js
 client/docs/
 
 client/www/css/
