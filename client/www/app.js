@@ -135,6 +135,13 @@ angular.module('starter', [
     controller: 'ArtistCtrl'
   })
 
+  .state('app.artists.artist-event', {
+    url: '/:eventId',
+    params: {event: null},
+    templateUrl: 'components/eventView/eventView.html',
+    controller: 'eventViewCtrl'
+  })
+
   .state('app.editProfile', {
     url: '/editProfile',
     abstract: true,
@@ -148,12 +155,6 @@ angular.module('starter', [
     }
   })
 
-  .state('app.artists.artist.event', {
-    url: '/:eventId',
-    params: {artist: null},
-    templateUrl: 'components/eventView/eventView.html',
-    controller: 'eventViewCtrl'
-  })
 
   .state('app.editProfile.index', {
     url: '',

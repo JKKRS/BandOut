@@ -6,7 +6,8 @@ function ArtistsCtrl($scope, $state, Artist) {
   $scope.artists = Artist.query();
   $scope.artistDetail = function(artist) {
     $state.go('app.artists.artist', {
-      artist: artist
+      artist: artist,
+      artistId: artist.fbid
     });
   };
 }

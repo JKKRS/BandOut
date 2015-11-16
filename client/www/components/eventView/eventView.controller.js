@@ -1,7 +1,7 @@
 angular.module('starter.eventView', [])
 
-.controller('addEventCtrl', eventViewCtrl);
+.controller('eventViewCtrl', eventViewCtrl);
 
-function eventViewCtrl($scope) {
-  $scope.event = {};
+function eventViewCtrl($scope, $stateParams) {
+  $scope.event = $stateParams.event;
 }
