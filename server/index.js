@@ -16,14 +16,14 @@ if(process.env.NODE_ENV !== 'test') {
   // Parse incoming request bodies as JSON
   app.use(require('body-parser').json())
   
-  app.all('*', function(req, res, next) {
-      res.header("Access-Control-Allow-Origin", "*");
-      res.header("Access-Control-Allow-Headers", "X-Requested-With");
-      next();
+  app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
   });
 
   require('./routes.js')(app);
-
 
   // Start the server!
   var port = process.env.PORT || 5000;
