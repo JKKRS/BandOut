@@ -16,9 +16,10 @@
         Upcoming Events:
       <div class="item item-body" ng-repeat="event in artist.artist_info.upcoming_events" ng-click="eventDetail(event)">
         <br> {{ event.title }}
-        <br> {{ event.datetime }}
+        <br> <mydate>{{ event.datetime | date: 'fullDate' }}</mydate>
       </div>
     </div>
     </div>
   </ion-content>
 </ion-view>
+
