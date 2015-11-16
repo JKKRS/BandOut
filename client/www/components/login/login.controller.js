@@ -1,57 +1,82 @@
-angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
+angular.module('starter.fbLogin', ['starter.services'])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, ngFB) {
+.controller('LoginCtrl', function($scope, $state, $q, $location, UserService, $ionicLoading, FACEBOOK_APP_ID) {
+  // Success callback for login
+  var fbLoginSuccess = function(response) {
+    if (!response.authResponse) {
+      fbLoginError('Can\'t find the auth response');
+      return;
+    }
+    console.log('Facebook Login Success');
 
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+    var authResponse = response.authResponse;
 
-  // Form data for the login modal
-  $scope.loginData = {};
+    getFacebookProfileInfo(authResponse)
+      .then(function(profileInfo) {
+        console.log('profile info success', profileInfo);
+        // *** TEMPORARY SHOULD STORE IN DATABASE NOT LOCAL STORAGE ***
+        UserService.setUser({
+          authResponse: authResponse,
+          profileInfo: profileInfo,
+          picture: 'http://graph.facebook.com/' + authResponse.userID + '/picture?type=large'
+        });
 
-
-  // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('/components/login/login.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
-
-  // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
+        $ionicLoading.hide();
+        $location.path('app/artists');
+        // $state.go('app.artists');
+      }, function(fail) {
+        // err handle here
+        console.log('profile info err', fail);
+      });
   };
 
-  // Open the login modal
-  $scope.login = function() {
-    $scope.modal.show();
+  // Failure callback for login
+  var fbLoginError = function(error) {
+    console.log('Facebook Login Error', error);
+    $ionicLoading.hide();
   };
 
-  // Perform the login action when the user submits the login form
-  // $scope.doLogin = function() {
-  //   console.log('Doing login', $scope.loginData);
+  // Fetches Profile info from Facebook API
+  var getFacebookProfileInfo = function(authResponse) {
+    var info = $q.defer();
 
-  //   // Simulate a login delay. Remove this and replace with your login
-  //   // code if using a login system
-  //   $timeout(function() {
-  //     $scope.closeLogin();
-  //   }, 1000);
-  // };
-
-  $scope.fbLogin = function() {
-    ngFB.login({ scope : 'email' })
-    .then(function(response) {
-      if (response.status === 'connected') {
-        console.log('Facebook login succeeded');
-        console.log(response)
-        $scope.closeLogin();
-      } else {
-        alert('Facebook login failed');
+    facebookConnectPlugin.api(
+      '/me?fields=email,name&access_token=' + authResponse.accessToken,
+      null,
+      function(response) {
+        info.resolve(response);
+      },
+      function(response) {
+        info.reject(response);
       }
-    })
-  }
+    );
+    return info.promise;
+  };
 
-})
+  // Method to execute on Login button click
+  $scope.login = function() {
+    if (!window.cordova) {
+      // we are in browser
+      facebookConnectPlugin.browserInit(FACEBOOK_APP_ID);
+    }
+
+    facebookConnectPlugin.getLoginStatus(function(success) {
+      if (success.status === 'connected') {
+        // user logged in and is authenticated, response.authResponse has:
+        // user's id, access token, signed request and time they expire
+        console.log('getLoginStatus', success.status);
+
+        $location.path('app/artists');
+        // $state.go('app.artists');
+      } else {
+        console.log('ELSE: getLoginStatus', success.status);
+        $ionicLoading.show({
+          template: 'Logging in...'
+        });
+
+        // this sets up permissions requested
+        facebookConnectPlugin.login(['email', 'public_profile'], fbLoginSuccess, fbLoginError);
+      }
+    });
+  };
+});
