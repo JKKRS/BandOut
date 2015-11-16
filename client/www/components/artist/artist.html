@@ -14,9 +14,9 @@
       </div>
       <div>
         Upcoming Events:
-      <div class="item item-body" ng-repeat="artist in artist.artist_info.upcoming_events">
-        <br> {{ artist.title }}
-        <br> {{ artist.datetime }}
+      <div class="item item-body" ng-repeat="event in artist.artist_info.upcoming_events" ng-click="eventDetail(event)">
+        <br> {{ event.title }}
+        <br> {{ event.datetime }}
       </div>
     </div>
     </div>
