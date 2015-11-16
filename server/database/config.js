@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
-
-// TODO: setup local test DB
+// var privateVars = require('../../.env');
 
 var config = {
-  mongoUrl: process.env.MONGOLAB_URI || 'mongodb://localhost/bandout'
+  mongoUrl: process.env.MONGO_COMPOSE_URI ||
+    process.env.NODE_ENV === 'test' ? 'mongodb://localhost/bandout' : require('../../.env').MONGO_COMPOSE_URI
 };
 
 mongoose.connect(config.mongoUrl);
