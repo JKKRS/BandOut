@@ -1,12 +1,16 @@
 <ion-view view-title="Login">
-  <ion-content class="ion-fb-login home-background center">
-    <div class="row ion-fb-login-buttons">
-      <div class="col col-center">
-	        <button class="button button-outline button-light" ng-click="login()">
-	          Login with Facebook
-	        </button>
-      </div>
-    </div>
-  </ion-content>
+	<ion-content class="ion-fb-login home-background" scroll= "false">
+		<section class="login-container">
+			<div class = "col header text-center">
+				<h1 class= "brandName">BandOut</h1>
+			</div>
+			<div class = "col button-row text-center ion-fb-login-buttons">
+				<button class="button button-outline button-light" ng-click="login()">
+					Login with Facebook
+				</button>
+			</div>           
+		</section>
+	</ion-content>
 </ion-view>
+
 
