@@ -2,6 +2,11 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
+  auth_info : {
+    accessToken: String,
+    expiresIn: Number,
+    signedRequest: String
+  },
   fbid: { type : String, unique : true, required : true },
   name: { type : String, required : true },
   image: String,

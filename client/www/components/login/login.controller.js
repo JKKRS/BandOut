@@ -1,6 +1,19 @@
 angular.module('starter.fbLogin', ['starter.services'])
 
-.controller('LoginCtrl', function($scope, $state, $q, $location, UserService, $ionicLoading, FACEBOOK_APP_ID) {
+.controller('LoginCtrl', function($scope, $state, $q, $location, UserService, User, $ionicLoading, FACEBOOK_APP_ID) {
+
+  var NewUser = function(fbid, name, image, email, authResponse) {
+    var newUser = Object.create(Object.prototype);
+    newUser = {
+      "auth_info" : authResponse,
+      "fbid" : fbid,
+      "name" : name,
+      "image" : image,
+      "email" : email,
+    }
+    return newUser;
+  }
+
   // Success callback for login
   var fbLoginSuccess = function(response) {
     if (!response.authResponse) {
@@ -13,13 +26,20 @@ angular.module('starter.fbLogin', ['starter.services'])
 
     getFacebookProfileInfo(authResponse)
       .then(function(profileInfo) {
-        console.log('profile info success', profileInfo);
         // *** TEMPORARY SHOULD STORE IN DATABASE NOT LOCAL STORAGE ***
-        UserService.setUser({
+        user_data = {
           authResponse: authResponse,
           profileInfo: profileInfo,
           picture: 'http://graph.facebook.com/' + authResponse.userID + '/picture?type=large'
-        });
+        };
+
+        var auth = user_data.authResponse;
+        var profile = user_data.profileInfo;
+        var user_obj = NewUser(auth.userID, profile.name, user_data.picture, profile.email, auth)
+
+        User.save(user_obj, function(res) {
+          console.log('res', res);
+        })
 
         $ionicLoading.hide();
         $location.path('app/artists');
