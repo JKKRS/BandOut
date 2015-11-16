@@ -45,7 +45,7 @@ angular.module('starter.services', ['ngResource'])
 })
 
 .factory('Artist', function($resource) {
-  return $resource('http://localhost:5000/artists/:artistId');
+  return $resource('http://localhost:5000/apis/artists/:artistId');
 })
 
 .factory('User', function($resource) {
