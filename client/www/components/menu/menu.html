@@ -1,7 +1,15 @@
+<!--   TOP BAR -->
   <ion-nav-bar class="bar-positive">
     <ion-nav-back-button>
     </ion-nav-back-button>
+    <ion-nav-buttons side = "right">
+      <button ng-controller="MenuCtrl" class=" button item-icon-right" menu-close href="#" ng-click="showConfirmLogOut()">
+      Log out
+      </button>
+    </ion-nav-buttons>
   </ion-nav-bar>
+
+<!-- BOTTOM TABS -->
   <ion-tabs class="tabs-positive tabs-icon-only">
     <ion-tab title="Profile" icon-on="ion-ios-information" icon-off="ion-ios-information-outline" href= "#/app/editProfile">
       <ion-nav-view name= "editProfile"></ion-nav-view>
@@ -14,5 +22,3 @@
       <ion-nav-view name= "browse"></ion-nav-view>
     </ion-tab> -->
   </ion-tabs>
-
-
