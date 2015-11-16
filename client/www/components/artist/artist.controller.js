@@ -1,4 +1,4 @@
-angular.module('starter.artist', ['starter.services', 'ngOpenFB'])
+angular.module('starter.artist', ['starter.services'])
 
 .controller('ArtistCtrl', ArtistCtrl);
 

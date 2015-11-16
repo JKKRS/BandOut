@@ -6,16 +6,16 @@ angular.module('starter.services', ['ngResource'])
   // ** TEMPORARY **
   // NEEDS TO NOT STORE IN LOCAL, SHOULD USE DB
   var setUser = function(user_data) {
-    window.localStorage['ionFB_user'] = JSON.stringify(user_data);
+    window.localStorage.setItem('ionFB_user', JSON.stringify(user_data));
   };
 
   var userIsLoggedIn = function() {
     var user = getUser();
-    return user.authResponse.userID != null;
+    return user.authResponse.userID !== null;
   };
 
   var getUser = function() {
-    return JSON.parse(window.localStorage['ionFB_user'] || '{}');
+    return JSON.parse(window.localStorage.getItem('ionFB_user') || '{}');
   };
 
   return {

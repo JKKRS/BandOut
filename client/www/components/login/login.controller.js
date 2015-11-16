@@ -24,9 +24,9 @@ angular.module('starter.fbLogin', ['starter.services'])
         $ionicLoading.hide();
         $location.path('app/artists');
         // $state.go('app.artists');
-      }, function(fail) {
+      }, function(err) {
         // err handle here
-        console.log('profile info err', fail);
+        console.log('profile info err', err);
       });
   };
 

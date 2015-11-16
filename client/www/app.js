@@ -11,13 +11,9 @@ angular.module('starter', [
   'starter.fbLogin',
   'starter.artist',
   'starter.artists',
-  'starter.session',
-  'starter.sessions',
   'starter.editProfile',
-  'starter.addEvent',
-  'ngOpenFB'
+  'starter.addEvent'
 ])
-
 
 .run(function($ionicPlatform, $rootScope, $state, UserService) {
 
@@ -43,7 +39,7 @@ angular.module('starter', [
 
   $ionicPlatform.on("resume", function() {
     facebookConnectPlugin.getLoginStatus(function(success) {
-      if ((success.status != 'connected') || (UserService.userIsLoggedIn() === false)) {
+      if ((success.status !== 'connected') || (UserService.userIsLoggedIn() === false)) {
         $state.go('login');
       }
     });
@@ -59,7 +55,7 @@ angular.module('starter', [
           event.preventDefault();
           $state.go('login');
         }
-      }, function(fail) {
+      }, function(err) {
           // err handle here
       });
     }
@@ -138,16 +134,6 @@ angular.module('starter', [
     controller: 'ArtistCtrl'
   })
 
-  .state('app.sessions', {
-    url: '/sessions',
-    views: {
-      'home': {
-        templateUrl: 'components/sessions/sessions.html',
-        controller: 'SessionsCtrl'
-      }
-    }
-  })
-
   .state('app.editProfile', {
     url: '/editProfile',
     abstract: true,
@@ -171,17 +157,8 @@ angular.module('starter', [
     url: '/addEvent',
     templateUrl: 'components/addEvent/addEvent.html',
     controller: 'addEventCtrl'
-  })
-
-  .state('app.session', {
-    url: '/sessions/:sessionId',
-    views: {
-      'session': {
-        templateUrl: 'components/session/session.html',
-        controller: 'SessionCtrl'
-      }
-    }
   });
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/');
 });

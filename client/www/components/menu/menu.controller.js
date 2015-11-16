@@ -24,8 +24,8 @@ angular.module('starter.menu', ['starter.services'])
           // logout success
           $ionicLoading.hide();
           $state.go('login');
-        }, function(fail) {
-          $ionicLoading.hid();
+        }, function(err) {
+          $ionicLoading.hide();
         });
       } else {
         // cancel logout
