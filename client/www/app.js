@@ -7,30 +7,57 @@
 
 angular.module('starter', [
   'ionic',
-  'starter.controllers',
+  'starter.menu',
+  'starter.fbLogin',
   'starter.artist',
   'starter.artists',
-  'starter.session',
-  'starter.sessions',
   'starter.editProfile',
-  'starter.addEvent',
-  'ngOpenFB'
+  'starter.addEvent'
 ])
 
+.run(function($ionicPlatform, $rootScope, $state, UserService) {
 
-.run(function($ionicPlatform, ngFB) {
-  ngFB.init({ appId: '924056997681768' });
   $ionicPlatform.ready(function() {
+    facebookConnectPlugin.getLoginStatus(function(success) {
+      if ((success.status === 'connected') && (UserService.userIsLoggedIn() === true)) {
+        $state.go('app.artists');
+      } else {
+        $state.go('login');
+      }
+    });
+
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-      cordova.plugins.Keyboard.disableScroll(true);
-
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
+    }
+  });
+
+  $ionicPlatform.on("resume", function() {
+    facebookConnectPlugin.getLoginStatus(function(success) {
+      if ((success.status !== 'connected') || (UserService.userIsLoggedIn() === false)) {
+        $state.go('login');
+      }
+    });
+  });
+
+  // Authentication Check For UI-Router
+  $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams) {
+    if (toState.data.authenticate) {
+      facebookConnectPlugin.getLoginStatus(function(success) {
+        if ((success.status === 'connected') && (UserService.userIsLoggedIn() === true)) {
+          // proceed
+        } else {
+          event.preventDefault();
+          $state.go('login');
+        }
+      }, function(err) {
+          // err handle here
+      });
     }
   });
 })
@@ -42,7 +69,16 @@ angular.module('starter', [
     url: '/app',
     abstract: true,
     templateUrl: 'components/menu/menu.html',
-    controller: 'AppCtrl'
+    controller: 'MenuCtrl'
+  })
+
+  .state('login', {
+    url: '/',
+    templateUrl: 'components/login/login.html',
+    controller: 'LoginCtrl',
+    data: {
+      authenticate: false
+    }
   })
 
   .state('app.search', {
@@ -51,16 +87,22 @@ angular.module('starter', [
       'menuContent': {
         templateUrl: 'components/search/search.html'
       }
+    },
+    data: {
+      authenticate: true
     }
   })
 
   .state('app.browse', {
-      url: '/browse',
-      views: {
-        'browse': {
-          templateUrl: 'components/browse/browse.html'
-        }
+    url: '/browse',
+    views: {
+      'browse': {
+        templateUrl: 'components/browse/browse.html'
       }
+    },
+    data: {
+      authenticate: true
+    }
   })
 
   .state('app.artists', {
@@ -70,13 +112,19 @@ angular.module('starter', [
       'artists': {
         template: '<ion-nav-view></ion-nav-view>'
       }
+    },
+    data: {
+      authenticate: true
     }
   })
 
   .state('app.artists.index', {
     url: '',
     templateUrl: 'components/artists/artists.html',
-    controller: 'ArtistsCtrl'
+    controller: 'ArtistsCtrl',
+    data: {
+      authenticate: true
+    }
   })
 
   .state('app.artists.artist', {
@@ -86,16 +134,6 @@ angular.module('starter', [
     controller: 'ArtistCtrl'
   })
 
-  .state('app.sessions', {
-    url: '/sessions',
-    views: {
-      'home': {
-        templateUrl: 'components/sessions/sessions.html',
-        controller: 'SessionsCtrl'
-      }
-    }
-  })
-
   .state('app.editProfile', {
     url: '/editProfile',
     abstract: true,
@@ -103,6 +141,9 @@ angular.module('starter', [
       'editProfile': {
         template: '<ion-nav-view></ion-nav-view>'
       }
+    },
+    data: {
+      authenticate: true
     }
   })
 
@@ -116,17 +157,8 @@ angular.module('starter', [
     url: '/addEvent',
     templateUrl: 'components/addEvent/addEvent.html',
     controller: 'addEventCtrl'
-  })
-
-  .state('app.session', {
-    url: '/sessions/:sessionId',
-    views: {
-      'session': {
-        templateUrl: 'components/session/session.html',
-        controller: 'SessionCtrl'
-      }
-    }
   });
+
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/artists');
+  $urlRouterProvider.otherwise('/');
 });

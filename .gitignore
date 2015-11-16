@@ -1,6 +1,10 @@
 client/lib/
 .env
 client/docs/
+
+client/www/css/
+client/www/lib/
+client/resources/
 ​
 # Logs
 logs

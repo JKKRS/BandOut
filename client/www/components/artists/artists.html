@@ -17,6 +17,10 @@
     Date: {{ artist.artist_info.upcoming_events[0].datetime }}
     </h4>
   </a>
+  <ion-item ng-controller="MenuCtrl" class="item-icon-left" menu-close href="#" ng-click="showConfirmLogOut()">
+    <i class="icon ion-log-out"></i>
+    <h2 class="menu-text">Log out</h2>
+  </ion-item>
 </div>
 </ion-content>
 </ion-view>

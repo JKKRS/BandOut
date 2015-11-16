@@ -1,4 +1,12 @@
 {
   "name": "bandout",
-  "app_id": "924056997681768"
+  "app_id": "924056997681768",
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
 }

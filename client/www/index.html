@@ -3,14 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; script-src &apos;self&apos; &apos;unsafe-inline&apos; &apos;unsafe-eval&apos; *; style-src  &apos;self&apos; &apos;unsafe-inline&apos; *">
     <title></title>
 
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
 
-    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <!-- compiled css output -->
     <link href="css/ionic.app.css" rel="stylesheet">
-    -->
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
@@ -20,13 +18,10 @@
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
-    <script src="components/auth/openfb.js"></script>
-    <script src="components/auth/ngopenfb.js"></script>
     <script src="app.js"></script>
     <script src="services/services.js"></script>
+    <script src="components/menu/menu.controller.js"></script>
     <script src="components/login/login.controller.js"></script>
-    <script src="components/session/session.controller.js"></script>
-    <script src="components/sessions/sessions.controller.js"></script>
     <script src="components/editProfile/editProfile.controller.js"></script>
     <script src="components/artist/artist.controller.js"></script>
     <script src="components/artists/artists.controller.js"></script>
@@ -36,5 +31,8 @@
 
   <body ng-app="starter">
     <ion-nav-view></ion-nav-view>
+
+    <div id="fb-root"></div>
+    <script src="components/login/facebookConnectPlugin.js"></script>
   </body>
 </html>
