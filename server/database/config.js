@@ -1,8 +1,9 @@
 var mongoose = require('mongoose');
-var privateVars = require('../../.env');
+// var privateVars = require('../../.env');
 
 var config = {
-  mongoUrl: process.env.MONGO_COMPOSE_URI || process.env.NODE_ENV === 'test' ? 'mongodb://localhost/bandout' : privateVars.MONGO_COMPOSE_URI
+  mongoUrl: process.env.MONGO_COMPOSE_URI ||
+    process.env.NODE_ENV === 'test' ? 'mongodb://localhost/bandout' : require('../../.env').MONGO_COMPOSE_URI
 };
 
 mongoose.connect(config.mongoUrl);
