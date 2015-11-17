@@ -15,8 +15,9 @@ function editProfileCtrl($scope, $state, User, UserService) {
   };
 
   $scope.retrieveUser = function() {
-    UserService.getUser().then(function(res) {
-      console.log('res', res)
+    UserService.getUser()
+    .then(function(res) {
+      console.log('called');
       $scope.user.name = res.name;
       $scope.user.email = res.email;
       $scope.user.twitter = res.twitter;

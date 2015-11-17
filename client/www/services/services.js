@@ -16,30 +16,21 @@ angular.module('starter.services', ['ngResource'])
   };
 
   var userIsLoggedIn = function() {
-    var user = getUser();
+    // var user = getUser();
     return /*user.authResponse.userID !== null;*/ true;
   };
 
-  var getUser = function(callback) {
-    return $q(function(resolve, reject) {
-      // $timeout(function() {
-        if (window.FB) {
-          resolve()
-        }
-      })
-      .then(function() {
+  var getUser = function() {
+      return $q(function(resolve, reject) {
         facebookConnectPlugin.getLoginStatus(function(res) {
-          console.log('FB RESPONSE:', res)
           return User.get({ "fbid" : res.authResponse.userID })
-          .$promise.then(function(res) {
-            return $q(function(resolve, reject) {
-              console.log(res)
-              resolve(res);
-            });
+          .$promise
+          .then(function(res) {
+            console.log(res)
+            resolve(res);
           })
         })
-      // }, 150);
-    })
+      })
   };
 
     // return JSON.parse(window.localStorage.getItem('ionFB_user') || '{}');
@@ -55,7 +46,7 @@ angular.module('starter.services', ['ngResource'])
 })
 
 .factory('User', function($resource) {
-  return $resource('http://localhost:5000/apis/users/:fbid', null, {
+  return $resource('http://bandout.herokuapp.com/apis/users/:fbid', null, {
     'update' : { method : 'PUT' }
   });
 })
