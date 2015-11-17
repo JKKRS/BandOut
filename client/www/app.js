@@ -14,7 +14,8 @@ angular.module('starter', [
   'starter.editProfile',
   'starter.addEvent',
   'starter.eventView',
-  'uiGmapgoogle-maps'
+  'uiGmapgoogle-maps',
+  'starter.mapBrowse'
 ])
 
 .run(function($ionicPlatform, $rootScope, $state, $location, UserService, FACEBOOK_APP_ID) {
@@ -73,7 +74,7 @@ angular.module('starter', [
 })
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
-  
+
   $stateProvider
 
   .state('app', {
@@ -111,6 +112,7 @@ angular.module('starter', [
         templateUrl: 'components/browse/browse.html'
       }
     },
+    controller:'MapCtrl',
     data: {
       authenticate: true
     }
@@ -183,5 +185,3 @@ angular.module('starter', [
 
   $ionicConfigProvider.platform.android.tabs.position('bottom').style('standard');
 });
-
-
