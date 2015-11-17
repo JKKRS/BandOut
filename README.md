@@ -7,8 +7,8 @@ A better way to tip musicians
 ```
 $ git clone https://github.com/JKKRS/BandOut.git
 $ cd BandOut
-$ npm install && cd client && npm install
-$ npm start
+$ cd client && npm install
+$ ionic state restore
 ```
 
 Now visit [localhost:5000](http://localhost:5000/)
