@@ -13,7 +13,8 @@ angular.module('starter', [
   'starter.artists',
   'starter.editProfile',
   'starter.addEvent',
-  'starter.eventView'
+  'starter.eventView',
+  'uiGmapgoogle-maps'
 ])
 
 .run(function($ionicPlatform, $rootScope, $state, $location, UserService, FACEBOOK_APP_ID) {
