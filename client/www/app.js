@@ -71,7 +71,8 @@ angular.module('starter', [
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+  
   $stateProvider
 
   .state('app', {
@@ -178,4 +179,8 @@ angular.module('starter', [
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/');
+
+  $ionicConfigProvider.platform.android.tabs.position('bottom');
 });
+
+
