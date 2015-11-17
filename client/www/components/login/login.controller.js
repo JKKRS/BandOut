@@ -10,6 +10,7 @@ angular.module('starter.fbLogin', ['starter.services'])
       "name" : name,
       "image" : image,
       "email" : email,
+      "artist" : false
     }
     return newUser;
   }

@@ -2,7 +2,7 @@ angular.module('starter.editProfile', [])
 
 .controller('editProfileCtrl', editProfileCtrl);
 
-function editProfileCtrl($scope, $state) {
+function editProfileCtrl($scope, $state, User) {
   $scope.user = {};
   $scope.user.artist = false;
   $scope.user.name = "";
@@ -13,4 +13,54 @@ function editProfileCtrl($scope, $state) {
   $scope.create = function() {
     $state.go('app.editProfile.addEvent');
   };
+
+  $scope.getUser = function() {
+    User.get({ "fbid" : "10101731679332720" }, function(res) {
+      $scope.user.name = res.name;
+      $scope.user.email = res.email;
+      $scope.user.twitter = res.twitter;
+    })
+  }
+
+  $scope.saveUser = function() {
+    console.log($scope.user)
+    var user = NewUser($scope.user.artist, $scope.user.twitter, $scope.user.paypal, $scope.user.website)
+    User.update({ "fbid" : "10101731679332720" }, user);
+  }
+
+  $scope.getUser();
 }
+
+var NewUser = function(artist, twitter, pp_id, website) {
+  var newUser = Object.create(Object.prototype);
+  newUser = {
+    "artist" : artist,
+    "twitter" : twitter,
+    "paypal_id" : pp_id,
+    "website" : website
+  }
+  return newUser;
+}
+// var Venue = function(name, city, country, lat, longitude) {
+//   var newVenue = Object.create(Object.prototype)
+//   newVenue = {
+//     "name" : name,
+//     "city": city,
+//     "country" : country,
+//     "latitude" : lat,
+//     "longitude" : longitude
+//   }
+//   return newVenue;
+// }
+
+// var Event = function(id, title, datetime, description, venue) {
+//   var newEvent = Object.create(Object.prototype);
+//   newEvent = {
+//     "id" : id,
+//     "title" : title,
+//     "datetime" : datetime,
+//     "description" : description,
+//     "venue" : venue
+//   }
+//   return newEvent;
+// }

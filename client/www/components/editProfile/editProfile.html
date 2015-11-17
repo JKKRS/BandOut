@@ -1,19 +1,21 @@
-<ion-view title="Edit Profile">
+<ion-view class="edit-profile" title="Edit Profile">
     <ion-content padding="true" class="has-header">
-        <form class="list">
-            <ion-toggle toggle-class="toggle-positive" name="ArtistToggle" ng-model='user.artist'>Artist</ion-toggle>
+        <form class="card">
+            <ion-toggle toggle-class="toggle-positive" checked="{{user.artist}}" name="ArtistToggle" ng-model='user.artist' ng-click='toggleArtist()'>Artist{{user.artist}}</ion-toggle>
         </form>
-        <form class="list">
-            <label class="item item-input" name="Name" ng-model='user.name'>
-                <input type="text" placeholder="Name">
-            </label>
-            <label class="item item-input" name="Email" ng-model='user.email'>
-                <input type="email" placeholder="Email">
-            </label>
-            <label class="item item-input" name="Twitter" ng-model='user.twitter'>
-                <input type="text" placeholder="Twitter ID">
-            </label>
+        <form class="card">
+            <div class="item non-editable" name="Name" ng-model='user.name'>
+                <span class="username-label">Username</span><span class="username">{{user.name}}</span>
+            </div>
+            <div class="item non-editable" name="Email" ng-model='user.email'>
+                <span class="email-label">E-mail</span><span class="email">{{user.email}}</span>
+            </div>
         </form>
+        <label class="item item-input" name="Twitter">
+            <input type="text" placeholder="Twitter ID" ng-model='user.twitter'>
+            <!-- <span class="email">{{user.twitter}}</span> -->
+            <i class="ion-edit edit-twitter"></i>
+        </label>
         <form class="list" ng-show='user.artist'>
             <label class="item item-input" name="Paypal" ng-model='user.paypal'>
                 <input type="text" placeholder="Paypal ID">
@@ -24,7 +26,7 @@
         </form>
         <button class="button button-stable button-block  icon-left ion-ios-plus button-full" ng-click='create()' ng-show='user.artist'>Add Show</button>
         <div class="spacer" style="height: 10px;"></div>
-        <button class="button button-stable button-block  icon-left ion-checkmark">Save Profile</button>
+        <button class="button button-stable button-block  icon-left ion-checkmark" ng-click="saveUser()">Save Profile</button>
         <div class="spacer" style="height: 100px;"></div>
     </ion-content>
 </ion-view>
