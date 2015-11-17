@@ -1,7 +1,7 @@
 <ion-view class="edit-profile" title="Edit Profile">
     <ion-content padding="true" class="has-header">
         <form class="card">
-            <ion-toggle toggle-class="toggle-positive" checked="{{user.artist}}" name="ArtistToggle" ng-model='user.artist' ng-click='toggleArtist()'>Artist{{user.artist}}</ion-toggle>
+            <ion-toggle toggle-class="toggle-positive" ng-checked="{{user.artist}}" name="ArtistToggle" ng-model='user.artist' ng-click='toggleArtist()'>Artist</ion-toggle>
         </form>
         <form class="card">
             <div class="item non-editable" name="Name" ng-model='user.name'>

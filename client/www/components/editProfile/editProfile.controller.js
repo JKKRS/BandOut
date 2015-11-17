@@ -2,7 +2,7 @@ angular.module('starter.editProfile', [])
 
 .controller('editProfileCtrl', editProfileCtrl);
 
-function editProfileCtrl($scope, $state, User) {
+function editProfileCtrl($scope, $state, User, UserService) {
   $scope.user = {};
   $scope.user.artist = false;
   $scope.user.name = "";
@@ -14,12 +14,14 @@ function editProfileCtrl($scope, $state, User) {
     $state.go('app.editProfile.addEvent');
   };
 
-  $scope.getUser = function() {
-    User.get({ "fbid" : "10101731679332720" }, function(res) {
+  $scope.retrieveUser = function() {
+    UserService.getUser().then(function(res) {
+      console.log('res', res)
       $scope.user.name = res.name;
       $scope.user.email = res.email;
       $scope.user.twitter = res.twitter;
-    })
+      $scope.user.artist = res.artist;
+    });
   }
 
   $scope.saveUser = function() {
@@ -28,7 +30,7 @@ function editProfileCtrl($scope, $state, User) {
     User.update({ "fbid" : "10101731679332720" }, user);
   }
 
-  $scope.getUser();
+  $scope.retrieveUser();
 }
 
 var NewUser = function(artist, twitter, pp_id, website) {
