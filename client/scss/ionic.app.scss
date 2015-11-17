@@ -43,3 +43,10 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     padding-top: 20px;
 }
 
+.artist{
+	align: center;
+}
+img {
+    width: 200px; /*set the width or max-width*/
+    height: 200px; /*this makes sure to maintain the aspect ratio*/
+}
