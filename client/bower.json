@@ -6,6 +6,7 @@
     "platform.js": "platform#~1.3.0"
   },
   "dependencies": {
-    "angular-google-maps": "~2.2.1"
+    "angular-google-maps": "~2.2.1",
+    "angular-simple-logger": "~0.1.5"
   }
 }
