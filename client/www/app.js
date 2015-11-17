@@ -176,4 +176,8 @@ angular.module('starter', [
   $urlRouterProvider.otherwise('/');
 
   $ionicConfigProvider.platform.android.tabs.position('bottom').style('standard');
+  $ionicConfigProvider.platform.android.navBar.alignTitle('center');
+  $ionicConfigProvider.platform.android.backButton.previousTitleText('true');
+
+  $ionicConfigProvider.platform.ios.form.toggle('small');
 });
