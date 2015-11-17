@@ -172,7 +172,7 @@ angular.module('starter', [
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/');
 
-  $ionicConfigProvider.platform.android.tabs.position('bottom');
+  $ionicConfigProvider.platform.android.tabs.position('bottom').style('standard');
 });
 
 
