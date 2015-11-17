@@ -15,15 +15,27 @@
     "shelljs": "^0.3.0"
   },
   "cordovaPlugins": [
-    "cordova-plugin-device",
-    "cordova-plugin-console",
-    "cordova-plugin-whitelist",
-    "cordova-plugin-splashscreen",
-    "cordova-plugin-statusbar",
-    "ionic-plugin-keyboard"
+    {
+      "id": "phonegap-facebook-plugin",
+      "locator": "../../phonegap-facebook-plugin",
+      "variables": {
+        "APP_ID": "924056997681768",
+        "APP_NAME": "BandOut"
+      }
+    }
   ],
   "cordovaPlatforms": [
     "ios",
-    "android"
+    "android",
+    {
+      "platform": "android",
+      "version": "",
+      "locator": "android"
+    },
+    {
+      "platform": "ios",
+      "version": "",
+      "locator": "ios"
+    }
   ]
 }
