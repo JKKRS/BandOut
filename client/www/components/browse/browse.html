@@ -1,5 +1,11 @@
 <ion-view view-title="Browse">
-  <ion-content>
-    <h1>Browse</h1>
+
+    <ion-content ng-controller="MapController">
+      <div id="map" data-tap-disabled="true"></div>
   </ion-content>
+  <ion-footer-bar class="bar-dark">
+    <a ng-click="centerOnMe()" class="button button-icon icon ion-navigate">Find Me</a>
+  </ion-footer-bar>
+
+
 </ion-view>
