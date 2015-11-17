@@ -9,9 +9,7 @@
             </label>
             <label class="item item-input" name="date">
                 <span class="input-label">Date</span>
-                  <textarea placeholder="">
-                    {{ event.datetime | date: 'fullDate' }}
-                  </textarea>
+                  <textarea placeholder="">{{ event.datetime | date: 'fullDate' }}</textarea>
             </label>
             <label class="item item-input" name="description">
                 <span class="input-label">Description</span><textarea placeholder="">{{event.description}}</textarea>
