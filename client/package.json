@@ -22,7 +22,13 @@
         "APP_ID": "924056997681768",
         "APP_NAME": "BandOut"
       }
-    }
+    },
+    "cordova-plugin-console",
+    "cordova-plugin-device",
+    "cordova-plugin-splashscreen",
+    "cordova-plugin-statusbar",
+    "cordova-plugin-whitelist",
+    "cordova-plugin-keyboard"
   ],
   "cordovaPlatforms": [
     "ios",
