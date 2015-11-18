@@ -10,8 +10,9 @@
     <input type="text" placeholder="Search" ng-model="searchText">
   </label>
 </div>
+
 <div class="list">
-  <a class="item item-thumbnail-left"
+  <a class="item item-thumbnail-left artistList"
     collection-repeat="artist in artists | filter:searchText" ng-click="artistDetail(artist)">
     <img ng-src="{{ artist.image }}">
     <h2>{{ artist.name }}</h2>
@@ -21,7 +22,6 @@
     Date: {{ artist.artist_info.upcoming_events[0].datetime | date: 'fullDate' }}
     </h4>
   </a>
-
 </div>
 </ion-content>
 </ion-view>

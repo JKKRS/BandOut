@@ -4,7 +4,7 @@
 
 $light:                           #fff !default;
 $stable:                          #f8f8f8 !default;
-$positive:                        #387ef5 !default;
+$positive:                        #992900 !default; //#387ef5
 $calm:                            #11c1f3 !default;
 $balanced:                        #33cd5f !default;
 $energized:                       #ffc900 !default;
@@ -35,7 +35,7 @@ $headings-font-family:            $font-family-base !default;
 $headings-font-weight:            500 !default;
 $headings-line-height:            1.2 !default;
 
-$base-background-color:           #fff !default;
+$base-background-color:           #fff !default; //#fff
 $base-color:                      #000 !default;
 
 $link-color:                      $positive !default;
