@@ -8,6 +8,8 @@ function eventViewCtrl($scope, $stateParams) {
   var myLatlng = new google.maps.LatLng(45 ,-73);
     var mapOptions = {
         streetViewControl: true,
+        scrollwheel: false,
+        draggable: false,
         center: myLatlng,
         zoom: 16,
         mapTypeId: google.maps.MapTypeId.ROADMAP
