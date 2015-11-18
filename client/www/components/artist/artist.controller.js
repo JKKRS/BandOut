@@ -6,7 +6,7 @@ function ArtistCtrl($scope, $stateParams, $window, $state, Artist) {
   $scope.artist = $stateParams.artist;
   $scope.payPal = function(link) {
     link = link.toString();
-      $window.open( link, '_system', 'location=yes');
+      $window.open( link, '_blank', 'location=yes');
   };
   $scope.eventDetail = function(event) {
     console.log(event);
