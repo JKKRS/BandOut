@@ -10,7 +10,6 @@
     <input type="text" placeholder="Search" ng-model="searchText">
   </label>
 </div>
-
 <div class="list">
   <a class="item item-thumbnail-left artistList"
     collection-repeat="artist in artists | filter:searchText" ng-click="artistDetail(artist)">
