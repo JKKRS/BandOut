@@ -10,25 +10,26 @@
             <div class="item non-editable" name="Email" ng-model='user.email'>
                 <span class="email-label">E-mail</span><span class="email">{{user.email}}</span>
             </div>
-        </div>
-        <div class="card">
+        </form>
+        <div class = "card userInfo">
             <label class="item item-input" name="Twitter">
+                <span class="input-label">Twitter ID</span>
                 <input type="text" placeholder="Twitter ID" ng-model='user.twitter'>
                 <!-- <span class="email">{{user.twitter}}</span> -->
-                <i class="ion-edit edit-twitter"></i>
             </label>
+            <form class="list" ng-show='user.artist'>
+                <label class="item item-input" name="Paypal">
+                    <span class="input-label">Paypal ID</span>
+                    <input type="text" placeholder="Paypal ID" ng-model='user.paypal'>
+                </label>
+                <label class="item item-input" name="Website">
+                    <span class="input-label">Website</span>
+                    <input type="text" placeholder="Website" ng-model='user.website'>
+                </label>
+            </form>
         </div>
-        <div class="card" ng-show='user.artist'>
-            <label class="item item-input" name="Paypal">
-                <input type="text" placeholder="Paypal ID" ng-model='user.paypal'>
-                <i class="ion-edit edit-twitter"></i>
-            </label>
-            <label class="item item-input" name="Website">
-                <input type="text" placeholder="Website" ng-model='user.website'>
-                <i class="ion-edit edit-twitter"></i>
-            </label>
-        </div>
-        <button class="button button-stable button-block  icon-left ion-ios-plus button-full" ng-click='create()' ng-show='user.artist'>Add Show</button>
+        <button class="button button-stable button-block  icon-left ion-ios-plus button" ng-click='create()' ng-show='user.artist'>Add Show</button>
+>>>>>>> Spacing between artist views in Artists, Edited Profile
         <div class="spacer" style="height: 10px;"></div>
         <button class="button button-stable button-block  icon-left ion-checkmark" ng-click="saveUser()">Save Profile</button>
         <div class="spacer" style="height: 100px;"></div>

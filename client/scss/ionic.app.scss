@@ -90,8 +90,25 @@ img {
 }
 
 .navigation {
-    -webkit-box-shadow: 0 7px 9px -6px #999;
-       -moz-box-shadow: 0 7px 9px -6px #999;
-            box-shadow: 0 7px 9px -6px #999;
+    -webkit-box-shadow: 0 7px 9px -6px #000;
+       -moz-box-shadow: 0 7px 9px -6px #000;
+            box-shadow: 0 7px 9px -6px #000;
+}
+
+.artistList {
+  margin-bottom: 10px;
+    -webkit-box-shadow: 0 7px 9px -9px #000;
+       -moz-box-shadow: 0 7px 9px -9px #000;
+            box-shadow: 0 7px 9px -9px #000;
+}
+
+.userInfo {
+  margin-bottom: 15px;
+}
+
+.card{
+  -webkit-box-shadow: 0 7px 9px -9px #000;
+       -moz-box-shadow: 0 7px 9px -9px #000;
+            box-shadow: 0 7px 9px -9px #000;
 }
 
