@@ -18,14 +18,22 @@ angular.module('starter', [
   'starter.mapBrowse'
 ])
 
-.run(function($ionicPlatform, $rootScope, $state, UserService) {
+.run(function($ionicPlatform, $rootScope, $state, $location, UserService, FACEBOOK_APP_ID) {
 
   $ionicPlatform.ready(function() {
+
+    if (!window.cordova) {
+      // we are in browser
+      facebookConnectPlugin.browserInit(FACEBOOK_APP_ID, 'v2.4');
+    }
+
     facebookConnectPlugin.getLoginStatus(function(success) {
       if ((success.status === 'connected') && (UserService.userIsLoggedIn() === true)) {
-        $state.go('app.artists');
+        // $state.go('app.artists');
+        // $location.path('app/artists');
       } else {
-        $state.go('login');
+        // $state.go('login');
+        $location.path('/');
       }
     });
 

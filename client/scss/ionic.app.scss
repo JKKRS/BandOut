@@ -27,7 +27,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 }
 
 .brandName{
-	color: white;
+  color: white;
 }
 
 .login-container {
@@ -44,11 +44,40 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 }
 
 .artist{
-	align: center;
+  align: center;
+}
+
+.edit-profile {
+  .username-label {
+    font-weight: 700;
+  }
+  .email-label {
+    @extend .username-label;
+  }
+  .username {
+    float: right;
+  }
+  .email {
+    @extend .username;
+  }
+  .twitter {
+    @extend .username;
+    margin-right: 10px;
+  }
+  .edit-twitter {
+    margin-right: 10px;
+  }
+  .paypal {
+    @extend .username;
+  }
+  .edit-paypal {
+    margin-right: 10px;
+  }
+
 }
 img {
-    width: 200px;
-    height: 200px;
+  width: 200px;
+  height: 200px;
 }
 
 #map1 {

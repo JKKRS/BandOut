@@ -10,6 +10,7 @@ angular.module('starter.fbLogin', ['starter.services'])
       "name" : name,
       "image" : image,
       "email" : email,
+      "artist" : false
     }
     return newUser;
   }
@@ -33,13 +34,7 @@ angular.module('starter.fbLogin', ['starter.services'])
           picture: 'http://graph.facebook.com/' + authResponse.userID + '/picture?type=large'
         };
 
-        var auth = user_data.authResponse;
-        var profile = user_data.profileInfo;
-        var user_obj = NewUser(auth.userID, profile.name, user_data.picture, profile.email, auth)
-
-        User.save(user_obj, function(res) {
-          console.log('res', res);
-        })
+        UserService.setUser(user_data);
 
         $ionicLoading.hide();
         $location.path('app/artists');
@@ -51,13 +46,13 @@ angular.module('starter.fbLogin', ['starter.services'])
   };
 
   // Failure callback for login
-  var fbLoginError = function(error) {
+  function fbLoginError(error) {
     console.log('Facebook Login Error', error);
     $ionicLoading.hide();
-  };
+  }
 
   // Fetches Profile info from Facebook API
-  var getFacebookProfileInfo = function(authResponse) {
+  function getFacebookProfileInfo(authResponse) {
     var info = $q.defer();
 
     facebookConnectPlugin.api(
@@ -71,14 +66,14 @@ angular.module('starter.fbLogin', ['starter.services'])
       }
     );
     return info.promise;
-  };
+  }
 
   // Method to execute on Login button click
   $scope.login = function() {
-    if (!window.cordova) {
-      // we are in browser
-      facebookConnectPlugin.browserInit(FACEBOOK_APP_ID);
-    }
+    // if (!window.cordova) {
+    //   // we are in browser
+    //   facebookConnectPlugin.browserInit(FACEBOOK_APP_ID);
+    // }
 
     facebookConnectPlugin.getLoginStatus(function(success) {
       if (success.status === 'connected') {

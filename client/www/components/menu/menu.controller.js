@@ -1,7 +1,7 @@
 angular.module('starter.menu', ['starter.services'])
 
 .controller('MenuCtrl', function($scope, $state, $ionicPopup, UserService, $ionicLoading, FACEBOOK_APP_ID) {
-  $scope.user = UserService.getUser();
+  // $scope.user = UserService.getUser();
   // Logout Methods
   $scope.showConfirmLogOut = function() {
     var confirmPopup = $ionicPopup.confirm({
