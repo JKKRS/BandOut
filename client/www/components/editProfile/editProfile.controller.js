@@ -3,6 +3,7 @@ angular.module('starter.editProfile', [])
 .controller('editProfileCtrl', editProfileCtrl);
 
 function editProfileCtrl($scope, $state, User, UserService) {
+  // Default user values
   $scope.user = {};
   $scope.user.artist = false;
   $scope.user.name = "";
@@ -10,32 +11,42 @@ function editProfileCtrl($scope, $state, User, UserService) {
   $scope.user.twitter = "";
   $scope.user.paypal = "";
   $scope.user.website = "";
+  $scope.user.fbid = "";
   $scope.create = function() {
     $state.go('app.editProfile.addEvent');
   };
 
+  // Get the current logged in user using FB.getLoginStatus(); and set scope vars
   $scope.retrieveUser = function() {
     UserService.getUser()
     .then(function(res) {
-      console.log('called', res);
+      // console.log('called', res);
       $scope.user.name = res.name;
       $scope.user.email = res.email;
       $scope.user.twitter = res.twitter;
       $scope.user.artist = res.artist;
       $scope.user.paypal = res.artist_info.paypal_link;
       $scope.user.website = res.artist_info.website;
+      $scope.user.fbid = res.fbid;
     });
   }
 
+  // Create new user from scope vars, and submit PUT request to server using fbid 
+  // to search for user in db
   $scope.saveUser = function() {
-    var user = NewUser($scope.user.artist, $scope.user.twitter, $scope.user.paypal, $scope.user.website)
-    console.log(user)
-    User.update({ "fbid" : "10101731679332720" }, user);
+    var user = NewUser(
+        $scope.user.artist,
+        $scope.user.twitter,
+        $scope.user.paypal,
+        $scope.user.website
+      )
+    User.update({ "fbid" : $scope.user.fbid }, user);
   }
 
   $scope.retrieveUser();
 }
 
+// Constructor function to create new users
 var NewUser = function(artist, twitter, pp_id, website) {
   var newUser = Object.create(Object.prototype);
   newUser = {
