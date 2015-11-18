@@ -177,6 +177,7 @@ angular.module('starter', [
 
   .state('app.editProfile.addEvent', {
     url: '/addEvent',
+    params: {user: null},
     templateUrl: 'components/addEvent/addEvent.html',
     controller: 'addEventCtrl'
   });

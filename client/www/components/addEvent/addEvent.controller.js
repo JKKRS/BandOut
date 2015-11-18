@@ -2,8 +2,8 @@ angular.module('starter.addEvent', ['uiGmapgoogle-maps'])
 
 .controller('addEventCtrl', addEventCtrl);
 
-function addEventCtrl($scope, $http, User, UserService) {
-  $scope.user = {};
+function addEventCtrl($scope, $http, User, $stateParams, UserService) {
+  $scope.user = $stateParams.user;
   $scope.user.title = "";
   $scope.user.venueName = "";
   $scope.user.date = "";
@@ -44,7 +44,6 @@ function addEventCtrl($scope, $http, User, UserService) {
       console.log("One", venueAdd);
 
       var venueId = Math.floor(Math.random() * 82) + 'BO';
-      console.log(venueId);
 
       var eventAdd = NewEvent(
         venueId,
@@ -63,6 +62,7 @@ function addEventCtrl($scope, $http, User, UserService) {
 
 
   };
+  console.log($scope.user.fbid)
 }
 
 function NewEvent(id, title, datetime, description, venue) {

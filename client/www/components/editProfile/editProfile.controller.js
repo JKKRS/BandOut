@@ -13,7 +13,7 @@ function editProfileCtrl($scope, $state, User, UserService) {
   $scope.user.website = "";
   $scope.user.fbid = "";
   $scope.create = function() {
-    $state.go('app.editProfile.addEvent');
+    $state.go('app.editProfile.addEvent', {user: $scope.user});
   };
 
   // Get the current logged in user using FB.getLoginStatus(); and set scope vars
@@ -31,7 +31,7 @@ function editProfileCtrl($scope, $state, User, UserService) {
     });
   }
 
-  // Create new user from scope vars, and submit PUT request to server using fbid 
+  // Create new user from scope vars, and submit PUT request to server using fbid
   // to search for user in db
   $scope.saveUser = function() {
     var user = NewUser(
