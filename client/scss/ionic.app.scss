@@ -46,10 +46,6 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 .artist{
   align: center;
 }
-img {
-  width: 200px; /*set the width or max-width*/
-  height: 200px; /*this makes sure to maintain the aspect ratio*/
-}
 
 .edit-profile {
   .username-label {
@@ -77,6 +73,11 @@ img {
   .edit-paypal {
     margin-right: 10px;
   }
+
+}
+img {
+  width: 200px;
+  height: 200px;
 }
 
 #map1 {
