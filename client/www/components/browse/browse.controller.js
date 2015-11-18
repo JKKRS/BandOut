@@ -1,5 +1,5 @@
 angular.module('starter.mapBrowse', ['uiGmapgoogle-maps'])
-  .controller('MapController', function($scope, $ionicLoading) {
+  .controller('MapController', function($scope, $ionicLoading, $cordovaGeolocation) {
     var Latlng = new google.maps.LatLng(34.045148, -118.564925);
     var mapOptions = {
       center: Latlng,
@@ -20,9 +20,10 @@ angular.module('starter.mapBrowse', ['uiGmapgoogle-maps'])
       showBackdrop: false
     });
 
-    navigator.geolocation.getCurrentPosition(function(pos) {
+    $cordovaGeolocation.getCurrentPosition({timeout: 10000, enableHighAccuracy: false})
+    .then(function(pos) {
       map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-      $scope.loading.hide();
+      $ionicLoading.hide();
       var myLocation = new google.maps.Marker({
         position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
         map: map,
