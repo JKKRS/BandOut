@@ -1,5 +1,9 @@
 <ion-view view-title="Artists">
 <ion-content>
+<ion-refresher
+    pulling-text="Pull to refresh..."
+    on-refresh="refresh()">
+</ion-refresher>
 <div class="list list-inset">
   <label class="item item-input">
     <i class="icon ion-search placeholder-icon"></i>
@@ -17,7 +21,7 @@
     Date: {{ artist.artist_info.upcoming_events[0].datetime | date: 'fullDate' }}
     </h4>
   </a>
-  
+
 </div>
 </ion-content>
 </ion-view>
