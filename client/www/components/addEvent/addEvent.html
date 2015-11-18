@@ -1,30 +1,34 @@
-<ion-view title="Add Event">
-    <ion-content padding="true" class="has-header">
-        <h3>Event Information</h3>
-        <form class="list">
-            <label class="item item-input" name="Title">
-                <input type="text" placeholder="Title">
-            </label>
-            <label class="item item-input" name="Date">
-                <input type="date" placeholder="Date">
-            </label>
-            <label class="item item-input" name="Description">
-                <input type="text" placeholder="Description">
-            </label>
-        </form>
-        <div class="spacer" style="width: 300px; height: 22px;"></div>
-        <h3>Venue Information</h3>
-        <form class="list">
-            <label class="item item-input" name="venueName">
-                <input type="text" placeholder="Venue Name">
-            </label>
-            <label class="item item-input" name="venueCity">
-                <input type="text" placeholder="City">
-            </label>
-            <label class="item item-input" name="venueCountry">
-                <input type="text" placeholder="Country">
-            </label>
-        </form>
-        <button class="button button-stable button-block  icon-left ion-ios-checkmark-outline">Save Event</button>
-    </ion-content>
-</ion-view>
+<ion-view class="addShow" title="Add Show">
+  <ion-content padding="true" class="has-header">
+    <div class="card">
+      <label class="item item-input" name="Title">
+        <input type="text" placeholder="Title" ng-model="user.title">
+      </label>
+      <label class="item item-input" name="VenueName">
+        <input type="text" placeholder="Venue Name" ng-model="user.venueName">
+      </label>
+      <label class="item item-input" name="Date">
+        <input type="date" placeholder="Date" ng-model="user.date">
+      </label>
+      <!-- <label class="item item-input" name="Time">
+        <input type="time" placeholder="Time" ng-model="user.time">
+      </label> -->
+      <label class="item item-input" name="VenueAddress">
+        <input type="text" placeholder="Address" ng-model="user.venueAddress">
+      </label>
+      <label class="item item-input" name="VenueCity">
+        <input type="text" placeholder="City" ng-model="user.venueCity">
+      </label>
+      <!-- <label class="item item-input" name="VenueCountry">
+        <input type="text" placeholder="Country" ng-model="user.venueCountry">
+      </label> -->
+      <label class="item item-input" name="VenueZip">
+        <input type="text" placeholder="Zip Code" ng-model="user.venueZip">
+      </label>
+      <label class="item item-input" name="Description">
+        <input type="text" placeholder="Description" ng-model="user.description">
+      </label>
+    </div>
+    <button class="button button-stable button-block  icon-left ion-checkmark" ng-click="saveEvent()">Save Event</button>
+  </ion-content>
+  </ion-iew>
