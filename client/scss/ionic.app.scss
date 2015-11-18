@@ -71,6 +71,12 @@ img {
   .edit-twitter {
     margin-right: 10px;
   }
+  .paypal {
+    @extend .username;
+  }
+  .edit-paypal {
+    margin-right: 10px;
+  }
 }
 
 #map1 {

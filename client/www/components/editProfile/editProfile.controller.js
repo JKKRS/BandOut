@@ -17,17 +17,19 @@ function editProfileCtrl($scope, $state, User, UserService) {
   $scope.retrieveUser = function() {
     UserService.getUser()
     .then(function(res) {
-      console.log('called');
+      console.log('called', res);
       $scope.user.name = res.name;
       $scope.user.email = res.email;
       $scope.user.twitter = res.twitter;
       $scope.user.artist = res.artist;
+      $scope.user.paypal = res.artist_info.paypal_link;
+      $scope.user.website = res.artist_info.website;
     });
   }
 
   $scope.saveUser = function() {
-    console.log($scope.user)
     var user = NewUser($scope.user.artist, $scope.user.twitter, $scope.user.paypal, $scope.user.website)
+    console.log(user)
     User.update({ "fbid" : "10101731679332720" }, user);
   }
 
@@ -39,9 +41,10 @@ var NewUser = function(artist, twitter, pp_id, website) {
   newUser = {
     "artist" : artist,
     "twitter" : twitter,
-    "paypal_id" : pp_id,
-    "website" : website
+    "artist_info" : {},
   }
+  newUser.artist_info.website = website;
+  newUser.artist_info.paypal_link = pp_id;
   return newUser;
 }
 // var Venue = function(name, city, country, lat, longitude) {

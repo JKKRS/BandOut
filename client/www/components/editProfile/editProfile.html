@@ -17,11 +17,13 @@
             <i class="ion-edit edit-twitter"></i>
         </label>
         <form class="list" ng-show='user.artist'>
-            <label class="item item-input" name="Paypal" ng-model='user.paypal'>
-                <input type="text" placeholder="Paypal ID">
+            <label class="item item-input" name="Paypal">
+                <input type="text" placeholder="Paypal ID" ng-model='user.paypal'>
+                <i class="ion-edit edit-twitter"></i>
             </label>
-            <label class="item item-input" name="Website" ng-model='user.website'>
-                <input type="text" placeholder="Website">
+            <label class="item item-input" name="Website">
+                <input type="text" placeholder="Website" ng-model='user.website'>
+                <i class="ion-edit edit-twitter"></i>
             </label>
         </form>
         <button class="button button-stable button-block  icon-left ion-ios-plus button-full" ng-click='create()' ng-show='user.artist'>Add Show</button>
