@@ -6,12 +6,12 @@ function editProfileCtrl($scope, $state, User, UserService) {
   // Default user values
   $scope.user = {};
   $scope.user.artist = false;
-  $scope.user.name = "";
-  $scope.user.email = "";
-  $scope.user.twitter = "";
-  $scope.user.paypal = "";
-  $scope.user.website = "";
-  $scope.user.fbid = "";
+  $scope.user.name = '';
+  $scope.user.email = '';
+  $scope.user.twitter = '';
+  $scope.user.paypal = '';
+  $scope.user.website = '';
+  $scope.user.fbid = '';
   $scope.create = function() {
     $state.go('app.editProfile.addEvent', {user: $scope.user});
   };
@@ -22,7 +22,7 @@ function editProfileCtrl($scope, $state, User, UserService) {
     .then(function(res) {
       // only display last part of link on page for pp link
       var url = res.artist_info.paypal_link;
-      var index = url.lastIndexOf("/");
+      var index = url.lastIndexOf('/');
       var pp_id = url.substr(index + 1)
       // console.log('called', res);
       $scope.user.name = res.name;
@@ -33,7 +33,7 @@ function editProfileCtrl($scope, $state, User, UserService) {
       $scope.user.website = res.artist_info.website;
       $scope.user.fbid = res.fbid;
     });
-  }
+  };
 
   // Create new user from scope vars, and submit PUT request to server using fbid
   // to search for user in db
@@ -44,9 +44,9 @@ function editProfileCtrl($scope, $state, User, UserService) {
         $scope.user.twitter,
         $scope.user.paypal,
         $scope.user.website
-      )
-    User.update({ "fbid" : $scope.user.fbid }, user);
-  }
+      );
+    User.update({ 'fbid' : $scope.user.fbid }, user);
+  };
 
   $scope.retrieveUser();
 }
@@ -55,22 +55,22 @@ function editProfileCtrl($scope, $state, User, UserService) {
 var NewUser = function(artist, twitter, pp_id, website) {
   var newUser = Object.create(Object.prototype);
   newUser = {
-    "artist" : artist,
-    "twitter" : twitter,
-    "artist_info" : {},
-  }
+    'artist' : artist,
+    'twitter' : twitter,
+    'artist_info' : {},
+  };
   newUser.artist_info.website = website;
   newUser.artist_info.paypal_link = pp_id;
   return newUser;
-}
+};
 // var Venue = function(name, city, country, lat, longitude) {
 //   var newVenue = Object.create(Object.prototype)
 //   newVenue = {
-//     "name" : name,
-//     "city": city,
-//     "country" : country,
-//     "latitude" : lat,
-//     "longitude" : longitude
+//     'name' : name,
+//     'city': city,
+//     'country' : country,
+//     'latitude' : lat,
+//     'longitude' : longitude
 //   }
 //   return newVenue;
 // }
@@ -78,11 +78,11 @@ var NewUser = function(artist, twitter, pp_id, website) {
 // var Event = function(id, title, datetime, description, venue) {
 //   var newEvent = Object.create(Object.prototype);
 //   newEvent = {
-//     "id" : id,
-//     "title" : title,
-//     "datetime" : datetime,
-//     "description" : description,
-//     "venue" : venue
+//     'id' : id,
+//     'title' : title,
+//     'datetime' : datetime,
+//     'description' : description,
+//     'venue' : venue
 //   }
 //   return newEvent;
 // }
