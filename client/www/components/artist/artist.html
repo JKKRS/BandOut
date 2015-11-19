@@ -8,15 +8,9 @@
         <h4>{{ artist.twitter }}</h4>
         <button class="button button-stable button-block" ng-click="payPal(artist.artist_info.paypal_link)"><i class="icon ion-social-usd-outline"></i> PayPal</button>
       </div>
-      <!-- <button class="item tabs tabs-secondary tabs-icon-left payPal" ng-click="payPal(artist.artist_info.paypal_link)">
-        <a class="tab-item">
-          <i class="icon ion-social-usd-outline"></i> PayPal
-        </a>
-      </button> -->
-
       <div>
         <div class = "item item-divider">Upcoming Events</div>
-      <div class="item item-body eventList" ng-repeat="event in artist.artist_info.upcoming_events" ng-click="eventDetail(event)">
+      <div class="item item-body" ng-repeat="event in artist.artist_info.upcoming_events" ng-click="eventDetail(event)">
         <br> {{ event.title }}
         <br> <mydate>{{ event.datetime | date: 'fullDate' }}</mydate>
       </div>
