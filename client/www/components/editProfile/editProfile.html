@@ -28,7 +28,7 @@
         </div>
         <button class="button button-stable button-block icon-left ion-ios-plus-outline" ng-click='create()' ng-show='user.artist'>Add Show</button>
         <div class="spacer" style="height: 10px;"></div>
-        <button class="button button-stable button-block icon-left ion-ios-checkmark-outline" ng-click="saveUser()">Save Profile</button>
+        <button class="button button-stable button-block icon-left ion-ios-checkmark-outline" ng-disabled="disableSave" ng-click="saveUser()">Save Profile</button>
         <div class="spacer" style="height: 100px;"></div>
     </ion-content>
 </ion-view>
