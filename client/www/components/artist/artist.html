@@ -15,6 +15,7 @@
           <br>
           <mydate>{{ event.datetime | date: 'fullDate' }}</mydate>
         </div>
+        <div class="defaultValue" ng-hide="artist.artist_info.upcoming_events.length"> No Scheduled Shows </div>
       </div>
     </div>
   </ion-content>
