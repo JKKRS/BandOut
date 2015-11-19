@@ -3,20 +3,18 @@
         <div class="card">
             <ion-toggle toggle-class="toggle-positive" ng-checked="{{user.artist}}" name="ArtistToggle" ng-model='user.artist' ng-click='toggleArtist()'>Artist</ion-toggle>
         </div>
-        <div class="card">
+        <div class="card userInfo">
             <div class="item non-editable" name="Name" ng-model='user.name'>
                 <i class="username-label ion-social-facebook"></i><span class="username">{{user.name}}</span>
             </div>
             <div class="item non-editable" name="Email" ng-model='user.email'>
                 <i class="email-label ion-at"></i><span class="email">{{user.email}}</span>
             </div>
-        </div>
-        <div class = " card userInfo">
-            <label class="item item-input" name="Twitter">
+            <form class="item item-input" name="Twitter">
                 <i class = "ion-social-twitter"></i>
                 <input type="text" placeholder="Twitter ID" ng-model='user.twitter'>
                 <!-- <span class="email">{{user.twitter}}</span> -->
-            </label>
+            </form>
             <form class="list" ng-show='user.artist'>
                 <label class="item item-input" name="Paypal">
                     <i class = "ion-social-usd"></i>
