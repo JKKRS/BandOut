@@ -2,7 +2,7 @@ angular.module('starter.editProfile', [])
 
 .controller('editProfileCtrl', editProfileCtrl);
 
-function editProfileCtrl($scope, $state, User, UserService) {
+function editProfileCtrl($scope, $state, User, UserService, $timeout) {
   // Default user values
   $scope.user = {};
   $scope.user.artist = false;
@@ -12,6 +12,15 @@ function editProfileCtrl($scope, $state, User, UserService) {
   $scope.user.paypal = "";
   $scope.user.website = "";
   $scope.user.fbid = "";
+
+  $scope.$watchGroup(['user.paypal', 'user.twitter', 'user.website'], function(newVal, oldVal, scope) {
+      if ($scope.initialLoad) {
+        $scope.initialLoad = false;
+      } else {
+        $scope.disableSave = false;
+      }
+  });
+
   $scope.create = function() {
     $state.go('app.editProfile.addEvent', {user: $scope.user});
   };
@@ -28,8 +37,11 @@ function editProfileCtrl($scope, $state, User, UserService) {
       $scope.user.paypal = res.artist_info.paypal_link;
       $scope.user.website = res.artist_info.website;
       $scope.user.fbid = res.fbid;
+    }).then(function() {
+      $scope.disableSave = true;
+      $scope.initialLoad = true;
     });
-  }
+  };
 
   // Create new user from scope vars, and submit PUT request to server using fbid
   // to search for user in db
@@ -39,9 +51,10 @@ function editProfileCtrl($scope, $state, User, UserService) {
         $scope.user.twitter,
         $scope.user.paypal,
         $scope.user.website
-      )
+      );
     User.update({ "fbid" : $scope.user.fbid }, user);
-  }
+    $scope.disableSave = true;
+  };
 
   $scope.retrieveUser();
 }
@@ -53,11 +66,11 @@ var NewUser = function(artist, twitter, pp_id, website) {
     "artist" : artist,
     "twitter" : twitter,
     "artist_info" : {},
-  }
+  };
   newUser.artist_info.website = website;
   newUser.artist_info.paypal_link = pp_id;
   return newUser;
-}
+};
 // var Venue = function(name, city, country, lat, longitude) {
 //   var newVenue = Object.create(Object.prototype)
 //   newVenue = {
