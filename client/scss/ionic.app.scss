@@ -82,6 +82,14 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     margin-left: 10px;
     margin-top: 2px;
   }
+  .paypal-id-error {
+    padding: 5px;
+    color: red;
+    text-align: center;
+  }
+  .disabled-class {
+    background-color : blue;
+  }
 
 }
 img {
