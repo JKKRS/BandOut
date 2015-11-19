@@ -4,14 +4,15 @@
     <div class="item item-divider">Event Information</div>
     <div class="item item-body">
         <form class="list" ng-model='event'>
-            <label class="item item-input" name="title">
+            <label class="item item-input editable" name="title">
                 <span class="input-label">Title</span><textarea placeholder="">{{event.title}}</textarea>
             </label>
-            <label class="item item-input" name="date">
+            <label class="item item-input editable" name="date">
                 <span class="input-label">Date</span>
+                <!-- TODO: The Date needs to be configured so that it is editable -->
                   <textarea placeholder="">{{ event.datetime | date: 'fullDate' }}</textarea>
             </label>
-            <label class="item item-input" name="description">
+            <label class="item item-input editable" name="description">
                 <span class="input-label">Description</span><textarea placeholder="">{{event.description}}</textarea>
             </label>
         </form>
@@ -19,18 +20,19 @@
     <div class="item item-divider">Venue Information</div>
     <div class="item item-body">
         <form class="list">
-            <label class="item item-input" name="venueName">
+            <label class="item item-input editable" name="venueName">
                 <span class="input-label">Name</span><textarea placeholder="">{{event.venue.name}}</textarea>
             </label>
-            <label class="item item-input" name="venueCity">
+            <label class="item item-input editable" name="venueCity">
                 <span class="input-label">City</span><textarea placeholder="">{{event.venue.city}}</textarea>
             </label>
-            <label class="item item-input" name="venueCountry">
+            <label class="item item-input editable" name="venueCountry">
                 <span class="input-label">Country</span><textarea placeholder="">{{event.venue.country}}</textarea>
             </label>
         </form>
     </div>
 </div>
-
+<div class="spacer" style="height: 10px;"></div>
+<button class="button button-stable button-block icon-left ion-ios-checkmark-outline" ng-click="updateEvent()">Update Event</button>
 </ion-content>
 </ion-view>
