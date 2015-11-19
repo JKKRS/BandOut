@@ -8,17 +8,18 @@ angular.module('starter.services', ['ngResource'])
   var setUser = function(user_data) {
     var auth = user_data.authResponse;
     var profile = user_data.profileInfo;
-    var user_obj = NewUser(auth.userID, profile.name, user_data.picture, profile.email, auth)
+    var user_obj = NewUser(auth.userID, profile.name, user_data.picture, profile.email, auth);
 
     User.save(user_obj, function(res) {
       console.log('res', res);
-    })
+    });
   };
 
-  var userIsLoggedIn = function() {
-    // var user = getUser();
-    return /*user.authResponse.userID !== null;*/ true;
-  };
+  // var userIsLoggedIn = function() {
+  //   // var user = getUser();
+
+  //   return /*user.authResponse.userID !== null;*/ true;
+  // };
 
   var getUser = function() {
       return $q(function(resolve, reject) {
@@ -26,18 +27,18 @@ angular.module('starter.services', ['ngResource'])
           return User.get({ "fbid" : res.authResponse.userID })
           .$promise
           .then(function(res) {
-            console.log(res)
+            console.log('get user', res);
             resolve(res);
-          })
-        })
-      })
+          });
+        });
+      });
   };
 
     // return JSON.parse(window.localStorage.getItem('ionFB_user') || '{}');
   return {
     getUser: getUser,
     setUser: setUser,
-    userIsLoggedIn: userIsLoggedIn
+    // userIsLoggedIn: userIsLoggedIn
   };
 })
 
@@ -49,4 +50,4 @@ angular.module('starter.services', ['ngResource'])
   return $resource('http://bandout.herokuapp.com/apis/users/:fbid', null, {
     'update' : { method : 'PUT' }
   });
-})
+});

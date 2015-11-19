@@ -29,7 +29,7 @@ angular.module('starter', [
     }
 
     facebookConnectPlugin.getLoginStatus(function(success) {
-      if ((success.status === 'connected') && (UserService.userIsLoggedIn() === true)) {
+      if (success.status === 'connected') {
         // $state.go('app.artists');
         // $location.path('app/artists');
       } else {
@@ -51,7 +51,7 @@ angular.module('starter', [
 
   $ionicPlatform.on("resume", function() {
     facebookConnectPlugin.getLoginStatus(function(success) {
-      if ((success.status !== 'connected') || (UserService.userIsLoggedIn() === false)) {
+      if (success.status !== 'connected') {
         $state.go('login');
       }
     });
@@ -61,7 +61,7 @@ angular.module('starter', [
   $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams) {
     if (toState.data.authenticate) {
       facebookConnectPlugin.getLoginStatus(function(success) {
-        if ((success.status === 'connected') && (UserService.userIsLoggedIn() === true)) {
+        if (success.status === 'connected') {
           // proceed
         } else {
           event.preventDefault();
