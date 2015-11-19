@@ -1,25 +1,23 @@
 <ion-view view-title="Artists">
-<ion-content>
-<ion-refresher
-    pulling-text="Pull to refresh..."
-    on-refresh="refresh()">
-</ion-refresher>
-<div class="list list-inset">
-  <label class="item item-input">
-    <i class="icon ion-search placeholder-icon"></i>
-    <input type="text" placeholder="Search" ng-model="searchText">
-  </label>
-</div>
-<div class="list">
-  <a class="item item-thumbnail-left artistList"
-    collection-repeat="artist in artists | filter:searchText" ng-click="artistDetail(artist)">
-    <img ng-src="{{ artist.image }}">
-    <h2>{{ artist.name }}</h2>
-    <h4>{{ artist.email }}</h4>
-    <h4>{{ artist.twitter }}</h4>
-    <h4>Upcoming Event: {{ artist.artist_info.upcoming_events[0].datetime | date: 'MMM d, y' }}</h4>
-    <!-- {{ artist.artist_info.upcoming_events[0].title }} -->
-  </a>
-</div>
-</ion-content>
+  <ion-content>
+    <ion-refresher pulling-text="Pull to refresh..." on-refresh="refresh()">
+    </ion-refresher>
+    <div class="list list-inset">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Search" ng-model="searchText">
+      </label>
+    </div>
+    <div class="list">
+      <a class="item item-thumbnail-left artistList" collection-repeat="artist in artists | filter:searchText" ng-click="artistDetail(artist)" on-swipe-left="onSwipeLeft(artist)">
+        <img ng-src="{{ artist.image }}">
+        <h2>{{ artist.name }}</h2>
+        <h4>{{ artist.email }}</h4>
+        <h4>{{ artist.twitter }}</h4>
+        <h4>Upcoming Event: {{ artist.artist_info.upcoming_events[0].datetime | date: 'MMM d, y' }} </h4>
+          <h4 class="defaultValue" ng-hide="artist.artist_info.upcoming_events[0].datetime"> None Yet!</h4>
+        <!-- {{ artist.artist_info.upcoming_events[0].title }} -->
+      </a>
+    </div>
+  </ion-content>
 </ion-view>

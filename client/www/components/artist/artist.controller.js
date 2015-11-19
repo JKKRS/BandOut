@@ -9,7 +9,10 @@ function ArtistCtrl($scope, $stateParams, $window, $state, Artist) {
       $window.open( link, '_blank', 'location=yes');
   };
   $scope.eventDetail = function(event) {
-    console.log(event);
+    $state.go('app.artists.artist-event', {event: event, eventId: event.id});
+  };
+
+  $scope.onSwipeLeft =function(event) {
     $state.go('app.artists.artist-event', {event: event, eventId: event.id});
   };
 }

@@ -9,13 +9,14 @@
         <button class="button button-stable button-block" ng-click="payPal(artist.artist_info.paypal_link)"><i class="icon ion-social-usd-outline"></i> PayPal</button>
       </div>
       <div>
-        <div class = "item item-divider">Upcoming Events</div>
-      <div class="item item-body" ng-repeat="event in artist.artist_info.upcoming_events" ng-click="eventDetail(event)">
-        <br> {{ event.title }}
-        <br> <mydate>{{ event.datetime | date: 'fullDate' }}</mydate>
+        <div class="item item-divider">Upcoming Events</div>
+        <div class="item item-body" ng-repeat="event in artist.artist_info.upcoming_events" ng-click="eventDetail(event)" on-swipe-left="onSwipeLeft(event)">
+          <br> {{ event.title }}
+          <br>
+          <mydate>{{ event.datetime | date: 'fullDate' }}</mydate>
+        </div>
+        <div class="defaultValue" ng-hide="artist.artist_info.upcoming_events.length"> No Scheduled Shows </div>
       </div>
-    </div>
     </div>
   </ion-content>
 </ion-view>
-
