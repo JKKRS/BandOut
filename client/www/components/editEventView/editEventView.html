@@ -24,19 +24,19 @@
         <form class="list">
           <label class="item item-input editable" name="venueName">
             <span class="input-label">Name</span>
-            <textarea placeholder="">{{event.venue.name}}</textarea>
+            <textarea placeholder="" ng-model="event.venue.name">{{event.venue.name}}</textarea>
           </label>
           <label class="item item-input editable" name="venueCity">
             <span class="input-label">Address</span>
-            <textarea placeholder="">{{event.venue.address}}</textarea>
+            <textarea placeholder="" ng-model="event.venue.address">{{event.venue.address}}</textarea>
           </label>
           <label class="item item-input editable" name="venueCity">
             <span class="input-label">City</span>
-            <textarea placeholder="">{{event.venue.city}}</textarea>
+            <textarea placeholder="" ng-model="event.venue.city">{{event.venue.city}}</textarea>
           </label>
           <label class="item item-input editable" name="venueZip">
             <span class="input-label">Zip Code</span>
-            <textarea placeholder="">{{event.venue.zip}}</textarea>
+            <textarea placeholder="" ng-model="event.venue.zip">{{event.venue.zip}}</textarea>
           </label>
         </form>
       </div>
