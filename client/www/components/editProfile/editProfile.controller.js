@@ -13,13 +13,13 @@ function editProfileCtrl($scope, $state, User, UserService) {
   $scope.user.website = '';
   $scope.user.fbid = '';
 
-  // $scope.$watchGroup(['user.paypal', 'user.twitter', 'user.website', 'user.artist'], function(newVal, oldVal, scope) {
-  //     if ($scope.initialLoad) {
-  //       $scope.initialLoad = false;
-  //     } else {
-  //       $scope.disableSave = false;
-  //     }
-  // });
+  $scope.$watchGroup(['user.paypal', 'user.twitter', 'user.website', 'user.artist'], function(newVal, oldVal, scope) {
+      if ($scope.initialLoad) {
+        $scope.initialLoad = false;
+      } else {
+        $scope.disableSave = false;
+      }
+  });
 
   $scope.create = function() {
     $state.go('app.editProfile.addEvent', {user: $scope.user});
@@ -42,8 +42,8 @@ function editProfileCtrl($scope, $state, User, UserService) {
       $scope.user.website = res.artist_info.website;
       $scope.user.fbid = res.fbid;
     }).then(function() {
-      // $scope.disableSave = true;
-      // $scope.initialLoad = true;
+      $scope.disableSave = true;
+      $scope.initialLoad = true;
     });
   };
 
