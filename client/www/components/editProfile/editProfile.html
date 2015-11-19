@@ -3,32 +3,38 @@
         <div class="card">
             <ion-toggle toggle-class="toggle-positive" ng-checked="{{user.artist}}" name="ArtistToggle" ng-model='user.artist' ng-click='toggleArtist()'>Artist</ion-toggle>
         </div>
-        <div class="card userInfo">
+        <div class="card">
             <div class="item non-editable" name="Name" ng-model='user.name'>
                 <i class="username-label ion-social-facebook"></i><span class="username">{{user.name}}</span>
             </div>
             <div class="item non-editable" name="Email" ng-model='user.email'>
                 <i class="email-label ion-at"></i><span class="email">{{user.email}}</span>
             </div>
-            <form class="item item-input" name="Twitter">
+        </div>
+        <div class="card userInfo">
+            <div class="item item-input" name="Twitter">
                 <i class = "ion-social-twitter"></i>
                 <input type="text" placeholder="Twitter ID" ng-model='user.twitter'>
                 <!-- <span class="email">{{user.twitter}}</span> -->
-            </form>
-            <form class="list" ng-show='user.artist'>
-                <label class="item item-input" name="Paypal">
-                    <i class = "ion-social-usd"></i>
-                    <input type="text" placeholder="Paypal ID" ng-model='user.paypal'>
-                </label>
-                <label class="item item-input" name="Website">
-                    <i class = "ion-ios-world"></i>
+            </div>
+            <form nonvalidate class="artist-profile list" ng-show='user.artist' name="Paypal">
+                <div class="item item-input">
+                    <div>
+                        <i class="ion-card"></i>
+                        <!-- <label for="paypal-input">Paypal.me ID</label> -->
+                    </div>
+                    <input type="text" name="paypal-input" placeholder="Paypal.me ID" ng-model='user.paypal' ng-pattern="/^[a-zA-Z0-9]+$/">
+                </div>
+                <div class="paypal-id-error" ng-show="Paypal.$invalid">Paypal.me IDs may only contain letters and numbers</div>
+                <div class="item item-input" name="Website">
+                    <i class="ion-ios-world"></i>
                     <input type="text" placeholder="Website" ng-model='user.website'>
-                </label>
+                </div>
             </form>
         </div>
         <button class="button button-stable button-block icon-left ion-ios-plus-outline" ng-click='create()' ng-show='user.artist'>Add Show</button>
         <div class="spacer" style="height: 10px;"></div>
-        <button class="button button-stable button-block icon-left ion-ios-checkmark-outline" ng-disabled="disableSave" ng-click="saveUser()">Save Profile</button>
+        <button class="button button-stable button-block icon-left ion-ios-checkmark-outline profile-save" ng-disabled="Paypal.$invalid" ng-click="saveUser()" ng-class="{'disabled-class': Paypal.$invalid}">Save Profile</button>
         <div class="spacer" style="height: 100px;"></div>
     </ion-content>
 </ion-view>

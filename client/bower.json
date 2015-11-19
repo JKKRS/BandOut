@@ -12,6 +12,7 @@
     "ngCordova": "~0.1.23-alpha"
   },
   "resolutions": {
-    "angular-simple-logger": "~0.0.1"
+    "angular-simple-logger": "~0.0.1",
+    "angular": "1.4.3"
   }
 }
