@@ -1,5 +1,13 @@
-<ion-view view-title="Cancel Show">
-<ion-content>
-  <h1> Hello? <h1>
-<ion-content>
+<ion-view view-title="Edit Show">
+  <ion-content>
+    <div class="list card">
+      <div class ="item item-divider"> Upcoming Events</div>
+      <div class="item item-body" ng-repeat="event in user"
+      ng-click="editDetail(event)">
+        <!-- TODO: Would Like to Slide to Delete  -->
+        <br> {{ event.title }}
+        <br>
+        <mydate>{{ event.datetime | date: 'fullDate' }}</mydate>
+      </div>
+    <ion-content>
 </ion-view>
