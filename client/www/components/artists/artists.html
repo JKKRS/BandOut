@@ -17,9 +17,8 @@
     <h2>{{ artist.name }}</h2>
     <h4>{{ artist.email }}</h4>
     <h4>{{ artist.twitter }}</h4>
-    <h4>Upcoming Event: {{ artist.artist_info.upcoming_events[0].title }}
-    Date: {{ artist.artist_info.upcoming_events[0].datetime | date: 'fullDate' }}
-    </h4>
+    <h4>Upcoming Event: {{ artist.artist_info.upcoming_events[0].datetime | date: 'MMM d, y' }}</h4>
+    <!-- {{ artist.artist_info.upcoming_events[0].title }} -->
   </a>
 </div>
 </ion-content>

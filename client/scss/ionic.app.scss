@@ -43,6 +43,11 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     padding-top: 20px;
 }
 
+/*ion-view {
+  background-image: url("https://wallpaperscraft.com/image/light_line_surface_texture_15641_300x400.jpg");
+  background-size: cover;
+}*/
+
 .artist{
   align: center;
 }
@@ -95,8 +100,16 @@ img {
             box-shadow: 0 7px 9px -6px #000;
 }
 
-.artistList {
-  margin-bottom: 20px;
+.artistList, .profileInfo, .payPal, .card{
+  margin-bottom: 13px;
+    -webkit-box-shadow: 0 7px 9px -9px #000;
+       -moz-box-shadow: 0 7px 9px -9px #000;
+            box-shadow: 0 7px 9px -9px #000;
+}
+
+.eventList{
+  text-align: right;
+  margin-bottom: 13px;
     -webkit-box-shadow: 0 7px 9px -9px #000;
        -moz-box-shadow: 0 7px 9px -9px #000;
             box-shadow: 0 7px 9px -9px #000;
@@ -107,9 +120,7 @@ img {
 }
 
 .card{
-  -webkit-box-shadow: 0 7px 9px -9px #000;
-       -moz-box-shadow: 0 7px 9px -9px #000;
-            box-shadow: 0 7px 9px -9px #000;
+    margin-bottom: 0px;
 }
 
 input{
