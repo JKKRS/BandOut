@@ -130,3 +130,8 @@ input{
 .bar-footer {
   width: 17%;
 }
+
+.bar.bar-light.bar-footer.no-bg {
+  background-image: none;
+  margin: auto;
+}
