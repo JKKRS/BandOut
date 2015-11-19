@@ -6,12 +6,12 @@ function editProfileCtrl($scope, $state, User, UserService) {
   // Default user values
   $scope.user = {};
   $scope.user.artist = false;
-  $scope.user.name = '';
-  $scope.user.email = '';
-  $scope.user.twitter = '';
-  $scope.user.paypal = '';
-  $scope.user.website = '';
-  $scope.user.fbid = '';
+  // $scope.user.name = '';
+  // $scope.user.email = '';
+  // $scope.user.twitter = '';
+  // $scope.user.paypal = '';
+  // $scope.user.website = '';
+  // $scope.user.fbid = '';
 
   $scope.$watchGroup(['user.paypal', 'user.twitter', 'user.website', 'user.artist'], function(newVal, oldVal, scope) {
       if ($scope.initialLoad) {
@@ -73,6 +73,7 @@ function editProfileCtrl($scope, $state, User, UserService) {
       );
     User.update({ 'fbid' : $scope.user.fbid }, user);
     $scope.disableSave = true;
+    $scope.initialState = [$scope.user.paypal, $scope.user.twitter, $scope.user.website, $scope.user.artist];
   };
 
   $scope.retrieveUser();
