@@ -27,7 +27,7 @@ angular.module('starter.services', ['ngResource'])
           return User.get({ "fbid" : res.authResponse.userID })
           .$promise
           .then(function(res) {
-            console.log('get user', res);
+            // console.log('get user', res);
             resolve(res);
           });
         });

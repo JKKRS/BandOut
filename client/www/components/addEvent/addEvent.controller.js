@@ -51,6 +51,7 @@ function addEventCtrl($scope, User, $stateParams, UserService) {
           updatedShow.push(eventAdd);
           var userObj = {
             artist_info: {
+              paypal_link: res.artist_info.paypal_link,
               upcoming_events: []
             }
           };
