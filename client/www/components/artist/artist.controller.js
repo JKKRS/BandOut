@@ -2,7 +2,7 @@ angular.module('starter.artist', ['starter.services'])
 
 .controller('ArtistCtrl', ArtistCtrl);
 
-function ArtistCtrl($scope, $stateParams, $window, $state, User, Artist, $resource) {
+function ArtistCtrl($scope, $stateParams, $window, $state, Artist) {
   $scope.artist = $stateParams.artist;
   $scope.payPal = function(link) {
     link = link.toString();
