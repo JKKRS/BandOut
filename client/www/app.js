@@ -17,7 +17,6 @@ angular.module('starter', [
   'starter.eventView',
   'uiGmapgoogle-maps',
   'starter.mapBrowse',
-  'ngMessages'
 ])
 
 .run(function($ionicPlatform, $rootScope, $state, $location, UserService, FACEBOOK_APP_ID) {

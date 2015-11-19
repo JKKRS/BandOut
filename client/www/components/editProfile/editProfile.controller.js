@@ -2,16 +2,16 @@ angular.module('starter.editProfile', [])
 
 .controller('editProfileCtrl', editProfileCtrl);
 
-function editProfileCtrl($scope, $state, User, UserService, $timeout) {
+function editProfileCtrl($scope, $state, User, UserService) {
   // Default user values
   $scope.user = {};
   $scope.user.artist = false;
-  $scope.user.name = "";
-  $scope.user.email = "";
-  $scope.user.twitter = "";
-  $scope.user.paypal = "";
-  $scope.user.website = "";
-  $scope.user.fbid = "";
+  $scope.user.name = '';
+  $scope.user.email = '';
+  $scope.user.twitter = '';
+  $scope.user.paypal = '';
+  $scope.user.website = '';
+  $scope.user.fbid = '';
 
   // $scope.$watchGroup(['user.paypal', 'user.twitter', 'user.website', 'user.artist'], function(newVal, oldVal, scope) {
   //     if ($scope.initialLoad) {
@@ -32,7 +32,7 @@ function editProfileCtrl($scope, $state, User, UserService, $timeout) {
       // Strip the beginning of the paypal URL
       var url = res.artist_info.paypal_link;
       var index = url.lastIndexOf('/');
-      var pp_id = url.substr(index + 1)
+      var pp_id = url.substr(index + 1);
 
       $scope.user.name = res.name;
       $scope.user.email = res.email;
@@ -65,7 +65,7 @@ function editProfileCtrl($scope, $state, User, UserService, $timeout) {
         paypal,
         $scope.user.website
       );
-    User.update({ "fbid" : $scope.user.fbid }, user);
+    User.update({ 'fbid' : $scope.user.fbid }, user);
     $scope.disableSave = true;
   };
 
@@ -76,9 +76,9 @@ function editProfileCtrl($scope, $state, User, UserService, $timeout) {
 var NewUser = function(artist, twitter, pp_id, website) {
   var newUser = Object.create(Object.prototype);
   newUser = {
-    "artist" : artist,
-    "twitter" : twitter,
-    "artist_info" : {},
+    'artist' : artist,
+    'twitter' : twitter,
+    'artist_info' : {},
   };
   newUser.artist_info.website = website;
   newUser.artist_info.paypal_link = pp_id;
