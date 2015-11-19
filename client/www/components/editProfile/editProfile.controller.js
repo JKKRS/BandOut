@@ -16,8 +16,10 @@ function editProfileCtrl($scope, $state, User, UserService) {
   $scope.$watchGroup(['user.paypal', 'user.twitter', 'user.website', 'user.artist'], function(newVal, oldVal, scope) {
       if ($scope.initialLoad) {
         $scope.initialLoad = false;
-      } else {
+      } else if (JSON.stringify($scope.initialState) !== JSON.stringify(newVal)) {
         $scope.disableSave = false;
+      } else {
+        $scope.disableSave = true;
       }
   });
 
@@ -44,6 +46,10 @@ function editProfileCtrl($scope, $state, User, UserService) {
     }).then(function() {
       $scope.disableSave = true;
       $scope.initialLoad = true;
+      if ($scope.user.website === undefined) {
+        $scope.user.website = '';
+      }
+      $scope.initialState = [$scope.user.paypal, $scope.user.twitter, $scope.user.website, $scope.user.artist];
     });
   };
 
