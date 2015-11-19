@@ -13,7 +13,7 @@ function editProfileCtrl($scope, $state, User, UserService, $timeout) {
   $scope.user.website = "";
   $scope.user.fbid = "";
 
-  $scope.$watchGroup(['user.paypal', 'user.twitter', 'user.website'], function(newVal, oldVal, scope) {
+  $scope.$watchGroup(['user.paypal', 'user.twitter', 'user.website', 'user.artist'], function(newVal, oldVal, scope) {
       if ($scope.initialLoad) {
         $scope.initialLoad = false;
       } else {
