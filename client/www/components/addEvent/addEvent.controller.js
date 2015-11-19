@@ -16,16 +16,9 @@ function addEventCtrl($scope, User, $stateParams, UserService) {
   $scope.location = {};
   $scope.location.lat = null;
   $scope.location.long = null;
-  // var lat = null;
-  // var long = null;
-
-
 
   var geocoder = new google.maps.Geocoder();
-
-  // var address = "1200 Getty Center Dr"
   $scope.saveEvent = function() {
-
     geocoder.geocode({
       'address': $scope.user.venueAddress + ' ' + $scope.user.venueCity + ' ' + $scope.user.venueZip
     }, function(results, status) {
@@ -52,34 +45,20 @@ function addEventCtrl($scope, User, $stateParams, UserService) {
         venueAdd
       );
 
-      console.log("fire: ", eventAdd);
-      console.log("FBID", $scope.user.fbid);
-
-
-
       UserService.getUser()
         .then(function(res) {
-          var updatedShow = res.artist_info.upcoming_events
+          var updatedShow = res.artist_info.upcoming_events;
           updatedShow.push(eventAdd);
           var userObj = {
-            artist_info : {
-              upcoming_events : []
+            artist_info: {
+              upcoming_events: []
             }
-          }
-          userObj.artist_info.upcoming_events = updatedShow
-          console.log(userObj, "------------");
+          };
+          userObj.artist_info.upcoming_events = updatedShow;
           User.update({
             "fbid": $scope.user.fbid
           }, userObj);
         });
-
-
-
-
-      // obj.artist_info.upcoming_events.push(eventAdd);
-
-
-
     });
 
 
@@ -103,7 +82,7 @@ function NewVenue(name, city, latit, longit) {
   newVenue = {
     "name": name,
     "city": city,
-    "country": "KangSnakeGame",
+    "country": "",
     "latitude": latit,
     "longitude": longit
   };
