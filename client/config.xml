@@ -2,16 +2,18 @@
 <widget id="com.ionicframework.bandout285555" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>BandOut</name>
   <description>
-        A better way to support Musicians.
-    </description>
+    A better way to support Musicians.
+  </description>
   <author email="hi@ionicframework" href="http://ionicframework.com/">
-      JKKRS
-    </author>
-  <content src="index.html"/>
+    JKKRS
+  </author>
+  <!-- temp -->
   <access origin="*"/>
+  <!-- temp -->
   <allow-navigation href="https://www.paypal.com"/>
   <allow-navigation href="https://www.paypal.me"/>
   <allow-navigation href="https://bandout.herokuapps.com"/>
+  <content src="index.html"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
