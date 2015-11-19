@@ -20,12 +20,16 @@ function editProfileCtrl($scope, $state, User, UserService) {
   $scope.retrieveUser = function() {
     UserService.getUser()
     .then(function(res) {
+      // only display last part of link on page for pp link
+      var url = res.artist_info.paypal_link;
+      var index = url.lastIndexOf("/");
+      var pp_id = url.substr(index + 1)
       // console.log('called', res);
       $scope.user.name = res.name;
       $scope.user.email = res.email;
       $scope.user.twitter = res.twitter;
       $scope.user.artist = res.artist;
-      $scope.user.paypal = res.artist_info.paypal_link;
+      $scope.user.paypal = pp_id;
       $scope.user.website = res.artist_info.website;
       $scope.user.fbid = res.fbid;
     });
@@ -34,6 +38,7 @@ function editProfileCtrl($scope, $state, User, UserService) {
   // Create new user from scope vars, and submit PUT request to server using fbid
   // to search for user in db
   $scope.saveUser = function() {
+    $scope.user.paypal = 'paypal.me/' + $scope.user.paypal;
     var user = NewUser(
         $scope.user.artist,
         $scope.user.twitter,
