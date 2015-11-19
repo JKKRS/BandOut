@@ -5,7 +5,8 @@
     <div class="item item-body">
         <form class="list" ng-model='event'>
             <label class="item item-input editable" name="title">
-                <span class="input-label">Title</span><textarea placeholder="">{{event.title}}</textarea>
+                <span class="input-label">Title</span>
+                <textarea placeholder="">{{event.title}}</textarea>
             </label>
             <label class="item item-input editable" name="date">
                 <span class="input-label">Date</span>
@@ -24,10 +25,13 @@
                 <span class="input-label">Name</span><textarea placeholder="">{{event.venue.name}}</textarea>
             </label>
             <label class="item item-input editable" name="venueCity">
+                <span class="input-label">Address</span><textarea placeholder="">{{event.venue.address}}</textarea>
+            </label>
+            <label class="item item-input editable" name="venueCity">
                 <span class="input-label">City</span><textarea placeholder="">{{event.venue.city}}</textarea>
             </label>
-            <label class="item item-input editable" name="venueCountry">
-                <span class="input-label">Country</span><textarea placeholder="">{{event.venue.country}}</textarea>
+            <label class="item item-input editable" name="venueZip">
+                <span class="input-label">Zip Code</span><textarea placeholder="">{{event.venue.zip}}</textarea>
             </label>
         </form>
     </div>
