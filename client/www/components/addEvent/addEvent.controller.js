@@ -31,6 +31,8 @@ function addEventCtrl($scope, User, $stateParams, UserService) {
       }
       var venueAdd = NewVenue(
         $scope.user.venueName,
+        $scope.user.venueAddress,
+        $scope.user.venueZip,
         $scope.user.venueCity,
         $scope.location.lat,
         $scope.location.long
@@ -78,10 +80,12 @@ function NewEvent(id, title, datetime, description, venue) {
   return newEvent;
 }
 
-function NewVenue(name, city, latit, longit) {
+function NewVenue(name, address, zip, city, latit, longit) {
   var newVenue = Object.create(Object.prototype);
   newVenue = {
     "name": name,
+    "address": address,
+    "zip": zip,
     "city": city,
     "country": "",
     "latitude": latit,
