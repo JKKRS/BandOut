@@ -3,7 +3,7 @@ angular.module('starter.editEventView', ['uiGmapgoogle-maps'])
 
 function editEventViewCtrl($scope, $state, User, UserService, $stateParams) {
   $scope.event = $state.params.event;
-  
+
   $scope.updateEvent = function() {
     console.log("I will be functional");
   };
