@@ -11,9 +11,9 @@ angular.module('starter.fbLogin', ['starter.services'])
       "image" : image,
       "email" : email,
       "artist" : false
-    }
+    };
     return newUser;
-  }
+  };
 
   // Success callback for login
   var fbLoginSuccess = function(response) {
@@ -31,7 +31,7 @@ angular.module('starter.fbLogin', ['starter.services'])
         user_data = {
           authResponse: authResponse,
           profileInfo: profileInfo,
-          picture: 'http://graph.facebook.com/' + authResponse.userID + '/picture?type=large'
+          picture: 'https://graph.facebook.com/' + authResponse.userID + '/picture?type=large'
         };
 
         UserService.setUser(user_data);
