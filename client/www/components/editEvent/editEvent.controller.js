@@ -8,8 +8,11 @@ function editEventCtrl($scope, User, $state, $stateParams, UserService) {
     console.log("editEventCtrl,", $scope.user);
   });
 
-  $scope.editDetail = function(event){
-    $state.go('app.editProfile.editEvent-editEventView', {event:event, eventId: event.id});
+  $scope.editDetail = function(event) {
+    $state.go('app.editProfile.editEvent-editEventView', {
+      event: event,
+      eventId: event.id
+    });
   };
 
   // Go to add event view
@@ -19,4 +22,7 @@ function editEventCtrl($scope, User, $state, $stateParams, UserService) {
     });
   };
 
+  $scope.cancelShow = function() {
+    console.log("I'm a working button");
+  };
 }
