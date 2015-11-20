@@ -5,11 +5,11 @@ angular.module('starter.editProfile', ['starter.services'])
 function editProfileCtrl($scope, $state, User, UserService) {
   // Default user values
   $scope.user = {};
-  $scope.user.artist = false;
+  $scope.initialLoad = true;
 
   // Watch these fields for changes, disable save if nothing has changed
   $scope.$watchGroup(['user.paypal', 'user.twitter', 'user.website', 'user.artist'], function(newVal, oldVal, scope) {
-      if ($scope.initialLoad) {
+      if ($scope.initialLoad === true) {
         $scope.initialLoad = false;
       } else if (JSON.stringify($scope.initialState) !== JSON.stringify(newVal)) {
         $scope.disableSave = false;
@@ -47,7 +47,6 @@ function editProfileCtrl($scope, $state, User, UserService) {
       $scope.user.upcoming_events = res.artist_info.upcoming_events;
     }).then(function() {
       $scope.disableSave = true;
-      $scope.initialLoad = true;
       if ($scope.user.website === undefined) {
         $scope.user.website = '';
       }
