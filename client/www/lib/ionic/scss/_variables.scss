@@ -4,7 +4,7 @@
 
 $light:                           #fff !default;
 $stable:                          #f8f8f8 !default;
-$positive:                        #ff4c0a !default; //#387ef5
+$positive:                        #387ef5 !default;
 $calm:                            #11c1f3 !default;
 $balanced:                        #33cd5f !default;
 $energized:                       #ffc900 !default;
@@ -35,7 +35,7 @@ $headings-font-family:            $font-family-base !default;
 $headings-font-weight:            500 !default;
 $headings-line-height:            1.2 !default;
 
-$base-background-color:           #3d3d3d !default; //#fff
+$base-background-color:           #fff !default;
 $base-color:                      #000 !default;
 
 $link-color:                      $positive !default;
@@ -98,8 +98,8 @@ $button-light-border:             #ddd !default;
 $button-light-active-bg:          #fafafa !default;
 $button-light-active-border:      #ccc !default;
 
-$button-stable-bg:                #992900 !default; //$stable
-$button-stable-text:              #fff !default;
+$button-stable-bg:                $stable !default;
+$button-stable-text:              #444 !default;
 $button-stable-border:            #b2b2b2 !default;
 $button-stable-active-bg:         #e5e5e5 !default;
 $button-stable-active-border:     #a2a2a2 !default;
@@ -366,7 +366,7 @@ $item-dark-text:                  $button-dark-text !default;
 $item-dark-active-bg:             $button-dark-active-bg !default;
 $item-dark-active-border:         $button-dark-active-border !default;
 
-$item-default-bg:                 #4b4b4b !default;
+$item-default-bg:                 $item-light-bg !default;
 $item-default-border:             $item-light-border !default;
 $item-default-text:               $item-light-text !default;
 $item-default-active-bg:          #D9D9D9 !default;

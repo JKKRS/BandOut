@@ -14,13 +14,14 @@ $assertive:                       #ef473a !default;
 $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
-
 $positive:                        #ff4c0a !default; //#387ef5
-$item-default-bg:                 #363636 !default; //4a4a4a
-$item-default-border:             $positive !default;
+$button-stable-bg:                #ff4c0a !default; //$stable
+$button-stable-text:              #fff !default;
 
-$base-background-color:           #000 !default; //#363636
-$button-stable-bg:                $positive !default; //$stable
+$item-default-bg:                 #fff !default;
+
+$base-background-color:           #fff !default; //#fff
+
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
@@ -49,9 +50,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     -webkit-flex: 4;
     padding-top: 20px;
 }
- icon{
-  color: $positive
- }
+
 
 .artist{
   align: center;

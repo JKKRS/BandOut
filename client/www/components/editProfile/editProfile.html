@@ -5,29 +5,29 @@
         </div>
         <div class="card">
             <div class="item non-editable" name="Name" ng-model='user.name'>
-                <i class="username-label ion-social-facebook"></i><span class="username">{{user.name}}</span>
+                <i class="username-label ion-social-facebook positive"></i><span class="username">{{user.name}}</span>
             </div>
             <div class="item non-editable" name="Email" ng-model='user.email'>
-                <i class="email-label ion-at"></i><span class="email">{{user.email}}</span>
+                <i class="email-label ion-at positive"></i><span class="email">{{user.email}}</span>
             </div>
         </div>
         <div class="card userInfo item">
             <div class="item-input" name="Twitter">
-                <i class = "ion-social-twitter"></i>
+                <i class = "ion-social-twitter positive"></i>
                 <input type="text" placeholder="Twitter ID" ng-model='user.twitter'>
                 <!-- <span class="email">{{user.twitter}}</span> -->
             </div>
             <form nonvalidate class="artist-profile list" ng-show='user.artist' name="Paypal">
                 <div class="item-input">
                     <div>
-                        <i class="ion-card"></i>
+                        <i class="ion-card positive"></i>
                         <!-- <label for="paypal-input">Paypal.me ID</label> -->
                     </div>
                     <input type="text" name="paypal-input" placeholder="Paypal.me ID" ng-model='user.paypal' ng-pattern="/^[a-zA-Z0-9]+$/">
                 </div>
                 <div class="paypal-id-error" ng-show="Paypal.$invalid">Paypal.me IDs may only contain letters and numbers</div>
                 <div class="item-input" name="Website">
-                    <i class="ion-ios-world"></i>
+                    <i class="ion-ios-world positive"></i>
                     <input type="text" placeholder="Website" ng-model='user.website'>
                 </div>
             </form>
