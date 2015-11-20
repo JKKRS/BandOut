@@ -9,11 +9,11 @@
         <input type="text" placeholder="Venue Name" ng-model="user.venueName">
       </label>
       <label class="item item-input" name="Date">
-        <input type="text" placeholder="Event Date" ng-model="user.date" ng-click="datePicker()">
+        <input type="date" placeholder="Event Date" ng-model="user.date" ng-click="datePicker()" readonly="true">
       </label>
-      <!-- <label class="item item-input" name="Time">
-        <input type="time" placeholder="Time" ng-model="user.time">
-      </label> -->
+      <label class="item item-input" name="Time">
+        <input type="time" placeholder="Time" ng-model="user.time" ng-click="timePicker()" readonly="true">
+      </label>
       <h4>Location</h4>
       <label class="item item-input" name="VenueAddress">
         <input type="text" placeholder="Address" ng-model="user.venueAddress">
