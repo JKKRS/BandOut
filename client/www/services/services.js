@@ -43,11 +43,11 @@ angular.module('starter.services', ['ngResource'])
 })
 
 .factory('Artist', function($resource) {
-  return $resource('http://bandout.herokuapp.com/apis/artists/:artistId');
+  return $resource('https://bandout.herokuapp.com/apis/artists/:artistId');
 })
 
 .factory('User', function($resource) {
-  return $resource('http://bandout.herokuapp.com/apis/users/:fbid', null, {
+  return $resource('https://bandout.herokuapp.com/apis/users/:fbid', null, {
     'update' : { method : 'PUT' }
   });
 });

@@ -11,4 +11,12 @@ function editEventCtrl($scope, User, $state, $stateParams, UserService) {
   $scope.editDetail = function(event){
     $state.go('app.editProfile.editEvent-editEventView', {event:event, eventId: event.id});
   }
+
+  // Go to add event view
+  $scope.create = function() {
+    $state.go('app.editProfile.editEvent-addEvent', {
+      user: $scope.user
+    });
+  };
+
 };

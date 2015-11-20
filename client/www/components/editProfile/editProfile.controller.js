@@ -24,14 +24,7 @@ function editProfileCtrl($scope, $state, User, UserService) {
     if (fromState.controller === 'addEventCtrl') {
       $scope.retrieveUser();
     }
-  })
-
-  // Go to add event view
-  $scope.create = function() {
-    $state.go('app.editProfile.addEvent', {
-      user: $scope.user
-    });
-  };
+  });
 
   // Get the current logged in user using FB.getLoginStatus(); and set scope vars
   $scope.retrieveUser = function() {

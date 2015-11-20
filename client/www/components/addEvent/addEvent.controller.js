@@ -50,6 +50,7 @@ function addEventCtrl($scope, User, $stateParams, UserService) {
       UserService.getUser()
         .then(function(res) {
           var updatedShow = res.artist_info.upcoming_events;
+          console.log("Hello", updatedShow);
           updatedShow.push(eventAdd);
           var userObj = {
             artist_info: {
@@ -58,9 +59,11 @@ function addEventCtrl($scope, User, $stateParams, UserService) {
             }
           };
           userObj.artist_info.upcoming_events = updatedShow;
+          console.log(res.fbid);
+          console.log("$$$$$$", userObj);
           User.update({
-            "fbid": $scope.user.fbid
-          }, userObj);
+            "fbid": res.fbid
+          }, userObj)
         });
     });
 
