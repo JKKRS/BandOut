@@ -29,11 +29,6 @@ function editEventViewCtrl($scope, $state, User, $stateParams, UserService) {
               res.artist_info.upcoming_events[i] = $scope.event;
               res.artist_info.upcoming_events[i].venue.latitude = $scope.location.lat;
               res.artist_info.upcoming_events[i].venue.longitude = $scope.location.long;
-              console.log("I am Scope", $scope.event);
-              console.log("I am res, your killer", res.artist_info.upcoming_events[i]);
-              console.log("I amd lat", res.artist_info.upcoming_events[i].venue.latitude, " I am scope", $scope.location.lat);
-              console.log("I amd lat", res.artist_info.upcoming_events[i].venue.longitude, " I am scope", $scope.location.long);
-
               User.update({
                 "fbid": res.fbid
               }, res);
