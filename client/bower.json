@@ -9,7 +9,8 @@
   "dependencies": {
     "angular-google-maps": "~2.2.1",
     "angular-simple-logger": "~0.1.5",
-    "ngCordova": "~0.1.23-alpha"
+    "ngCordova": "~0.1.23-alpha",
+    "moment": "~2.10.6"
   },
   "resolutions": {
     "angular-simple-logger": "~0.0.1",

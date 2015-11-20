@@ -7,7 +7,14 @@ function editEventCtrl($scope, $state, User, $stateParams, UserService) {
   $scope.location.lat = null;
   $scope.location.long = null;
 
+  $scope.event.date = new Date($scope.event.datetime);
+  $scope.event.time = new Date($scope.event.datetime);
+
+  // console.log('date',$scope.event.date);
+  // console.log('time',$scope.event.time);
+
   var geocoder = new google.maps.Geocoder();
+
   $scope.updateEvent = function() {
     geocoder.geocode({
       'address': $scope.event.venue.address + ' ' + $scope.event.venue.city + ' ' + $scope.event.venue.zip
@@ -20,6 +27,9 @@ function editEventCtrl($scope, $state, User, $stateParams, UserService) {
         $scope.location.long = 118.4750;
       }
 
+      var timestamp = UserService.createTimestamp($scope.event.date, $scope.event.time);
+      // console.log(timestamp);
+
       UserService.getUser()
         .then(function(res) {
           for (var i = 0; i <= res.artist_info.upcoming_events.length; i++) {
@@ -27,6 +37,7 @@ function editEventCtrl($scope, $state, User, $stateParams, UserService) {
               res.artist_info.upcoming_events[i] = $scope.event;
               res.artist_info.upcoming_events[i].venue.latitude = $scope.location.lat;
               res.artist_info.upcoming_events[i].venue.longitude = $scope.location.long;
+              res.artist_info.upcoming_events[i].datetime = timestamp;
               User.update({
                 "fbid": res.fbid
               }, res);

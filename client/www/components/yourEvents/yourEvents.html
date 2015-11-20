@@ -10,7 +10,7 @@
           <!-- TODO: Would Like to Slide to Delete  -->
           <br> {{ event.title }}
           <br>
-          <mydate>{{ event.datetime | date: 'fullDate' }}</mydate>
+          <mydate>{{ event.datetime | date: 'medium' }}</mydate>
           <ion-option-button ng-click= "deleteShow()" class="button-positive icon ion-trash-b"<ion-option-button>
         </ion-item>
       </div>
