@@ -5,12 +5,12 @@ angular.module('starter.editEvent', [])
 function editEventCtrl($scope, User, $state, $stateParams, UserService) {
   UserService.getUser().then(function(res) {
     $scope.user = res.artist_info.upcoming_events;
-    console.log($scope.user);
+    console.log("editEventCtrl,", $scope.user);
   });
 
   $scope.editDetail = function(event){
     $state.go('app.editProfile.editEvent-editEventView', {event:event, eventId: event.id});
-  }
+  };
 
   // Go to add event view
   $scope.create = function() {
@@ -19,4 +19,4 @@ function editEventCtrl($scope, User, $state, $stateParams, UserService) {
     });
   };
 
-};
+}
