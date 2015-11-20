@@ -38,13 +38,9 @@ function addEventCtrl($scope, User, $stateParams, $cordovaDatePicker, UserServic
     },
     function(results, status) {
 
-      var date = moment($scope.user.date);
-      var time = moment($scope.user.time);
-      var dateString = date.format('YYYY-MM-DD');
-      var timeString = time.format('hh:mm:ss.SSS');
+      var timestamp = UserService.createTimestamp($scope.user.date, $scope.user.time);
 
-      var timestamp = dateString + 'T' + timeString + 'Z';
-      timestamp = new Date(timestamp);
+      console.log(timestamp);
 
       if (status == google.maps.GeocoderStatus.OK) {
         $scope.location.lat = results[0].geometry.location.lat();

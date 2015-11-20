@@ -2,33 +2,33 @@
   <ion-content padding="true" class="has-header">
     <div class="card">
       <h4>Event Info<h4>
-      <label class="item item-input" name="Title">
-        <input type="text" placeholder="Title" ng-model="user.title">
+      <label class="item item-input" name="Title">Title
+        <input type="text" ng-model="user.title">
       </label>
-      <label class="item item-input" name="VenueName">
-        <input type="text" placeholder="Venue Name" ng-model="user.venueName">
+      <label class="item item-input" name="VenueName">Venue Name
+        <input type="text" ng-model="user.venueName">
       </label>
-      <label class="item item-input" name="Date">
-        <input type="date" placeholder="Event Date" ng-model="user.date">
+      <label class="item item-input" name="Date">Event Date
+        <input type="date" ng-model="user.date" value="Event Date">
       </label>
-      <label class="item item-input" name="Time">
-        <input type="time" placeholder="Time" ng-model="user.time">
+      <label class="item item-input" name="Time">Event Time
+        <input type="time" ng-model="user.time" value="Time">
       </label>
       <h4>Location</h4>
-      <label class="item item-input" name="VenueAddress">
-        <input type="text" placeholder="Address" ng-model="user.venueAddress">
+      <label class="item item-input" name="VenueAddress">Venue Address
+        <input type="text" ng-model="user.venueAddress">
       </label>
-      <label class="item item-input" name="VenueCity">
-        <input type="text" placeholder="City" ng-model="user.venueCity">
+      <label class="item item-input" name="VenueCity">City
+        <input type="text" ng-model="user.venueCity">
       </label>
       <!-- <label class="item item-input" name="VenueCountry">
         <input type="text" placeholder="Country" ng-model="user.venueCountry">
       </label> -->
-      <label class="item item-input" name="VenueZip">
-        <input type="text" placeholder="Zip Code" ng-model="user.venueZip">
+      <label class="item item-input" name="VenueZip">Zip
+        <input type="text" ng-model="user.venueZip">
       </label>
-      <label class="item item-input" name="Description">
-        <input type="text" placeholder="Description" ng-model="user.description">
+      <label class="item item-input" name="Description">Description
+        <textarea ng-model="user.description"></textarea>
       </label>
     </div>
     <button class="button button-stable button-block  icon-left ion-checkmark" ng-click="saveEvent()">Save Event</button>

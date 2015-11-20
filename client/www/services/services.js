@@ -34,10 +34,22 @@ angular.module('starter.services', ['ngResource'])
       });
   };
 
+  // Create a single timestamp from two full date objects
+  var createTimestamp = function(date, time) {
+    var date = moment(date);
+    var time = moment(time);
+    var dateString = date.format('YYYY-MM-DD');
+    var timeString = time.format('hh:mm:ss.SSS');
+
+    var timestamp = dateString + 'T' + timeString + 'Z';
+    return new Date(timestamp);
+  }
+
     // return JSON.parse(window.localStorage.getItem('ionFB_user') || '{}');
   return {
     getUser: getUser,
     setUser: setUser,
+    createTimestamp : createTimestamp
     // userIsLoggedIn: userIsLoggedIn
   };
 })
