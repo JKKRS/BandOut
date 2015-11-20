@@ -12,25 +12,24 @@ function addEventCtrl($scope, User, $stateParams, $cordovaDatePicker, UserServic
     $cordovaDatePicker.show().then(function(date){
       $scope.user.date = date;
     });
-  }
+  };
 
   var timeOptions = {
     date: new Date(),
-    mode: 'time', // or 'time'
-    minDate: new Date(),
+    mode: 'time',
     allowOldDates: true,
     allowFutureDates: true,
     doneButtonLabel: 'DONE',
-    // doneButtonColor: '#000000',
+    doneButtonColor: '#000000',
     cancelButtonLabel: 'CANCEL',
     cancelButtonColor: '#000000'
-  }
+  };
 
   $scope.timePicker = function(e) {
     $cordovaDatePicker.show(timeOptions).then(function(time) {
       $scope.user.time = time;
-    })
-  }
+    });
+  };
 
   var geocoder = new google.maps.Geocoder();
   $scope.saveEvent = function() {
@@ -39,19 +38,13 @@ function addEventCtrl($scope, User, $stateParams, $cordovaDatePicker, UserServic
     },
     function(results, status) {
 
-      console.log('date', $scope.user.date, 'time', $scope.user.time);
-
       var date = moment($scope.user.date);
       var time = moment($scope.user.time);
       var dateString = date.format('YYYY-MM-DD');
       var timeString = time.format('hh:mm:ss.SSS');
 
-      var timestamp = dateString + 'T' + timeString + 'Z'
-      console.log('timestamp', timestamp);
-      // console.log('new date', date)
-      // console.log('new time', time);
-
-
+      var timestamp = dateString + 'T' + timeString + 'Z';
+      timestamp = new Date(timestamp);
 
       if (status == google.maps.GeocoderStatus.OK) {
         $scope.location.lat = results[0].geometry.location.lat();
@@ -75,7 +68,7 @@ function addEventCtrl($scope, User, $stateParams, $cordovaDatePicker, UserServic
       var eventAdd = NewEvent(
         venueId,
         $scope.user.title,
-        $scope.user.date,
+        timestamp,
         $scope.user.description,
         venueAdd
       );
