@@ -14,6 +14,14 @@ $assertive:                       #ef473a !default;
 $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
+$positive:                        #ff4c0a !default; //#387ef5
+$button-stable-bg:                #ff4c0a !default; //$stable
+$button-stable-text:              #fff !default;
+
+$item-default-bg:                 #fff !default;
+
+$base-background-color:           #fff !default; //#fff
+
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
@@ -43,10 +51,6 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     padding-top: 20px;
 }
 
-/*ion-view {
-  background-image: url("https://wallpaperscraft.com/image/light_line_surface_texture_15641_300x400.jpg");
-  background-size: cover;
-}*/
 
 .artist{
   align: center;
