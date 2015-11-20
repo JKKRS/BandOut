@@ -16,6 +16,7 @@
         <h4>{{ artist.email }}</h4>
         <h4>{{ artist.twitter }}</h4>
         <h4>Upcoming Event: {{ artist.artist_info.upcoming_events[0].datetime | date: 'MMM d, y' }} </h4>
+          <h4 class="defaultValue" ng-hide="artist.artist_info.upcoming_events[0].datetime"> None Yet!</h4>
         <!-- {{ artist.artist_info.upcoming_events[0].title }} -->
         <ion-option-button class="button-positive icon ion-heart"<ion-option-button>
         <ion-option-button class="button-positive icon ion-social-usd"<ion-option-button>
