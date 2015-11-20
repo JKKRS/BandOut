@@ -4,15 +4,15 @@ angular.module('starter.addEvent', ['uiGmapgoogle-maps'])
 
 function addEventCtrl($scope, User, $stateParams, UserService) {
   $scope.user = $stateParams.user;
-  $scope.user.title = "";
-  $scope.user.venueName = "";
-  $scope.user.date = null;
-  // $scope.user.time = "";
-  $scope.user.venueAddress = "";
-  $scope.user.venueCity = "";
-  // $scope.user.venueCountry = "";
-  $scope.user.venueZip = "";
-  $scope.user.description = "";
+  // $scope.user.title = "";
+  // $scope.user.venueName = "";
+  // $scope.user.date = null;
+  // // $scope.user.time = "";
+  // $scope.user.venueAddress = "";
+  // $scope.user.venueCity = "";
+  // // $scope.user.venueCountry = "";
+  // $scope.user.venueZip = "";
+  // $scope.user.description = "";
   $scope.location = {};
   $scope.location.lat = null;
   $scope.location.long = null;
