@@ -1,4 +1,4 @@
-angular.module('starter.editProfile', [])
+angular.module('starter.editProfile', ['starter.services'])
 
 .controller('editProfileCtrl', editProfileCtrl);
 
@@ -19,17 +19,12 @@ function editProfileCtrl($scope, $state, User, UserService) {
   });
 
   // When state changes, re-fetch data (used for updating newly added shows)
-  $scope.$on('$stateChangeSuccess', 
+  $scope.$on('$stateChangeSuccess',
   function(event, toState, toParams, fromState, fromParams) {
     if (fromState.controller === 'addEventCtrl') {
       $scope.retrieveUser();
     }
-  })
-
-  // Go to add event view
-  $scope.create = function() {
-    $state.go('app.editProfile.addEvent', {user: $scope.user});
-  };
+  });
 
   // Get the current logged in user using FB.getLoginStatus(); and set scope vars
   $scope.retrieveUser = function() {
@@ -75,6 +70,15 @@ function editProfileCtrl($scope, $state, User, UserService) {
     $scope.disableSave = true;
     $scope.initialState = [$scope.user.paypal, $scope.user.twitter, $scope.user.website, $scope.user.artist];
   };
+
+  $scope.editEvent = function() {
+    $state.go('app.editProfile.yourEvents', {
+      user: $scope.user
+    });
+  };
+
+
+  $scope.retrieveUser();
 }
 
 // Constructor function to create new users
@@ -90,26 +94,3 @@ var NewUser = function(artist, twitter, pp_id, website, upcoming_events) {
   newUser.artist_info.upcoming_events = upcoming_events;
   return newUser;
 };
-// var Venue = function(name, city, country, lat, longitude) {
-//   var newVenue = Object.create(Object.prototype)
-//   newVenue = {
-//     "name" : name,
-//     "city": city,
-//     "country" : country,
-//     "latitude" : lat,
-//     "longitude" : longitude
-//   }
-//   return newVenue;
-// }
-
-// var Event = function(id, title, datetime, description, venue) {
-//   var newEvent = Object.create(Object.prototype);
-//   newEvent = {
-//     "id" : id,
-//     "title" : title,
-//     "datetime" : datetime,
-//     "description" : description,
-//     "venue" : venue
-//   }
-//   return newEvent;
-// }

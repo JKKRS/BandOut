@@ -1,0 +1,47 @@
+<ion-view title="Event">
+  <ion-content padding="true" class="has-header">
+    <div class="list card">
+      <div class="item item-divider">Event Information</div>
+      <div class="item item-body">
+        <form class="list" ng-model='event'>
+          <label class="item item-input editable" name="title">
+            <span class="input-label">Title</span>
+            <textarea placeholder="" ng-model="event.title">{{event.title}}</textarea>
+          </label>
+          <label class="item item-input editable" name="date">
+            <span class="input-label">Date</span>
+            <!-- TODO: The Date needs to be configured so that it is editable -->
+            <textarea placeholder="" ng-model="event.datetime">{{ event.datetime | date: 'fullDate' }}</textarea>
+          </label>
+          <label class="item item-input editable" name="description">
+            <span class="input-label">Description</span>
+            <textarea placeholder="" ng-model="event.description">{{event.description}}</textarea>
+          </label>
+        </form>
+      </div>
+      <div class="item item-divider">Venue Information</div>
+      <div class="item item-body">
+        <form class="list">
+          <label class="item item-input editable" name="venueName">
+            <span class="input-label">Name</span>
+            <textarea placeholder="" ng-model="event.venue.name">{{event.venue.name}}</textarea>
+          </label>
+          <label class="item item-input editable" name="venueCity">
+            <span class="input-label">Address</span>
+            <textarea placeholder="" ng-model="event.venue.address">{{event.venue.address}}</textarea>
+          </label>
+          <label class="item item-input editable" name="venueCity">
+            <span class="input-label">City</span>
+            <textarea placeholder="" ng-model="event.venue.city">{{event.venue.city}}</textarea>
+          </label>
+          <label class="item item-input editable" name="venueZip">
+            <span class="input-label">Zip Code</span>
+            <textarea placeholder="" ng-model="event.venue.zip">{{event.venue.zip}}</textarea>
+          </label>
+        </form>
+      </div>
+    </div>
+    <div class="spacer" style="height: 10px;"></div>
+    <button class="button button-stable button-block icon-left ion-ios-checkmark-outline" ng-click="updateEvent()">Update Event</button>
+  </ion-content>
+</ion-view>

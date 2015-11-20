@@ -4,15 +4,6 @@ angular.module('starter.addEvent', ['uiGmapgoogle-maps'])
 
 function addEventCtrl($scope, User, $stateParams, UserService) {
   $scope.user = $stateParams.user;
-  $scope.user.title = "";
-  $scope.user.venueName = "";
-  $scope.user.date = null;
-  // $scope.user.time = "";
-  $scope.user.venueAddress = "";
-  $scope.user.venueCity = "";
-  // $scope.user.venueCountry = "";
-  $scope.user.venueZip = "";
-  $scope.user.description = "";
   $scope.location = {};
   $scope.location.lat = null;
   $scope.location.long = null;
@@ -31,6 +22,8 @@ function addEventCtrl($scope, User, $stateParams, UserService) {
       }
       var venueAdd = NewVenue(
         $scope.user.venueName,
+        $scope.user.venueAddress,
+        $scope.user.venueZip,
         $scope.user.venueCity,
         $scope.location.lat,
         $scope.location.long
@@ -47,18 +40,10 @@ function addEventCtrl($scope, User, $stateParams, UserService) {
 
       UserService.getUser()
         .then(function(res) {
-          var updatedShow = res.artist_info.upcoming_events;
-          updatedShow.push(eventAdd);
-          var userObj = {
-            artist_info: {
-              paypal_link: res.artist_info.paypal_link,
-              upcoming_events: []
-            }
-          };
-          userObj.artist_info.upcoming_events = updatedShow;
+          res.artist_info.upcoming_events.push(eventAdd);
           User.update({
-            "fbid": $scope.user.fbid
-          }, userObj);
+            "fbid": res.fbid
+          },res);
         });
     });
 
@@ -78,10 +63,12 @@ function NewEvent(id, title, datetime, description, venue) {
   return newEvent;
 }
 
-function NewVenue(name, city, latit, longit) {
+function NewVenue(name, address, zip, city, latit, longit) {
   var newVenue = Object.create(Object.prototype);
   newVenue = {
     "name": name,
+    "address": address,
+    "zip": zip,
     "city": city,
     "country": "",
     "latitude": latit,
