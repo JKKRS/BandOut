@@ -6,7 +6,7 @@
     <div class="item item-divider"> Upcoming Events</div>
     <ion-list show-delete= "false" can-swipe = "true">
       <div class ="list">
-        <ion-item class="item item-body" ng-repeat="event in user" ng-click="editDetail(event)">
+        <ion-item class="item" collection-repeat="event in user" collection-item-height="80px" ng-click="editDetail(event)">
           <!-- TODO: Would Like to Slide to Delete  -->
           <br> {{ event.title }}
           <br>

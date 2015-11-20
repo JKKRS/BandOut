@@ -10,7 +10,7 @@
     </div>
     <ion-list show-delete= "false" can-swipe = "true">
     <div class="list">
-      <ion-item class="item item-thumbnail-left artistList" collection-repeat="artist in artists | filter:searchText" ng-click="artistDetail(artist)" on-swipe-left="onSwipeLeft(artist)">
+      <ion-item class="item item-thumbnail-left artistList" collection-repeat="artist in artists | filter:searchText" collection-item-height = "100px" ng-click="artistDetail(artist)" on-swipe-left="onSwipeLeft(artist)">
         <img ng-src="{{ artist.image }}">
         <h2>{{ artist.name }}</h2>
         <h4>{{ artist.email }}</h4>
