@@ -2,11 +2,29 @@ angular.module('starter.addEvent', ['uiGmapgoogle-maps'])
 
 .controller('addEventCtrl', addEventCtrl);
 
-function addEventCtrl($scope, User, $stateParams, UserService) {
+function addEventCtrl($scope, User, $stateParams, $cordovaDatePicker, UserService) {
   $scope.user = $stateParams.user;
   $scope.location = {};
   $scope.location.lat = null;
   $scope.location.long = null;
+
+  var datePickerOptions = {
+    date: new Date(),
+    mode: 'date', // or 'time'
+    minDate: new Date() - 10000,
+    allowOldDates: true,
+    allowFutureDates: true,
+    doneButtonLabel: 'DONE',
+    doneButtonColor: '#000000',
+    cancelButtonLabel: 'CANCEL',
+    cancelButtonColor: '#000000'
+  };
+
+  $scope.datePicker = function() {
+    $cordovaDatePicker.show(datePickerOptions).then(function(date){
+        console.log(date);
+    });
+  }
 
   var geocoder = new google.maps.Geocoder();
   $scope.saveEvent = function() {
