@@ -7,11 +7,11 @@ angular.module('starter.mapBrowse', ['uiGmapgoogle-maps'])
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
-    $scope.center = function() {
-      navigator.geolocation.getCurrentPosition(function(pos) {
-        map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-      });
-    };
+    // $scope.center = function() {
+    //   $cordovaGelocationnavigator.getCurrentPosition(function(pos) {
+    //     map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+    //   });
+    // };
 
     var map = new google.maps.Map(document.getElementById("map1"), mapOptions);
 
@@ -20,18 +20,24 @@ angular.module('starter.mapBrowse', ['uiGmapgoogle-maps'])
       showBackdrop: false
     });
 
-    $cordovaGeolocation.getCurrentPosition({timeout: 10000, enableHighAccuracy: false})
-    .then(function(pos) {
-      map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-      $ionicLoading.hide();
-      var myLocation = new google.maps.Marker({
-        position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
-        map: map,
-        title: "My Location"
-      });
-    });
+    $scope.center = function() {
+      $cordovaGeolocation.getCurrentPosition({
+        timeout: 10000,
+        enableHighAccuracy: false
+      })
+        .then(function(pos) {
+          console.log('cordova geolocation');
+          map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+          $ionicLoading.hide();
+          var myLocation = new google.maps.Marker({
+            position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
+            map: map,
+            title: "My Location"
+          });
+        });
+    };
 
     $scope.map = map;
-
+    $scope.center();
 
   });
