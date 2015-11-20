@@ -40,12 +40,7 @@ function addEventCtrl($scope, User, $stateParams, UserService) {
 
       UserService.getUser()
         .then(function(res) {
-          console.log("Hi, Im the guy who ruined your sleep", res);
-          console.log("I might help", res.artist_info.upcoming_events );
-          console.log("I'm the guy that stopped it", eventAdd);
           res.artist_info.upcoming_events.push(eventAdd);
-          console.log("YATA?!", res.artist_info.upcoming_events)
-
           User.update({
             "fbid": res.fbid
           },res);

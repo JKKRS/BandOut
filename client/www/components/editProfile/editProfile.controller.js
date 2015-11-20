@@ -72,7 +72,7 @@ function editProfileCtrl($scope, $state, User, UserService) {
   };
 
   $scope.editEvent = function() {
-    $state.go('app.editProfile.editEvent', {
+    $state.go('app.editProfile.yourEvents', {
       user: $scope.user
     });
   };

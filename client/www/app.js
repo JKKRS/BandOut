@@ -17,8 +17,8 @@ angular.module('starter', [
   'starter.eventView',
   'uiGmapgoogle-maps',
   'starter.mapBrowse',
-  'starter.editEvent',
-  'starter.editEventView'
+  'starter.yourEvents',
+  'starter.editEvent'
 ])
 
 .run(function($ionicPlatform, $rootScope, $state, $location, UserService, FACEBOOK_APP_ID) {
@@ -184,18 +184,18 @@ angular.module('starter', [
     controller: 'addEventCtrl'
   })
 
-  .state('app.editProfile.editEvent', {
+  .state('app.editProfile.yourEvents', {
     url:'/editEvent',
     params:{user: null},
-    templateUrl: 'components/editEvent/editEvent.html',
-    controller:'editEventCtrl'
+    templateUrl: 'components/yourEvents/yourEvents.html',
+    controller:'yourEventsCtrl'
   })
 
-  .state('app.editProfile.editEvent-editEventView', {
+  .state('app.editProfile.editEvent-editEvent', {
     url: '/:eventId',
     params: {event: null, eventId: null},
-    templateUrl: 'components/editEventView/editEventView.html',
-    controller: 'editEventViewCtrl'
+    templateUrl: 'components/editEvent/editEvent.html',
+    controller: 'editEventCtrl'
   });
 
   // if none of the above states are matched, use this as the fallback
