@@ -21,7 +21,7 @@ function yourEventsCtrl($scope, User, $state, $stateParams, UserService) {
     });
   };
 
-//   $scope.cancelShow = function() {
-//     console.log("I'm a working button");
-//   };
+  $scope.deleteShow = function() {
+    console.log("I'm a working button");
+  };
 }
