@@ -44,6 +44,7 @@ function editEventCtrl($scope, $state, User, $stateParams, UserService) {
               break;
             }
           }
+          $state.go('app.editProfile.yourEvents');
         });
 
     });
