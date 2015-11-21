@@ -1,4 +1,4 @@
-<ion-view view-title="Artist">
+<ion-view view-title="Artist" class="artist-view">
   <ion-content>
   <ion-refresher pulling-text="Pull to refresh..." on-refresh="refresh()">
     </ion-refresher>
@@ -10,15 +10,16 @@
         <h4>{{ artist.twitter }}</h4>
         <button class="button button-stable button-block" ng-click="payPal(artist.artist_info.paypal_link)"><i class="icon ion-social-usd-outline"></i> PayPal</button>
       </div>
-      <div>
+      <div class="list">
         <div class="item item-divider">Upcoming Events</div>
-        <div class="item item-body" ng-repeat="event in artist.artist_info.upcoming_events" ng-click="eventDetail(event)" on-swipe-left="onSwipeLeft(event)">
-          <br> {{ event.title }}
-          <br>
-          <mydate>{{ event.datetime | date: 'fullDate' }}</mydate>
-        </div>
+        <a class="item" ng-repeat="event in artist.artist_info.upcoming_events" ng-click="eventDetail(event)" on-swipe-left="onSwipeLeft(event)">
+          <!-- <img src="../../img/Concert.png" class="concert-img" alt=""> -->
+          <h2>{{ event.title }}</h2>
+          <p>{{ event.datetime | date: 'fullDate' }}</p>
+          <p>{{ event.datetime | date: 'h:mm a' }}</p>
+        </a>
         <div class="defaultValue" ng-hide="artist.artist_info.upcoming_events.length"> 
-          <br>No Scheduled Shows 
+        No Scheduled Shows 
         </div>
       </div>
     </div>

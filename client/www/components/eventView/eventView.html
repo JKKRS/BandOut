@@ -1,35 +1,44 @@
 <ion-view title="Event">
 <ion-content padding="true" class="has-header">
-<div class="list card">
+<div class="list card event-view" ng-model="event">
     <div class="item item-divider">Event Information</div>
-    <div class="item item-body">
-        <form class="list" ng-model='event'>
-            <label class="item item-input" name="title">
-                <span class="input-label">Title</span><textarea placeholder="">{{event.title}}</textarea>
-            </label>
-            <label class="item item-input" name="date">
-                <span class="input-label">Date</span>
-                  <textarea placeholder="">{{ event.datetime | date: 'fullDate' }}</textarea>
-            </label>
-            <label class="item item-input" name="description">
-                <span class="input-label">Description</span><textarea placeholder="">{{event.description}}</textarea>
-            </label>
-        </form>
-    </div>
+    <!-- <div class="item item-body"> -->
+        <!-- <div class="list" ng-model='event'> -->
+            <div class="item" name="title">
+                <div class="item-left">Title</div>
+                <div class="item-right">{{event.title}}</div>
+            </div>
+            <div class="item" name="date">
+                <div class="item-left">Date</div>
+                <div class="item-right">{{ event.datetime | date: 'fullDate' }}</div>
+            </div>
+            <div class="item" name="time">
+                <div class="item-left">Time</div>
+                <div class="item-right">{{ event.datetime | date: 'h:mm a' }}</div>
+            </div>
+            <div class="item" name="description">
+                <div class="item-left">Description</div>
+                <div class="item-right">{{event.description}}</div>
+            </div>
+        <!-- </div> -->
+    <!-- </div> -->
     <div class="item item-divider">Venue Information</div>
-    <div class="item item-body">
-        <form class="list">
-            <label class="item item-input" name="venueName">
-                <span class="input-label">Name</span><textarea placeholder="">{{event.venue.name}}</textarea>
-            </label>
-            <label class="item item-input" name="venueCity">
-                <span class="input-label">City</span><textarea placeholder="">{{event.venue.city}}</textarea>
-            </label>
-            <label class="item item-input" name="venueCountry">
-                <span class="input-label">Country</span><textarea placeholder="">{{event.venue.country}}</textarea>
-            </label>
-        </form>
-    </div>
+    <!-- <div class="item item-body"> -->
+        <!-- <div class="list"> -->
+            <div class="item" name="venueName">
+                <div class="item-left">Name</div>
+                <div class="item-right">{{event.venue.name}}</div>
+            </div>
+            <div class="item" name="venueCity">
+                <div class="item-left">City</div>
+                <div class="item-right">{{event.venue.city}}</div>
+            </div>
+            <div class="item" name="venueCountry">
+                <div class="item-left">Country</div>
+                <div class="item-right">{{event.venue.country}}</div>
+            </div>
+        <!-- </div> -->
+    <!-- </div> -->
 </div>
 <div>
 <div id="map" style="height:250px;" data-tap-disabled="true"></div>
