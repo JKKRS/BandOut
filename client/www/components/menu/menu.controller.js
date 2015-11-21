@@ -1,6 +1,6 @@
 angular.module('starter.menu', ['starter.services'])
 
-.controller('MenuCtrl', function($scope, $state, $ionicPopup, UserService, $ionicLoading, FACEBOOK_APP_ID) {
+.controller('MenuCtrl', function($scope, $state, store, auth, $ionicPopup, UserService, $ionicLoading, FACEBOOK_APP_ID) {
   // $scope.user = UserService.getUser();
   // Logout Methods
   $scope.showConfirmLogOut = function() {
@@ -15,18 +15,23 @@ angular.module('starter.menu', ['starter.services'])
           template: 'Logging out...'
         });
 
-        if (!window.cordova) {
-          // we are in browser
-          facebookConnectPlugin.browserInit(FACEBOOK_APP_ID);
-        }
-
-        facebookConnectPlugin.logout(function() {
-          // logout success
-          $ionicLoading.hide();
-          $state.go('login');
-        }, function(err) {
-          $ionicLoading.hide();
-        });
+        auth.signout();
+        store.remove('profile');
+        store.remove('token');
+        $ionicLoading.hide();
+        $state.go('login');
+        // if (!window.cordova) {
+        //   // we are in browser
+        //   facebookConnectPlugin.browserInit(FACEBOOK_APP_ID);
+        // }
+        //
+        // facebookConnectPlugin.logout(function() {
+        //   // logout success
+        //   $ionicLoading.hide();
+        //   $state.go('login');
+        // }, function(err) {
+        //   $ionicLoading.hide();
+        // });
       } else {
         // cancel logout
       }

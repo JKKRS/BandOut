@@ -8,6 +8,9 @@
 angular.module('starter', [
   'ionic',
   'ngCordova',
+  'auth0',
+  'angular-storage',
+  'angular-jwt',
   'starter.menu',
   'starter.fbLogin',
   'starter.artist',
@@ -21,62 +24,7 @@ angular.module('starter', [
   'starter.editEvent'
 ])
 
-.run(function($ionicPlatform, $rootScope, $state, $location, UserService, FACEBOOK_APP_ID) {
-
-  $ionicPlatform.ready(function() {
-
-    if (!window.cordova) {
-      // we are in browser
-      facebookConnectPlugin.browserInit(FACEBOOK_APP_ID, 'v2.4');
-    }
-
-    facebookConnectPlugin.getLoginStatus(function(success) {
-      if (success.status === 'connected') {
-        // $state.go('app.artists');
-        // $location.path('app/artists');
-      } else {
-        // $state.go('login');
-        $location.path('/');
-      }
-    });
-
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-    if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard ) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-    }
-    if (window.StatusBar) {
-      // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
-    }
-  });
-
-  $ionicPlatform.on("resume", function() {
-    facebookConnectPlugin.getLoginStatus(function(success) {
-      if (success.status !== 'connected') {
-        $state.go('login');
-      }
-    });
-  });
-
-  // Authentication Check For UI-Router
-  $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams) {
-    if (toState.data.authenticate) {
-      facebookConnectPlugin.getLoginStatus(function(success) {
-        if (success.status === 'connected') {
-          // proceed
-        } else {
-          event.preventDefault();
-          $state.go('login');
-        }
-      }, function(err) {
-          // err handle here
-      });
-    }
-  });
-})
-
-.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, authProvider, $httpProvider, jwtInterceptorProvider) {
 
   $stateProvider
 
@@ -84,7 +32,10 @@ angular.module('starter', [
     url: '/app',
     abstract: true,
     templateUrl: 'components/menu/menu.html',
-    controller: 'MenuCtrl'
+    controller: 'MenuCtrl',
+    data: {
+      requiresLogin: true
+    }
   })
 
   .state('login', {
@@ -92,7 +43,7 @@ angular.module('starter', [
     templateUrl: 'components/login/login.html',
     controller: 'LoginCtrl',
     data: {
-      authenticate: false
+      requiresLogin: false
     }
   })
 
@@ -104,7 +55,7 @@ angular.module('starter', [
       }
     },
     data: {
-      authenticate: true
+      requiresLogin: true
     }
   })
 
@@ -117,7 +68,7 @@ angular.module('starter', [
     },
     controller:'MapCtrl',
     data: {
-      authenticate: true
+      requiresLogin: true
     }
   })
 
@@ -130,7 +81,7 @@ angular.module('starter', [
       }
     },
     data: {
-      authenticate: true
+      requiresLogin: true
     }
   })
 
@@ -139,7 +90,7 @@ angular.module('starter', [
     templateUrl: 'components/artists/artists.html',
     controller: 'ArtistsCtrl',
     data: {
-      authenticate: true
+      requiresLogin: true
     }
   })
 
@@ -166,10 +117,9 @@ angular.module('starter', [
       }
     },
     data: {
-      authenticate: true
+      requiresLogin: true
     }
   })
-
 
   .state('app.editProfile.index', {
     url: '',
@@ -198,12 +148,65 @@ angular.module('starter', [
     controller: 'editEventCtrl'
   });
 
+  //
+  authProvider.init({
+    domain: 'rso3.auth0.com',
+    clientID: 'xjfTO2HFDpHNw34WPK1FUL5UBsczCXs6',
+    loginState: 'login'
+  });
+
+  jwtInterceptorProvider.tokenGetter = function(store, jwtHelper, auth) {
+    var idToken = store.get('token');
+    var refreshToken = store.get('refreshToken');
+    // If no token return null
+    if (!idToken || !refreshToken) {
+      return null;
+    }
+    // If token is expired, get a new one
+    if (jwtHelper.isTokenExpired(idToken)) {
+      return auth.refreshIdToken(refreshToken)
+        .then(function(idToken) {
+          store.set('token', idToken);
+          return idToken;
+        });
+    } else {
+      return idToken;
+    }
+  };
+
+  $httpProvider.interceptors.push('jwtInterceptor');
+
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/app/artists');
 
   $ionicConfigProvider.platform.android.tabs.position('bottom').style('standard');
   $ionicConfigProvider.platform.android.navBar.alignTitle('center');
   $ionicConfigProvider.platform.android.backButton.previousTitleText('true');
 
   $ionicConfigProvider.platform.ios.form.toggle('small');
+})
+
+.run(function($ionicPlatform, $rootScope, $state, $location, UserService, FACEBOOK_APP_ID, auth, store, jwtHelper) {
+  $ionicPlatform.ready(function() {
+    auth.hookEvents();
+  });
+
+  $ionicPlatform.on("resume", function() {
+
+  });
+
+  // Authentication Check For UI-Router
+  $rootScope.$on("$stateChangeStart", function() {
+    console.log(auth.isAuthenticated);
+    if (!auth.isAuthenticated) {
+      var token = store.get('token');
+      if (token) {
+        if (!jwtHelper.isTokenExpired(token)) {
+          auth.authenticate(store.get('profile'), token);
+        } else {
+          $state.go('login');
+        }
+      }
+    }
+  });
 });

@@ -1,97 +1,32 @@
 angular.module('starter.fbLogin', ['starter.services'])
 
-.controller('LoginCtrl', function($scope, $state, $q, $location, UserService, User, $ionicLoading, FACEBOOK_APP_ID) {
-
-  var NewUser = function(fbid, name, image, email, authResponse) {
-    var newUser = Object.create(Object.prototype);
-    newUser = {
-      "auth_info" : authResponse,
-      "fbid" : fbid,
-      "name" : name,
-      "image" : image,
-      "email" : email,
-      "artist" : false
-    };
-    return newUser;
-  };
+.controller('LoginCtrl', function($scope, $state, $q, $location, UserService, User, $ionicLoading, FACEBOOK_APP_ID, store, auth) {
 
   // Success callback for login
-  var fbLoginSuccess = function(response) {
-    if (!response.authResponse) {
-      fbLoginError('Can\'t find the auth response');
-      return;
-    }
-    console.log('Facebook Login Success');
-
-    var authResponse = response.authResponse;
-
-    getFacebookProfileInfo(authResponse)
-      .then(function(profileInfo) {
-        // *** TEMPORARY SHOULD STORE IN DATABASE NOT LOCAL STORAGE ***
-        user_data = {
-          authResponse: authResponse,
-          profileInfo: profileInfo,
-          picture: 'https://graph.facebook.com/' + authResponse.userID + '/picture?type=large'
-        };
-
-        UserService.setUser(user_data);
-
-        $ionicLoading.hide();
-        $location.path('app/artists');
-        // $state.go('app.artists');
-      }, function(err) {
-        // err handle here
-        console.log('profile info err', err);
-      });
+  var loginSuccess = function(profile, token, accessToken, state, refreshToken) {
+    // Success callback
+    UserService.setUser(profile);
+    console.log('profile:', profile);
+    store.set('profile', profile);
+    store.set('token', token);
+    store.set('refreshToken', refreshToken);
+    $state.go('app.artists.index');
+    console.log('Login Success');
   };
 
   // Failure callback for login
-  function fbLoginError(error) {
-    console.log('Facebook Login Error', error);
+  function loginError(error) {
+    console.log('Login Error', error);
     $ionicLoading.hide();
-  }
-
-  // Fetches Profile info from Facebook API
-  function getFacebookProfileInfo(authResponse) {
-    var info = $q.defer();
-
-    facebookConnectPlugin.api(
-      '/me?fields=email,name&access_token=' + authResponse.accessToken,
-      null,
-      function(response) {
-        info.resolve(response);
-      },
-      function(response) {
-        info.reject(response);
-      }
-    );
-    return info.promise;
   }
 
   // Method to execute on Login button click
   $scope.login = function() {
-    // if (!window.cordova) {
-    //   // we are in browser
-    //   facebookConnectPlugin.browserInit(FACEBOOK_APP_ID);
-    // }
-
-    facebookConnectPlugin.getLoginStatus(function(success) {
-      if (success.status === 'connected') {
-        // user logged in and is authenticated, response.authResponse has:
-        // user's id, access token, signed request and time they expire
-        console.log('getLoginStatus', success.status);
-
-        $location.path('app/artists');
-        // $state.go('app.artists');
-      } else {
-        console.log('ELSE: getLoginStatus', success.status);
-        $ionicLoading.show({
-          template: 'Logging in...'
-        });
-
-        // this sets up permissions requested
-        facebookConnectPlugin.login(['email', 'public_profile'], fbLoginSuccess, fbLoginError);
+    auth.signin({
+      authParams: {
+        scope: 'openid offline_access',
+        device: 'Mobile device'
       }
-    });
+    }, loginSuccess, loginError);
   };
 });
