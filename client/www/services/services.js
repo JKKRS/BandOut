@@ -3,8 +3,6 @@ angular.module('starter.services', ['ngResource'])
 .constant("FACEBOOK_APP_ID", "924056997681768")
 
 .service('UserService', function($http, $timeout, $q, User) {
-  // ** TEMPORARY **
-  // NEEDS TO NOT STORE IN LOCAL, SHOULD USE DB
   var setUser = function(user_data) {
     var auth = user_data.authResponse;
     var profile = user_data.profileInfo;

@@ -2,7 +2,7 @@ angular.module('starter.addEvent', ['uiGmapgoogle-maps'])
 
 .controller('addEventCtrl', addEventCtrl);
 
-function addEventCtrl($scope, User, $stateParams, $cordovaDatePicker, UserService) {
+function addEventCtrl($scope, User, $state, $stateParams, $cordovaDatePicker, UserService) {
   $scope.user = $stateParams.user;
   $scope.location = {};
   $scope.location.lat = null;
@@ -40,8 +40,6 @@ function addEventCtrl($scope, User, $stateParams, $cordovaDatePicker, UserServic
 
       var timestamp = UserService.createTimestamp($scope.user.date, $scope.user.time);
 
-      console.log(timestamp);
-
       if (status == google.maps.GeocoderStatus.OK) {
         $scope.location.lat = results[0].geometry.location.lat();
         $scope.location.long = results[0].geometry.location.lng();
@@ -75,9 +73,9 @@ function addEventCtrl($scope, User, $stateParams, $cordovaDatePicker, UserServic
           User.update({
             "fbid": res.fbid
           },res);
+          $state.go('app.editProfile.yourEvents');
         });
     });
-
 
   };
 }
