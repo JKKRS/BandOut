@@ -3,48 +3,69 @@
     <div class="list card">
       <div class="item item-divider">Event Information</div>
       <div class="item item-body">
-        <form class="list" ng-model='event'>
-          <label class="item item-input editable" name="title">
-            <span class="input-label">Title</span>
-            <input type="text" ng-model="event.title">
-          </label>
-          <label class="item item-input editable" name="date">
-            <span class="input-label">Date</span>
-            <input type="date" ng-model="event.date">
-          </label>
-          <label class="item item-input editable" name="time">
-            <span class="input-label">Time</span>
-            <input type="time" ng-model="event.time">
-          </label>
-          <label class="item item-input editable" name="description">
-            <span class="input-label">Description</span>
-            <input type="text" ng-model="event.description">
-          </label>
-        </form>
+        <form name ="editEventForm" class="list" ng-model='event' novalidate>
+
+          <div class="form-group">
+            <label class="item item-input editable" name="title">
+              <span class="input-label">Title</span>
+              <input type="text" class="form-control" ng-model="event.title" required>
+            </label>
+          </div>
+          <div class="form-group">
+            <label class="item item-input editable" name="date">
+              <span class="input-label">Date</span>
+              <input type="date" class="form-control" ng-model="event.date" required>
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label class="item item-input editable" name="time">
+              <span class="input-label">Time</span>
+              <input type="time" class="form-control" ng-model="event.time" required>
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label class="item item-input editable" name="description">
+              <span class="input-label">Description</span>
+              <input type="text" ng-model="event.description">
+            </label>
+          </div>
+
+
       </div>
       <div class="item item-divider">Venue Information</div>
       <div class="item item-body">
-        <form class="list">
+        <div class="form-group">
           <label class="item item-input editable" name="venueName">
             <span class="input-label">Name</span>
-            <input type="text" ng-model="event.venue.name">
+            <input type="text" class="form-control" ng-model="event.venue.name" required>
           </label>
+        </div>
+
+        <div class="form-group">
           <label class="item item-input editable" name="venueCity">
             <span class="input-label">Address</span>
-            <input type="text" ng-model="event.venue.address">
+            <input type="text" class="form-control" ng-model="event.venue.address" required>
           </label>
+        </div>
+
+        <div class="form-group">
           <label class="item item-input editable" name="venueCity">
             <span class="input-label">City</span>
-            <input type="text" ng-model="event.venue.city">
+            <input type="text" class="form-control" ng-model="event.venue.city" required>
           </label>
+        </div>
+
+        <div class="form-group">
           <label class="item item-input editable" name="venueZip">
             <span class="input-label">Zip Code</span>
-            <input type="text" ng-model="event.venue.zip">
+            <input type="text" class="form-control" g-model="event.venue.zip" required>
           </label>
+        </div>
+        <button class="button button-stable button-block icon-left ion-ios-checkmark-outline" ng-click="updateEvent()" ng-disabled="editEventForm.$invalid">Update Event</button>
         </form>
       </div>
     </div>
-    <div class="spacer" style="height: 10px;"></div>
-    <button class="button button-stable button-block icon-left ion-ios-checkmark-outline" ng-click="updateEvent()">Update Event</button>
   </ion-content>
 </ion-view>
