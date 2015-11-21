@@ -29,9 +29,13 @@
     "cordova-plugin-statusbar",
     "cordova-plugin-whitelist",
     "cordova-plugin-keyboard",
-    "cordova-plugin-geolocation",
     "cordova-plugin-inappbrowser",
-    "cordova-plugin-transport-security"
+    "cordova-plugin-geolocation",
+    "cordova-plugin-transport-security",
+    {
+      "locator": "https://github.com/VitaliiBlagodir/cordova-plugin-datepicker.git",
+      "id": "cordova-plugin-datepicker"
+    }
   ],
   "cordovaPlatforms": [
     "ios",
