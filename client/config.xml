@@ -10,7 +10,7 @@
   <access origin="*"/>
   <allow-navigation href="https://www.paypal.com"/>
   <allow-navigation href="https://www.paypal.me"/>
-  <allow-navigation href="https://bandout.herokuapps.com"/>
+  <allow-navigation href="https://bandout.herokuapp.com"/>
   <content src="index.html"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
