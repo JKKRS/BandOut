@@ -55,21 +55,11 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
   align: center;
 }
 
-.artist-view {
-  .concert-img {
-    max-width: 50px !important;
-    max-height: 50px !important;
-    top: 20px !imporant;
-  }
+.item-left {
+  float: left;
 }
-
-.event-view {
-  .item-left {
-    float: left;
-  }
-  .item-right {
-    float: right;
-  }
+.item-right {
+  float: right;
 }
 
 .edit-profile {
