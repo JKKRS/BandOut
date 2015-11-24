@@ -1,36 +1,67 @@
-<ion-view class="addShow" title="Add Show">
+<ion-view class="addEvent" title="Add Show">
   <ion-content padding="true" class="has-header">
     <div class="card">
-      <h4>Event Info<h4>
-      <label class="item item-input" name="Title">Title
-        <input type="text" ng-model="user.title">
-      </label>
-      <label class="item item-input" name="VenueName">Venue Name
-        <input type="text" ng-model="user.venueName">
-      </label>
-      <label class="item item-input" name="Date">Event Date
-        <input type="date" ng-model="user.date" value="Event Date">
-      </label>
-      <label class="item item-input" name="Time">Event Time
-        <input type="time" ng-model="user.time" value="Time">
-      </label>
-      <h4>Location</h4>
-      <label class="item item-input" name="VenueAddress">Venue Address
-        <input type="text" ng-model="user.venueAddress">
-      </label>
-      <label class="item item-input" name="VenueCity">City
-        <input type="text" ng-model="user.venueCity">
-      </label>
-      <!-- <label class="item item-input" name="VenueCountry">
+      <h4>Event Info</h4>
+      <!-- Ng-submit?? Ng-click -->
+      <form name="addEventForm" novalidate>
+
+        <div class="form-group">
+          <label class="item item-input" name="Title">Title
+            <input type="text" class="form-control" ng-model="user.title" required>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label class="item item-input" name="Date">Event Date
+            <input type="date" class="form-control" ng-model="user.date" value="Event Date" required>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label class="item item-input" name="Time">Event Time
+            <input type="time" class="form-control" ng-model="user.time" value="Time" required>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label class="item item-input" name="Description">Description
+            <textarea ng-model="user.description"></textarea>
+          </label>
+        </div>
+
+        <h4>Location</h4>
+
+        <div class="form-group">
+          <label class="item item-input" name="VenueName">Venue Name
+            <input type="text" class="form-control" ng-model="user.venueName" required>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label class="item item-input" name="VenueAddress">Venue Address
+            <input type="text" class="form-control" ng-model="user.venueAddress" required>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label class="item item-input" name="VenueCity">City
+            <input type="text" class="form-control" ng-model="user.venueCity" required>
+          </label>
+        </div>
+
+        <!-- Country not neccessarily needed, here
+        <label class="item item-input" name="VenueCountry">
         <input type="text" placeholder="Country" ng-model="user.venueCountry">
-      </label> -->
-      <label class="item item-input" name="VenueZip">Zip
-        <input type="text" ng-model="user.venueZip">
       </label>
-      <label class="item item-input" name="Description">Description
-        <textarea ng-model="user.description"></textarea>
-      </label>
+        -->
+        <div class="form-group">
+          <label class="item item-input" name="VenueZip">Zip
+            <input type="text" class="form-control" ng-model="user.venueZip" required>
+          </label>
+        </div>
+
     </div>
-    <button class="button button-stable button-block  icon-left ion-checkmark" ng-click="saveEvent()">Save Event</button>
+    <button class="button button-stable button-block  icon-left ion-checkmark" ng-click="saveEvent()" ng-disabled="addEventForm.$invalid">Save Event</button>
+    </form>
   </ion-content>
   </ion-iew>
