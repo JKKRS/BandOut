@@ -30,13 +30,13 @@ function editProfileCtrl($scope, $state, User, UserService) {
   $scope.retrieveUser = function() {
     UserService.getUser()
     .then(function(res) {
-
+      var pp_id, url;
       // Strip the beginning of the paypal URL
       // as long as the url exists
-      var url = res.artist_info.paypal_link;
+      url = res.artist_info.paypal_link;
       if (url) {
         var index = url.lastIndexOf('/');
-        var pp_id = url.substr(index + 1);
+        pp_id = url.substr(index + 1);
       }
 
       // Update scope variables with info from server
