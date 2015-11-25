@@ -32,9 +32,12 @@ function editProfileCtrl($scope, $state, User, UserService) {
     .then(function(res) {
 
       // Strip the beginning of the paypal URL
+      // as long as the url exists
       var url = res.artist_info.paypal_link;
-      var index = url.lastIndexOf('/');
-      var pp_id = url.substr(index + 1);
+      if (url) {
+        var index = url.lastIndexOf('/');
+        var pp_id = url.substr(index + 1);
+      }
 
       // Update scope variables with info from server
       $scope.user.name = res.name;
