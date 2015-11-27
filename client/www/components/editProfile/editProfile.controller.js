@@ -30,13 +30,18 @@ function editProfileCtrl($scope, $state, User, UserService) {
   $scope.retrieveUser = function() {
     UserService.getUser()
     .then(function(res) {
-      var pp_id, url;
+      var pp_id, url, website, upcoming;
       // Strip the beginning of the paypal URL
       // as long as the url exists
-      url = res.artist_info.paypal_link;
-      if (url) {
-        var index = url.lastIndexOf('/');
-        pp_id = url.substr(index + 1);
+
+      if (res.artist_info) {
+        url = res.artist_info.paypal_link;
+        website = res.artist_info.website;
+        upcoming = res.artist_info.upcoming_events;
+        if (url) {
+          var index = url.lastIndexOf('/');
+          pp_id = url.substr(index + 1);
+        }
       }
 
       // Update scope variables with info from server
@@ -45,9 +50,9 @@ function editProfileCtrl($scope, $state, User, UserService) {
       $scope.user.twitter = res.twitter;
       $scope.user.artist = res.artist;
       $scope.user.paypal = pp_id;
-      $scope.user.website = res.artist_info.website;
+      $scope.user.website = website;
       $scope.user.fbid = res.fbid;
-      $scope.user.upcoming_events = res.artist_info.upcoming_events;
+      $scope.user.upcoming_events = upcoming;
     }).then(function() {
       $scope.disableSave = true;
       if ($scope.user.website === undefined) {
@@ -74,6 +79,7 @@ function editProfileCtrl($scope, $state, User, UserService) {
   };
 
   $scope.editEvent = function() {
+    console.log('editEvent() $scope.user:', $scope.user);
     $state.go('app.editProfile.yourEvents', {
       user: $scope.user
     });

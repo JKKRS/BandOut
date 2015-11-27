@@ -197,7 +197,7 @@ angular.module('starter', [
 
   // Authentication Check For UI-Router
   $rootScope.$on("$stateChangeStart", function() {
-    console.log(auth.isAuthenticated);
+    console.log('auth.isAuthenticated:', auth.isAuthenticated);
     if (!auth.isAuthenticated) {
       var token = store.get('token');
       if (token) {

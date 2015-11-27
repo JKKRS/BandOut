@@ -7,6 +7,7 @@ function addEventCtrl($scope, User, $state, $stateParams, $cordovaDatePicker, Us
   $scope.location = {};
   $scope.location.lat = null;
   $scope.location.long = null;
+  console.log('addEventCtrl $stateParams:', $stateParams);
 
   $scope.datePicker = function(e) {
     $cordovaDatePicker.show().then(function(date){
@@ -33,6 +34,7 @@ function addEventCtrl($scope, User, $state, $stateParams, $cordovaDatePicker, Us
 
   var geocoder = new google.maps.Geocoder();
   $scope.saveEvent = function() {
+    console.log('saveEvent() $scope.user', $scope.user);
     geocoder.geocode({
       'address': $scope.user.venueAddress + ' ' + $scope.user.venueCity + ' ' + $scope.user.venueZip
     },

@@ -12,8 +12,9 @@ function yourEventsCtrl($scope, User, $state, $stateParams, UserService) {
   $scope.init = function() {
     UserService.getUser().then(function(res) {
       $scope.user = res.artist_info.upcoming_events;
+      console.log('User Events', res.artist_info.upcoming_events);
     });
-  }
+  };
 
   $scope.editDetail = function(event) {
     $state.go('app.editProfile.editEvent-editEvent', {
@@ -24,6 +25,9 @@ function yourEventsCtrl($scope, User, $state, $stateParams, UserService) {
 
   // Go to add event view
   $scope.create = function() {
+    // TODO this shouldn't be passing just user events under the guise of
+    // $scope.user
+    // refactor to properly send events
     $state.go('app.editProfile.editEvent-addEvent', {
       user: $scope.user
     });

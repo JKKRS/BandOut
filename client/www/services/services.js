@@ -1,6 +1,8 @@
 angular.module('starter.services', ['ngResource'])
 
 .constant("FACEBOOK_APP_ID", "924056997681768")
+// .constant("API_URL", "http://localhost:5000")
+.constant("API_URL", "https://bandout.herokuapp.com")
 
 .service('UserService', function($http, $timeout, $q, User, store) {
   var newUser = function(profile) {
@@ -18,20 +20,18 @@ angular.module('starter.services', ['ngResource'])
 
   var setUser = function(user_data) {
     var user_obj = newUser(user_data);
-    console.log('getting?');
-    User.get({'fbid': user_obj.fbid}).$promise.then(function(val) {console.log('hi', val);});
+    User.get({'fbid': user_obj.fbid}).$promise.then(function(val) {console.log('setUser get', val);});
     User.save(user_obj, function(res) {
-      console.log('res', res);
+      console.log('setUser save() res', res);
     });
   };
 
   var getUser = function() {
-    console.log(store.get('profile'));
     return $q(function(resolve, reject) {
       return User.get({ "fbid" : store.get('profile').user_id.substr(9) })
         .$promise
         .then(function(res) {
-          // console.log('get user', res);
+          console.log('UserService getUser', res);
           resolve(res);
         });
     });
@@ -57,12 +57,12 @@ angular.module('starter.services', ['ngResource'])
   };
 })
 
-.factory('Artist', function($resource) {
-  return $resource('https://bandout.herokuapp.com/apis/artists/:artistId');
+.factory('Artist', function($resource, API_URL) {
+  return $resource(API_URL + '/apis/artists/:artistId');
 })
 
-.factory('User', function($resource) {
-  return $resource('https://bandout.herokuapp.com/apis/users/:fbid', null, {
+.factory('User', function($resource, API_URL) {
+  return $resource(API_URL + '/apis/users/:fbid', null, {
     'update' : { method : 'PUT' }
   });
 });
