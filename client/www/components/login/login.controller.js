@@ -6,7 +6,7 @@ angular.module('starter.fbLogin', ['starter.services'])
   var loginSuccess = function(profile, token, accessToken, state, refreshToken) {
     // Success callback
     UserService.setUser(profile);
-    console.log('profile:', profile);
+    console.log('Login profile:', profile);
     store.set('profile', profile);
     store.set('token', token);
     store.set('refreshToken', refreshToken);
