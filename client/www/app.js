@@ -175,6 +175,18 @@ angular.module('starter', [
   };
 
   $httpProvider.interceptors.push('jwtInterceptor');
+  $httpProvider.interceptors.push(function($rootScope) {
+    return {
+      request: function(config) {
+        $rootScope.$broadcast('loading:show')
+        return config
+      },
+      response: function(response) {
+        $rootScope.$broadcast('loading:hide')
+        return response
+      }
+    }
+  });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/artists');
@@ -186,14 +198,22 @@ angular.module('starter', [
   $ionicConfigProvider.platform.ios.form.toggle('small');
 })
 
-.run(function($ionicPlatform, $rootScope, $state, $location, UserService, FACEBOOK_APP_ID, auth, store, jwtHelper) {
+.run(function($ionicPlatform, $rootScope, $state, $location, UserService, FACEBOOK_APP_ID, auth, store, jwtHelper, $ionicLoading) {
   $ionicPlatform.ready(function() {
     auth.hookEvents();
   });
 
   $ionicPlatform.on("resume", function() {
-
   });
+  
+  //Loading Overlay
+  $rootScope.$on('loading:show', function() {
+    $ionicLoading.show({template: '<p>Loading...</p><ion-spinner></ion-spinner>'})
+  })
+
+  $rootScope.$on('loading:hide', function() {
+    $ionicLoading.hide()
+  })
 
   // Authentication Check For UI-Router
   $rootScope.$on("$stateChangeStart", function() {
