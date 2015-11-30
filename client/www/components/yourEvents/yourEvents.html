@@ -4,14 +4,14 @@
       <button class="button button-stable button-block icon-left ion-ios-plus-outline" ng-click='create()'>Add Event</button>
     </div>
     <div class="item item-divider"> Upcoming Events</div>
-    <ion-list show-delete= "false" can-swipe = "true">
-      <div class ="list">
+    <ion-list show-delete="shouldShowDelete" can-swipe="true">
+      <div class="list">
         <ion-item class="item" collection-repeat="event in user" collection-item-width="100%" collection-item-height="80px" ng-click="editDetail(event)">
           <!-- TODO: Would Like to Slide to Delete  -->
           <br> {{ event.title }}
           <br>
           <mydate>{{ event.datetime | date: 'medium' }}</mydate>
-          <ion-option-button ng-click= "deleteShow()" class="button-positive icon ion-trash-b"<ion-option-button>
+          <ion-option-button ng-click="deleteEvent(event)" class="button-positive icon ion-trash-b"<ion-option-button>
         </ion-item>
       </div>
     </ion-list>

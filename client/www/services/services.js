@@ -1,8 +1,8 @@
 angular.module('starter.services', ['ngResource'])
 
 .constant("FACEBOOK_APP_ID", "924056997681768")
-// .constant("API_URL", "http://localhost:5000")
-.constant("API_URL", "https://bandout.herokuapp.com")
+.constant("API_URL", "http://localhost:5000")
+// .constant("API_URL", "https://bandout.herokuapp.com")
 
 .service('UserService', function($http, $timeout, $q, User, store) {
   var newUser = function(profile) {
@@ -33,7 +33,7 @@ angular.module('starter.services', ['ngResource'])
       return User.get({ "fbid" : store.get('profile').user_id.substr(9) })
         .$promise
         .then(function(res) {
-          console.log('UserService getUser', res);
+          // console.log('UserService getUser', res);
           resolve(res);
         });
     });
@@ -50,10 +50,37 @@ angular.module('starter.services', ['ngResource'])
     return new Date(timestamp);
   };
 
+  function NewEvent(title, datetime, description, venue) {
+    var newEvent = Object.create(Object.prototype);
+    newEvent = {
+      "title": title,
+      "datetime": datetime,
+      "description": description,
+      "venue": venue
+    };
+    return newEvent;
+  }
+
+  function NewVenue(name, address, zip, city, latit, longit) {
+    var newVenue = Object.create(Object.prototype);
+    newVenue = {
+      "name": name,
+      "address": address,
+      "zip": zip,
+      "city": city,
+      "country": "",
+      "latitude": latit,
+      "longitude": longit
+    };
+    return newVenue;
+  }
+
     // return JSON.parse(window.localStorage.getItem('ionFB_user') || '{}');
   return {
     getUser: getUser,
     setUser: setUser,
+    NewEvent: NewEvent,
+    NewVenue: NewVenue,
     createTimestamp : createTimestamp
     // userIsLoggedIn: userIsLoggedIn
   };

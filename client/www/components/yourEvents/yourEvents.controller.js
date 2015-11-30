@@ -37,7 +37,16 @@ function yourEventsCtrl($scope, User, $state, $stateParams, UserService) {
     });
   };
 
-  $scope.deleteShow = function() {
-    console.log("I'm a working button");
+  $scope.deleteEvent = function(event) {
+    UserService.getUser()
+      .then(function(res) {
+        res.artist_info.upcoming_events = res.artist_info.upcoming_events.filter(function(evt) {
+          return JSON.stringify(evt) !== JSON.stringify(event);
+        });
+        $scope.user = res.artist_info.upcoming_events;
+        User.update({
+          "fbid": res.fbid
+        },res);
+      });
   };
 }
