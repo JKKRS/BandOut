@@ -124,8 +124,12 @@ angular.module('starter', [
 
   .state('app.goLive', {
     url: '/live',
-    templateUrl: 'components/goLive/goLive.html',
-    controller: 'GoLiveCtrl'
+    views: {
+      'live': {
+        templateUrl: 'components/goLive/goLive.html',
+        controller: 'GoLiveCtrl'
+      }
+    }
   })
 
   .state('app.editProfile.index', {
