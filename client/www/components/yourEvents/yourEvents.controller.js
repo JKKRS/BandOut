@@ -11,8 +11,12 @@ function yourEventsCtrl($scope, User, $state, $stateParams, UserService) {
 
   $scope.init = function() {
     UserService.getUser().then(function(res) {
-      $scope.user = res.artist_info.upcoming_events;
-      console.log('User Events', res.artist_info.upcoming_events);
+      if (res.artist_info) {
+        $scope.user = res.artist_info.upcoming_events;
+        console.log('User Events', res.artist_info.upcoming_events);
+      } else {
+        $scope.user = [];
+      }
     });
   };
 

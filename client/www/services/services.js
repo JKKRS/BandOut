@@ -11,8 +11,7 @@ angular.module('starter.services', ['ngResource'])
       "fbid" : userId,
       "name" : profile.name,
       "image" : 'https://graph.facebook.com/' + userId + '/picture?type=large',
-      "email" : profile.email,
-      "artist" : false
+      "email" : profile.email
     };
     console.log('newUser:', user);
     return user;
@@ -20,9 +19,12 @@ angular.module('starter.services', ['ngResource'])
 
   var setUser = function(user_data) {
     var user_obj = newUser(user_data);
-    User.get({'fbid': user_obj.fbid}).$promise.then(function(val) {console.log('setUser get', val);});
-    User.save(user_obj, function(res) {
-      console.log('setUser save() res', res);
+    User.get({'fbid': user_obj.fbid}).$promise.then(function(val) {
+      if (val.nouser) {
+        User.save(user_obj, function(user) {
+          console.log('saved', user);
+        });
+      }
     });
   };
 
