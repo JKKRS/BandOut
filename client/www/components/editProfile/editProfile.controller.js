@@ -2,7 +2,7 @@ angular.module('starter.editProfile', ['starter.services'])
 
 .controller('editProfileCtrl', editProfileCtrl);
 
-function editProfileCtrl($scope, $state, User, UserService) {
+function editProfileCtrl($scope, $state, User, UserService, store) {
   // Default user values
   $scope.user = {};
   $scope.initialLoad = true;
@@ -75,6 +75,7 @@ function editProfileCtrl($scope, $state, User, UserService) {
       );
     User.update({ 'fbid' : $scope.user.fbid }, user);
     $scope.disableSave = true;
+    store.set('artist', $scope.user.artist);
     $scope.initialState = [$scope.user.paypal, $scope.user.twitter, $scope.user.website, $scope.user.artist];
   };
 
