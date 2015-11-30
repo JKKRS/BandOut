@@ -21,7 +21,8 @@ angular.module('starter', [
   'uiGmapgoogle-maps',
   'starter.mapBrowse',
   'starter.yourEvents',
-  'starter.editEvent'
+  'starter.editEvent',
+  'starter.goLive'
 ])
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, authProvider, $httpProvider, jwtInterceptorProvider) {
@@ -119,6 +120,12 @@ angular.module('starter', [
     data: {
       requiresLogin: true
     }
+  })
+
+  .state('app.goLive', {
+    url: '/live',
+    templateUrl: 'components/goLive/goLive.html',
+    controller: 'GoLiveCtrl'
   })
 
   .state('app.editProfile.index', {
