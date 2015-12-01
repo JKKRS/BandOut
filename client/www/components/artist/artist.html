@@ -5,7 +5,7 @@
     <div class="list card">
       <div class="item text-center profileInfo">
         <img ng-src="{{ artist.image }}">
-        <h2>{{ artist.artist_info.artist_name }}</h2>
+        <h2>{{ artist.artist_info.artist_name || artist.name }}</h2>
         <h4>{{ artist.email }}</h4>
         <h4>{{ artist.twitter }}</h4>
         <button class="button button-stable button-block" ng-click="payPal(artist.artist_info.paypal_link)"><i class="icon ion-social-usd-outline"></i> PayPal</button>
