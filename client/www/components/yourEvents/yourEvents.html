@@ -11,7 +11,7 @@
           <br> {{ event.title }}
           <br>
           <mydate>{{ event.datetime | date: 'medium' }}</mydate>
-          <ion-option-button ng-click="deleteEvent(event)" class="button-positive icon ion-trash-b"<ion-option-button>
+          <ion-option-button ng-click="deleteEvent(event, $index)" class="button-positive icon ion-trash-b"<ion-option-button>
         </ion-item>
       </div>
     </ion-list>
