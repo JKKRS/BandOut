@@ -1,12 +1,9 @@
 <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
 <ion-view view-title="Browse">
-
-    <ion-content ng-controller="MapController">
-      <div id="map1" data-tap-disabled="true"></div>
-  <ion-footer-bar class="bar-light no-bg button-clear">
-    <a ng-click="findMe()" class="button button-icon icon ion-android-locate"></a>
-  </ion-footer-bar>
-
-</ion-content>
-
+  <ion-content ng-controller="MapController">
+    <div id="map1" data-tap-disabled="true"></div>
+    <div class="findLocation">
+      <a ng-click="findMe()" class="button button-icon icon ion-android-locate"></a>
+    </div>
+  </ion-content>
 </ion-view>

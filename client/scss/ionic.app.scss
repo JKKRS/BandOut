@@ -153,24 +153,17 @@ img {
 input{
   text-align: right;
 }
+
 textarea{
   text-align: right;
   resize: none;
-}
-
-.bar-footer {
-  width: 17%;
-}
-
-.bar.bar-light.bar-footer.no-bg {
-  background-image: none;
-  margin: auto;
 }
 
 #button_padding {
   padding:30px;
   text-align:center;
 }
+
 #live_button {
   line-height: 100px !important;
     width: 80%;
@@ -190,4 +183,13 @@ textarea{
   text-align: center;
   border: 2px solid #FDD262;
   white-space: nowrap;
+}
+
+.findLocation {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  a {
+    color: $dark;
+  }
 }
