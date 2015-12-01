@@ -4,8 +4,9 @@ angular.module('starter.eventView', ['uiGmapgoogle-maps'])
 
 function eventViewCtrl($scope, $stateParams) {
   $scope.event = $stateParams.event;
-  // temporary lat-long. will replace with Band in Town API information
-  var myLatlng = new google.maps.LatLng(45 ,-73);
+  $scope.lat = $stateParams.event.venue.latitude;
+  $scope.long = $stateParams.event.venue.longitude;
+  var myLatlng = new google.maps.LatLng($scope.lat, $scope.long);
     var mapOptions = {
         streetViewControl: true,
         scrollwheel: false,
