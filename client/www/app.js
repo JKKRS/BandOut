@@ -205,10 +205,10 @@ angular.module('starter', [
 
   $ionicPlatform.on("resume", function() {
   });
-  
+
   //Loading Overlay
   $rootScope.$on('loading:show', function() {
-    $ionicLoading.show({template: '<p>Loading...</p><ion-spinner></ion-spinner>'})
+    $ionicLoading.show({template: '<ion-spinner icon = "lines"></ion-spinner>'})
   })
 
   $rootScope.$on('loading:hide', function() {
