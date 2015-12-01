@@ -21,9 +21,7 @@ function editProfileCtrl($scope, $state, User, UserService, store) {
   // When state changes, re-fetch data (used for updating newly added shows)
   $scope.$on('$stateChangeSuccess',
   function(event, toState, toParams, fromState, fromParams) {
-    if (fromState.controller === 'addEventCtrl') {
-      $scope.retrieveUser();
-    }
+    $scope.retrieveUser();
   });
 
   // Get the current logged in user using FB.getLoginStatus(); and set scope vars
@@ -83,7 +81,6 @@ function editProfileCtrl($scope, $state, User, UserService, store) {
   };
 
   $scope.editEvent = function() {
-    console.log('editEvent() $scope.user:', $scope.user);
     $state.go('app.editProfile.yourEvents', {
       user: $scope.user
     });

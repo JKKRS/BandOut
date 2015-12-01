@@ -37,7 +37,6 @@ function yourEventsCtrl($scope, $ionicListDelegate, User, $state, $stateParams, 
   };
 
   $scope.deleteEvent = function(event, $index) {
-    console.log('index', $index)
     UserService.getUser()
       .then(function(res) {
         res.artist_info.upcoming_events = res.artist_info.upcoming_events.filter(function(evt) {
