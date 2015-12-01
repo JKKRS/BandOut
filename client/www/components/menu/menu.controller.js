@@ -1,7 +1,12 @@
 angular.module('starter.menu', ['starter.services'])
 
-.controller('MenuCtrl', function($scope, $state, store, auth, $ionicPopup, UserService, $ionicLoading, FACEBOOK_APP_ID) {
-  // $scope.user = UserService.getUser();
+.controller('MenuCtrl', function($scope, $state, store, auth, $ionicPopup, UserService, $ionicLoading) {
+
+  $scope.artist = store.get('artist');
+  $scope.isArtist = function() {
+      return true;
+  };
+
   // Logout Methods
   $scope.showConfirmLogOut = function() {
     var confirmPopup = $ionicPopup.confirm({
@@ -18,6 +23,7 @@ angular.module('starter.menu', ['starter.services'])
         auth.signout();
         store.remove('profile');
         store.remove('token');
+        store.remove('artist');
         $ionicLoading.hide();
         $state.go('login');
         // if (!window.cordova) {

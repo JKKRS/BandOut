@@ -1,6 +1,6 @@
 angular.module('starter.fbLogin', ['starter.services'])
 
-.controller('LoginCtrl', function($scope, $state, $q, $location, UserService, User, $ionicLoading, FACEBOOK_APP_ID, store, auth) {
+.controller('LoginCtrl', function($scope, $state, $q, $location, UserService, User, $ionicLoading, store, auth) {
 
   // Success callback for login
   var loginSuccess = function(profile, token, accessToken, state, refreshToken) {
