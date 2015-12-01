@@ -1,24 +1,22 @@
 angular.module('starter.services', ['ngResource'])
 
-// .constant("FACEBOOK_APP_ID", "924056997681768")
 // .constant("API_URL", "http://localhost:5000")
 .constant("API_URL", "https://bandout.herokuapp.com")
 
 .service('UserService', function($http, $timeout, $q, User, store) {
-  var newUser = function(profile) {
-    var userId = profile.user_id.substr(9);
+  var makeUser = function(profile) {
     var user = {
-      "fbid" : userId,
+      "fbid" : profile.user_id,
       "name" : profile.name,
-      "image" : 'https://graph.facebook.com/' + userId + '/picture?type=large',
+      "image" : 'https://graph.facebook.com/' + profile.user_id + '/picture?type=large',
       "email" : profile.email
     };
-    console.log('newUser:', user);
+    console.log('makeUser:', user);
     return user;
   };
 
   var setUser = function(user_data) {
-    var user_obj = newUser(user_data);
+    var user_obj = makeUser(user_data);
     User.get({'fbid': user_obj.fbid}).$promise.then(function(val) {
       if (val.nouser) {
         User.save(user_obj, function(user) {
@@ -30,7 +28,7 @@ angular.module('starter.services', ['ngResource'])
 
   var getUser = function() {
     return $q(function(resolve, reject) {
-      return User.get({ "fbid" : store.get('profile').user_id.substr(9) })
+      return User.get({ "fbid" : store.get('profile').user_id })
         .$promise
         .then(function(res) {
           // console.log('UserService getUser', res);
