@@ -8,7 +8,7 @@ function editProfileCtrl($scope, $state, User, UserService, store) {
   $scope.initialLoad = true;
 
   // Watch these fields for changes, disable save if nothing has changed
-  $scope.$watchGroup(['user.paypal', 'user.twitter', 'user.website', 'user.artist'], function(newVal, oldVal, scope) {
+  $scope.$watchGroup(['user.artist_name', 'user.paypal', 'user.twitter', 'user.website', 'user.artist'], function(newVal, oldVal, scope) {
       if ($scope.initialLoad === true) {
         $scope.initialLoad = false;
       } else if (JSON.stringify($scope.initialState) !== JSON.stringify(newVal)) {
@@ -35,6 +35,7 @@ function editProfileCtrl($scope, $state, User, UserService, store) {
       // as long as the url exists
 
       if (res.artist_info) {
+        artist_name = res.artist_info.artist_name;
         url = res.artist_info.paypal_link;
         website = res.artist_info.website;
         upcoming = res.artist_info.upcoming_events;
@@ -47,6 +48,7 @@ function editProfileCtrl($scope, $state, User, UserService, store) {
       // Update scope variables with info from server
       $scope.user.name = res.name;
       $scope.user.email = res.email;
+      $scope.user.artist_name = artist_name;
       $scope.user.twitter = res.twitter;
       $scope.user.artist = res.artist;
       $scope.user.paypal = pp_id;
@@ -58,7 +60,7 @@ function editProfileCtrl($scope, $state, User, UserService, store) {
       if ($scope.user.website === undefined) {
         $scope.user.website = '';
       }
-      $scope.initialState = [$scope.user.paypal, $scope.user.twitter, $scope.user.website, $scope.user.artist];
+      $scope.initialState = [$scope.user.artist_name, $scope.user.paypal, $scope.user.twitter, $scope.user.website, $scope.user.artist];
     });
   };
 
@@ -68,6 +70,7 @@ function editProfileCtrl($scope, $state, User, UserService, store) {
     var paypal = 'https://paypal.me/' + $scope.user.paypal;
     var user = NewUser(
         $scope.user.artist,
+        $scope.user.artist_name,
         $scope.user.twitter,
         paypal,
         $scope.user.website,
@@ -91,13 +94,14 @@ function editProfileCtrl($scope, $state, User, UserService, store) {
 }
 
 // Constructor function to create new users
-var NewUser = function(artist, twitter, pp_id, website, upcoming_events) {
+var NewUser = function(artist, artist_name, twitter, pp_id, website, upcoming_events) {
   var newUser = Object.create(Object.prototype);
   newUser = {
     'artist' : artist,
     'twitter' : twitter,
     'artist_info' : {},
   };
+  newUser.artist_info.artist_name = artist_name;
   newUser.artist_info.website = website;
   newUser.artist_info.paypal_link = pp_id;
   newUser.artist_info.upcoming_events = upcoming_events;
