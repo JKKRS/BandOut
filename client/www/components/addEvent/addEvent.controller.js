@@ -7,7 +7,6 @@ function addEventCtrl($scope, User, $state, $stateParams, $cordovaDatePicker, Us
   $scope.location = {};
   $scope.location.lat = null;
   $scope.location.long = null;
-  console.log('addEventCtrl $stateParams:', $stateParams);
 
   $scope.datePicker = function(e) {
     $cordovaDatePicker.show().then(function(date){
@@ -50,7 +49,7 @@ function addEventCtrl($scope, User, $state, $stateParams, $cordovaDatePicker, Us
         $scope.location.long = 118.4750;
       }
 
-      var venueAdd = NewVenue(
+      var venueAdd = UserService.NewVenue(
         $scope.user.venueName,
         $scope.user.venueAddress,
         $scope.user.venueZip,
@@ -59,10 +58,8 @@ function addEventCtrl($scope, User, $state, $stateParams, $cordovaDatePicker, Us
         $scope.location.long
       );
 
-      var venueId = Math.floor(Math.random() * 832);
 
-      var eventAdd = NewEvent(
-        venueId,
+      var eventAdd = UserService.NewEvent(
         $scope.user.title,
         timestamp,
         $scope.user.description,
@@ -80,30 +77,4 @@ function addEventCtrl($scope, User, $state, $stateParams, $cordovaDatePicker, Us
     });
 
   };
-}
-
-function NewEvent(id, title, datetime, description, venue) {
-  var newEvent = Object.create(Object.prototype);
-  newEvent = {
-    "id": id,
-    "title": title,
-    "datetime": datetime,
-    "description": description,
-    "venue": venue
-  };
-  return newEvent;
-}
-
-function NewVenue(name, address, zip, city, latit, longit) {
-  var newVenue = Object.create(Object.prototype);
-  newVenue = {
-    "name": name,
-    "address": address,
-    "zip": zip,
-    "city": city,
-    "country": "",
-    "latitude": latit,
-    "longitude": longit
-  };
-  return newVenue;
 }

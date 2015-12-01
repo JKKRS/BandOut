@@ -2,7 +2,7 @@ angular.module('starter.yourEvents', [])
 
 .controller('yourEventsCtrl', yourEventsCtrl);
 
-function yourEventsCtrl($scope, User, $state, $stateParams, UserService) {
+function yourEventsCtrl($scope, $ionicListDelegate, User, $state, $stateParams, UserService) {
 
   $scope.$on('$stateChangeSuccess',
   function(event, toState, toParams, fromState, fromParams) {
@@ -13,7 +13,6 @@ function yourEventsCtrl($scope, User, $state, $stateParams, UserService) {
     UserService.getUser().then(function(res) {
       if (res.artist_info) {
         $scope.user = res.artist_info.upcoming_events;
-        console.log('User Events', res.artist_info.upcoming_events);
       } else {
         $scope.user = [];
       }
@@ -37,7 +36,18 @@ function yourEventsCtrl($scope, User, $state, $stateParams, UserService) {
     });
   };
 
-  $scope.deleteShow = function() {
-    console.log("I'm a working button");
+  $scope.deleteEvent = function(event, $index) {
+    console.log('index', $index)
+    UserService.getUser()
+      .then(function(res) {
+        res.artist_info.upcoming_events = res.artist_info.upcoming_events.filter(function(evt) {
+          return JSON.stringify(evt) !== JSON.stringify(event);
+        });
+        $scope.user.splice($index, 1);
+        $ionicListDelegate.closeOptionButtons()
+        User.update({
+          "fbid": res.fbid
+        },res);
+      });
   };
 }
