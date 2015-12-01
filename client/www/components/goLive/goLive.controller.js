@@ -6,8 +6,9 @@ angular.module('starter.goLive', [])
       timeout: 10000,
       enableHighAccuracy: false
     }).then(function(pos) {
-      $scope.fbid = store.get('profile').user_id.substr(9);
+      $scope.fbid = store.get('profile').user_id;
       $scope.coords = [pos.coords.longitude, pos.coords.latitude];
+      console.log($scope.coords);
       User.update({
         'fbid': $scope.fbid
       }, {
@@ -22,7 +23,7 @@ angular.module('starter.goLive', [])
 
 
   $scope.stopEvent = function() {
-    $scope.fbid = store.get('profile').user_id.substr(9);
+    $scope.fbid = store.get('profile').user_id;
     User.update({
       'fbid': $scope.fbid
     }, {
