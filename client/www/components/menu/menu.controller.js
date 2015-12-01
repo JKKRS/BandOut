@@ -4,9 +4,7 @@ angular.module('starter.menu', ['starter.services'])
 
   $scope.artist = store.get('artist');
   $scope.isArtist = function() {
-    if ($scope.artist !== null) {
-      return $scope.artist;
-    }
+      return true;
   };
 
   // Logout Methods
