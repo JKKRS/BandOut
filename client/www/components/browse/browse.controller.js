@@ -1,5 +1,7 @@
 angular.module('starter.mapBrowse', ['uiGmapgoogle-maps'])
-  .controller('MapController', function($scope, $ionicLoading, $cordovaGeolocation, UserService) {
+  // .constant("API_URL", "http://localhost:5000")
+  // .constant("API_URL", "https://bandout.herokuapp.com")
+  .controller('MapController', function($scope, $ionicLoading, $cordovaGeolocation, $http) {
 
     var Latlng = new google.maps.LatLng(34.045148, -118.564925);
 
@@ -28,40 +30,11 @@ angular.module('starter.mapBrowse', ['uiGmapgoogle-maps'])
     map.mapTypes.set("noPoi", styledMap);
     map.setMapTypeId("noPoi");
 
-    console.log("line 28");
-
-    var nearLoc = [
-      ["30.269219", "-97.740882"],
-      ["30.268450", "-97.740418"]
-    ];
-
-    UserService.getUser().then(function(res) {
-      console.log("testing", res);
-    });
-
-
-    var test = "FireIntheBuilding";
-    console.log("nearLoc", nearLoc);
-
-    for (var i = 0; i < nearLoc.length; i++) {
-      var marker = new MarkerWithLabel({
-        position: new google.maps.LatLng(nearLoc[i][0], nearLoc[i][1]),
-        map: map,
-        labelContent: test,
-        labelAnchor: new google.maps.Point(35, 0),
-        labelClass: "labels"
-      });
-    }
-
-
-
-    var image = "../../resources/ios/icon/icon-40.png";
-
-
     $scope.loading = $ionicLoading.show({
       template: "Finding Buskers Near You",
       showBackdrop: false
     });
+
 
     $scope.center = function() {
       $cordovaGeolocation.getCurrentPosition({
@@ -69,15 +42,55 @@ angular.module('starter.mapBrowse', ['uiGmapgoogle-maps'])
           enableHighAccuracy: false
         })
         .then(function(pos) {
-          console.log('cordova geolocation');
           map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
           $ionicLoading.hide();
           var myLocation = new google.maps.Marker({
             position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
             map: map,
-            title: "My Location",
-            icon: image
+            title: "My Location"
           });
+
+          var check = {
+            location: [pos.coords.longitude, pos.coords.latitude],
+            distance: 50
+          };
+
+          $http({
+            url: 'http://localhost:5000/apis/artists/live',
+            method: "POST",
+            data: check,
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          }).success(function(data, status) {
+            console.log("Data?", data);
+            console.log("status?", status);
+
+            var test = "FireIntheBuilding";
+
+            for (var i = 0; i < data.length; i++) {
+              var marker = new MarkerWithLabel({
+                position: new google.maps.LatLng(data[i][0], data[i][1]),
+                map: map,
+                labelContent: test,
+                labelAnchor: new google.maps.Point(35, 0),
+                labelClass: "labels"
+              });
+            }
+
+          });
+
+
+        });
+    };
+
+    $scope.findMe = function() {
+      $cordovaGeolocation.getCurrentPosition({
+          timeout: 10000,
+          enableHighAccuracy: false
+        })
+        .then(function(pos) {
+          map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
         });
     };
 
