@@ -50,15 +50,17 @@ angular.module('starter.mapBrowse', ['uiGmapgoogle-maps'])
             title: "My Location"
           });
 
-          var check = {
+          var currentLocation = {
             location: [pos.coords.longitude, pos.coords.latitude],
             distance: 50
           };
 
+          console.log("currentLocation", currentLocation);
+
           $http({
-            url: 'http://localhost:5000/apis/artists/live',
+            url: 'https://bandout.herokuapp.com/apis/artists/live',
             method: "POST",
-            data: check,
+            data: currentLocation,
             headers: {
               'Content-Type': 'application/json'
             }
@@ -66,27 +68,25 @@ angular.module('starter.mapBrowse', ['uiGmapgoogle-maps'])
             console.log("Data?", data);
             console.log("status?", status);
 
-            var test = "FireIntheBuilding";
+            var test = "Live Artist";
 
             for (var i = 0; i < data.length; i++) {
+              console.log("logging", data[i].location.coordinates[1], data[i].location.coordinates[0]);
               var marker = new MarkerWithLabel({
-                position: new google.maps.LatLng(data[i][0], data[i][1]),
+                position: new google.maps.LatLng(data[i].location.coordinates[1], data[i].location.coordinates[0]),
                 map: map,
                 labelContent: test,
                 labelAnchor: new google.maps.Point(35, 0),
                 labelClass: "labels"
               });
             }
-
           });
-
-
         });
     };
 
     $scope.findMe = function() {
       $cordovaGeolocation.getCurrentPosition({
-          timeout: 10000,
+          timeout: 1000,
           enableHighAccuracy: false
         })
         .then(function(pos) {
