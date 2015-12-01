@@ -12,17 +12,17 @@
             </div>
         </div>
         <div class="card userInfo item">
-            <div class="item-input" name="Artist_name">
-                <i class="ion-ios-person positive"></i>
-                <input type="text" placeholder="Artist Name" ng-model='user.artist_name'>
-                <!-- <span class="email">{{user.twitter}}</span> -->
-            </div>
             <div class="item-input" name="Twitter">
                 <i class="ion-social-twitter positive"></i>
                 <input type="text" placeholder="Twitter ID" ng-model='user.twitter'>
                 <!-- <span class="email">{{user.twitter}}</span> -->
             </div>
             <form nonvalidate class="artist-profile list " ng-show='user.artist' name="Paypal">
+                <div class="item-input" name="Artist_name">
+                    <i class="ion-ios-person positive"></i>
+                    <input type="text" placeholder="Artist Name" ng-model='user.artist_name'>
+                    <!-- <span class="email">{{user.twitter}}</span> -->
+                </div>
                 <div class="item-input">
                     <div>
                         <i class="ion-social-usd positive"></i>

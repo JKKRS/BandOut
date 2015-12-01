@@ -12,7 +12,7 @@
     <div class="list">
       <ion-item class="item item-thumbnail-left artistList" collection-repeat="artist in artists | filter:searchText" collection-item-height = "100px" ng-click="artistDetail(artist)" on-swipe-left="onSwipeLeft(artist)">
         <img ng-src="{{ artist.image }}">
-        <h2>{{ artist.name }}</h2>
+        <h2>{{ artist.artist_info.artist_name }}</h2>
         <h4>{{ artist.email }}</h4>
         <h4>{{ artist.twitter }}</h4>  
         <h4>Upcoming Event: {{ artist.artist_info.upcoming_events[0].datetime | date: 'MMM d, y' }} </h4>
