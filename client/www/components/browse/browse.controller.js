@@ -1,7 +1,5 @@
 angular.module('starter.mapBrowse', ['uiGmapgoogle-maps'])
-  // .constant("API_URL", "http://localhost:5000")
-  // .constant("API_URL", "https://bandout.herokuapp.com")
-  .controller('MapController', function($scope, $ionicLoading, $cordovaGeolocation, $http) {
+  .controller('MapController', function($scope, $ionicLoading, $cordovaGeolocation, $http, API_URL) {
 
     var Latlng = new google.maps.LatLng(34.045148, -118.564925);
 
@@ -58,7 +56,7 @@ angular.module('starter.mapBrowse', ['uiGmapgoogle-maps'])
           console.log("currentLocation", currentLocation);
 
           $http({
-            url: 'https://bandout.herokuapp.com/apis/artists/live',
+            url: API_URL + '/apis/artists/live',
             method: "POST",
             data: currentLocation,
             headers: {
