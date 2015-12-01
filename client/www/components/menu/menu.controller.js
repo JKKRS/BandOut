@@ -1,6 +1,6 @@
 angular.module('starter.menu', ['starter.services'])
 
-.controller('MenuCtrl', function($scope, $state, store, auth, $ionicPopup, UserService, $ionicLoading, FACEBOOK_APP_ID) {
+.controller('MenuCtrl', function($scope, $state, store, auth, $ionicPopup, UserService, $ionicLoading) {
 
   $scope.artist = store.get('artist');
   $scope.isArtist = function() {

@@ -189,14 +189,14 @@ angular.module('starter', [
   $httpProvider.interceptors.push(function($rootScope) {
     return {
       request: function(config) {
-        $rootScope.$broadcast('loading:show')
-        return config
+        $rootScope.$broadcast('loading:show');
+        return config;
       },
       response: function(response) {
-        $rootScope.$broadcast('loading:hide')
-        return response
+        $rootScope.$broadcast('loading:hide');
+        return response;
       }
-    }
+    };
   });
 
   // if none of the above states are matched, use this as the fallback
@@ -209,7 +209,7 @@ angular.module('starter', [
   $ionicConfigProvider.platform.ios.form.toggle('small');
 })
 
-.run(function($ionicPlatform, $rootScope, $state, $location, UserService, FACEBOOK_APP_ID, auth, store, jwtHelper, $ionicLoading) {
+.run(function($ionicPlatform, $rootScope, $state, $location, UserService, auth, store, jwtHelper, $ionicLoading) {
   $ionicPlatform.ready(function() {
     auth.hookEvents();
   });
@@ -219,12 +219,12 @@ angular.module('starter', [
 
   //Loading Overlay
   $rootScope.$on('loading:show', function() {
-    $ionicLoading.show({template: '<ion-spinner icon = "lines"></ion-spinner>'})
-  })
+    $ionicLoading.show({template: '<ion-spinner icon = "lines"></ion-spinner>'});
+  });
 
   $rootScope.$on('loading:hide', function() {
-    $ionicLoading.hide()
-  })
+    $ionicLoading.hide();
+  });
 
   // Authentication Check For UI-Router
   $rootScope.$on("$stateChangeStart", function() {

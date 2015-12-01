@@ -1,8 +1,8 @@
 angular.module('starter.services', ['ngResource'])
 
-.constant("FACEBOOK_APP_ID", "924056997681768")
-.constant("API_URL", "http://localhost:5000")
-// .constant("API_URL", "https://bandout.herokuapp.com")
+// .constant("FACEBOOK_APP_ID", "924056997681768")
+// .constant("API_URL", "http://localhost:5000")
+.constant("API_URL", "https://bandout.herokuapp.com")
 
 .service('UserService', function($http, $timeout, $q, User, store) {
   var newUser = function(profile) {
