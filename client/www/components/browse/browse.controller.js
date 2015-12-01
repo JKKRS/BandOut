@@ -33,7 +33,6 @@ angular.module('starter.mapBrowse', ['uiGmapgoogle-maps'])
       showBackdrop: false
     });
 
-
     $scope.center = function() {
       $cordovaGeolocation.getCurrentPosition({
           timeout: 10000,
@@ -80,7 +79,7 @@ angular.module('starter.mapBrowse', ['uiGmapgoogle-maps'])
                 labelClass: "labels"
               });
 
-              (function(){
+              (function() {
                 var contentString = '<div id="content">' +
                   '<div id="siteNotice">' +
                   '</div>' +
@@ -91,19 +90,22 @@ angular.module('starter.mapBrowse', ['uiGmapgoogle-maps'])
                   // '</div>' +
                   '</div>';
 
-                  var infowindow = new google.maps.InfoWindow({
-                    content: contentString
-                  });
+                var infowindow = new google.maps.InfoWindow({
+                  content: contentString
+                });
 
-                  marker.addListener('click', function() {
-                    infowindow.open(map, marker);
-                  });
+                marker.addListener('click', function() {
+                  infowindow.open(map, marker);
+                });
 
               })();
-
             }
           });
         });
+
+      google.maps.event.addListenerOnce(map, 'idle', function() {
+        google.maps.event.trigger(map, 'resize');
+      });
     };
 
     $scope.findMe = function() {
