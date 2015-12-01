@@ -1,7 +1,8 @@
 angular.module('starter.goLive', [])
 
-.controller('GoLiveCtrl', function($scope, store, User, $cordovaGeolocation, $ionicModal) {
+.controller('GoLiveCtrl', function($scope, store, User, $cordovaGeolocation, $ionicModal, $ionicLoading) {
   $scope.artistLive = function() {
+    $ionicLoading.show();
     $cordovaGeolocation.getCurrentPosition({
       timeout: 10000,
       enableHighAccuracy: false
@@ -16,6 +17,7 @@ angular.module('starter.goLive', [])
         'location.coordinates': $scope.coords
 
       }).$promise.then(function() {
+        $ionicLoading.hide();
         $scope.openModal();
       });
     });
