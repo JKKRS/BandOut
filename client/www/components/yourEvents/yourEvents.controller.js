@@ -13,7 +13,6 @@ function yourEventsCtrl($scope, $ionicListDelegate, User, $state, $stateParams, 
     UserService.getUser().then(function(res) {
       if (res.artist_info) {
         $scope.user = res.artist_info.upcoming_events;
-        console.log('User Events', res.artist_info.upcoming_events);
       } else {
         $scope.user = [];
       }
