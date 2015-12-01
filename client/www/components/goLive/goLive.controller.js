@@ -12,9 +12,8 @@ angular.module('starter.goLive', [])
         'fbid': $scope.fbid
       }, {
         live: true,
-        location: {
-          coordinates: $scope.coords
-        }
+        'location.coordinates': $scope.coords
+
       }).$promise.then(function() { console.log('user saved'); });
     });
   };
