@@ -7,6 +7,7 @@
 
 angular.module('starter', [
   'ionic',
+  'ionic.service.core',
   'ngCordova',
   'auth0',
   'angular-storage',
@@ -212,6 +213,15 @@ angular.module('starter', [
 .run(function($ionicPlatform, $rootScope, $state, $location, UserService, auth, store, jwtHelper, $ionicLoading) {
   $ionicPlatform.ready(function() {
     auth.hookEvents();
+
+    // push notifications
+    var push = new Ionic.Push({
+      "debug": true
+    });
+
+    push.register(function(token) {
+      console.log("Device Token:", token.token);
+    });
   });
 
   $ionicPlatform.on("resume", function() {

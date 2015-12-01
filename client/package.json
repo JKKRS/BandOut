@@ -15,6 +15,10 @@
     "shelljs": "^0.3.0"
   },
   "cordovaPlugins": [
+    {
+      "locator": "https://github.com/VitaliiBlagodir/cordova-plugin-datepicker.git",
+      "id": "cordova-plugin-datepicker"
+    },
     "cordova-plugin-console",
     "cordova-plugin-device",
     "cordova-plugin-splashscreen",
@@ -24,10 +28,7 @@
     "cordova-plugin-inappbrowser",
     "cordova-plugin-geolocation",
     "cordova-plugin-transport-security",
-    {
-      "locator": "https://github.com/VitaliiBlagodir/cordova-plugin-datepicker.git",
-      "id": "cordova-plugin-datepicker"
-    }
+    "phonegap-plugin-push"
   ],
   "cordovaPlatforms": [
     "ios",
