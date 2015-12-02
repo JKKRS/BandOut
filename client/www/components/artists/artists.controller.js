@@ -7,7 +7,7 @@ function ArtistsCtrl($scope, $stateParams, $window, $state, Artist, User, store)
 
   $scope.payPal = function(link) {
     link = link.toString();
-      $window.open( link, '_blank', 'location=yes');
+    $window.open( link, '_blank', 'location=yes');
   };
 
   $scope.refresh = function() {
@@ -43,6 +43,6 @@ function ArtistsCtrl($scope, $stateParams, $window, $state, Artist, User, store)
         });
       }
       User.update({ 'fbid' : userID }, currentUser);
-    })
-  }
+    });
+  };
 }

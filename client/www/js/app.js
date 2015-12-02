@@ -23,7 +23,8 @@ angular.module('starter', [
   'starter.mapBrowse',
   'starter.yourEvents',
   'starter.editEvent',
-  'starter.goLive'
+  'starter.goLive',
+  'starter.favoriteDir'
 ])
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, authProvider, $httpProvider, jwtInterceptorProvider) {

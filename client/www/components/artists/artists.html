@@ -22,7 +22,7 @@
       </div>
         <!-- {{ artist.artist_info.upcoming_events[0].title }} -->
         <ion-option-button ng-click="payPal(artist.artist_info.paypal_link)" class="button-positive icon ion-social-usd"></ion-option-button>
-        <ion-option-button class="button-positive icon ion-heart" ng-class="heartColor" ng-click="favorite(artist)"></ion-option-button>
+        <ion-option-button favorite class="ion-ios-heart-outline" ng-click="favorite(artist)"></ion-option-button>
       </ion-item>
     </div>
   </ion-list>
