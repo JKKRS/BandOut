@@ -6,10 +6,10 @@ angular.module('starter.services', ['ngResource'])
 .service('UserService', function($http, $timeout, $q, User, store) {
   var makeUser = function(profile) {
     var user = {
-      "fbid" : profile.user_id,
-      "name" : profile.name,
-      "image" : 'https://graph.facebook.com/' + profile.user_id + '/picture?type=large',
-      "email" : profile.email
+      "fbid": profile.user_id,
+      "name": profile.name,
+      "image": 'https://graph.facebook.com/' + profile.user_id + '/picture?type=large',
+      "email": profile.email
     };
     console.log('makeUser:', user);
     return user;
@@ -17,18 +17,26 @@ angular.module('starter.services', ['ngResource'])
 
   var setUser = function(user_data) {
     var user_obj = makeUser(user_data);
-    User.get({'fbid': user_obj.fbid}).$promise.then(function(val) {
-      if (val.nouser) {
-        User.save(user_obj, function(user) {
-          console.log('saved', user);
-        });
-      }
+    return $q(function(resolve, reject) {
+      User.get({
+        'fbid': user_obj.fbid
+      }).$promise.then(function(val) {
+        if (val.nouser) {
+          User.save(user_obj, function(user) {
+            console.log('saved', user);
+            resolve(user);
+          });
+        }
+        resolve(val);
+      });
     });
   };
 
   var getUser = function() {
     return $q(function(resolve, reject) {
-      return User.get({ "fbid" : store.get('profile').user_id })
+      return User.get({
+          "fbid": store.get('profile').user_id
+        })
         .$promise
         .then(function(res) {
           // console.log('UserService getUser', res);
@@ -73,13 +81,13 @@ angular.module('starter.services', ['ngResource'])
     return newVenue;
   }
 
-    // return JSON.parse(window.localStorage.getItem('ionFB_user') || '{}');
+  // return JSON.parse(window.localStorage.getItem('ionFB_user') || '{}');
   return {
     getUser: getUser,
     setUser: setUser,
     NewEvent: NewEvent,
     NewVenue: NewVenue,
-    createTimestamp : createTimestamp
+    createTimestamp: createTimestamp
     // userIsLoggedIn: userIsLoggedIn
   };
 })
@@ -90,6 +98,8 @@ angular.module('starter.services', ['ngResource'])
 
 .factory('User', function($resource, API_URL) {
   return $resource(API_URL + '/apis/users/:fbid', null, {
-    'update' : { method : 'PUT' }
+    'update': {
+      method: 'PUT'
+    }
   });
 });

@@ -6,12 +6,14 @@ angular.module('starter.fbLogin', ['starter.services'])
   var loginSuccess = function(profile, token, accessToken, state, refreshToken) {
     // Success callback
     profile.user_id = profile.user_id.substr(9);
-    UserService.setUser(profile);
+    UserService.setUser(profile).then(function(user) {
+      store.set('userData', user);
+      $state.go('app.artists.index');
+    });
     console.log('Login profile:', profile);
     store.set('profile', profile);
     store.set('token', token);
     store.set('refreshToken', refreshToken);
-    $state.go('app.artists.index');
     console.log('Login Success');
   };
 
