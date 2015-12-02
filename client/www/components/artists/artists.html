@@ -1,4 +1,4 @@
-<ion-view view-title="Artists">
+<ion-view view-title="Artists" ng-init="init()">
   <ion-content>
     <ion-refresher pulling-text="Pull to refresh..." on-refresh="refresh()">
     </ion-refresher>
@@ -22,7 +22,7 @@
       </div>
         <!-- {{ artist.artist_info.upcoming_events[0].title }} -->
         <ion-option-button ng-click="payPal(artist.artist_info.paypal_link)" class="button-positive icon ion-social-usd"></ion-option-button>
-        <ion-option-button favorite class="ion-ios-heart-outline" ng-click="favorite(artist)"></ion-option-button>
+        <ion-option-button favorite class="{{ heartClass }}" ng-click="favorite(artist)"></ion-option-button>
       </ion-item>
     </div>
   </ion-list>
