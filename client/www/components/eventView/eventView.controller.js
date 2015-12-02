@@ -23,5 +23,11 @@ function eventViewCtrl($scope, $stateParams) {
         position: myLatlng,
         map: map
     });
+
+    var resizeMap = function () {
+      google.maps.event.trigger(map, 'resize');
+    };
+
     $scope.map = map;
+    resizeMap();
 }
