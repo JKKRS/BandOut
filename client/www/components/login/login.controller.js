@@ -8,6 +8,7 @@ angular.module('starter.fbLogin', ['starter.services'])
     profile.user_id = profile.user_id.substr(9);
     UserService.setUser(profile).then(function(user) {
       store.set('userData', user);
+      store.set('artist', store.get('userData').artist);
       $state.go('app.artists.index');
     });
     console.log('Login profile:', profile);

@@ -2,11 +2,9 @@ angular.module('starter.menu', ['starter.services'])
 
 .controller('MenuCtrl', function($scope, $state, store, auth, $ionicPopup, UserService, $ionicLoading) {
 
-  $scope.artist = store.get('artist');
   $scope.isArtist = function() {
-      return true;
-  };
-
+    return store.get('artist');
+  }
   // Logout Methods
   $scope.showConfirmLogOut = function() {
     var confirmPopup = $ionicPopup.confirm({
