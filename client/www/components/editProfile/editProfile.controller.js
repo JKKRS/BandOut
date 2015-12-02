@@ -86,6 +86,11 @@ function editProfileCtrl($scope, $state, User, UserService, store) {
     });
   };
 
+  $scope.toggleArtist = function() {
+    var current = store.get('artist');
+    $scope.user.artist = !current;
+  }
+
 
   $scope.retrieveUser();
 }
