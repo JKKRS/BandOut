@@ -1,7 +1,6 @@
 angular.module('starter.mapBrowse', ['uiGmapgoogle-maps'])
   .controller('MapController', function($scope, $ionicLoading, $cordovaGeolocation, $http, API_URL) {
     var markersArray = [];
-    console.log("My markers", markersArray);
 
     function clearOverlays() {
       for (var i = 0; i < markersArray.length; i++) {
@@ -62,7 +61,6 @@ angular.module('starter.mapBrowse', ['uiGmapgoogle-maps'])
           });
 
           markersArray.push(myLocation);
-          console.log("Initial Me--", markersArray);
 
           var currentLocation = {
             location: [pos.coords.longitude, pos.coords.latitude],
