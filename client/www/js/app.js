@@ -63,6 +63,7 @@ angular.module('starter', [
 
   .state('app.browse', {
     url: '/browse',
+    cache:false,
     views: {
       'browse': {
         templateUrl: 'components/browse/browse.html'
