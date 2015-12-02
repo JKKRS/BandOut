@@ -107,7 +107,11 @@ img {
 .artistList{
   item-height:200px;
   item-width: 100%;
+  .heart-color {
+    color: green;
+  }
 }
+
 #map1 {
   width: 100%;
   height: 100%;

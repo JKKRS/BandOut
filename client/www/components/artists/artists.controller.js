@@ -2,7 +2,7 @@ angular.module('starter.artists', ['starter.services', 'starter.artist'])
 
 .controller('ArtistsCtrl', ArtistsCtrl);
 
-function ArtistsCtrl($scope, $stateParams, $window, $state, Artist) {
+function ArtistsCtrl($scope, $stateParams, $window, $state, Artist, User, store) {
   $scope.artists = Artist.query();
 
   $scope.payPal = function(link) {
@@ -30,4 +30,19 @@ function ArtistsCtrl($scope, $stateParams, $window, $state, Artist) {
       artistId: artist.fbid
     });
   };
+
+  $scope.favorite = function(artist) {
+    var userID = store.get('profile').user_id;
+    User.get( { 'fbid' : userID }, function(currentUser) {
+      var favs = currentUser.favorite_artists;
+      if (!_.contains(favs, artist.fbid)) {
+        favs.push(artist.fbid);
+      } else {
+        favs = favs.filter(function(id) {
+          return id !== artist.fbid;
+        });
+      }
+      User.update({ 'fbid' : userID }, currentUser);
+    })
+  }
 }
