@@ -33,11 +33,11 @@ angular.module('starter.mapBrowse', ['uiGmapgoogle-maps'])
       showBackdrop: false
     });
 
-    var resizeMap = function () {
+    var resizeMap = function() {
       google.maps.event.trigger(map, 'resize');
     };
 
-    var userMarker = function(){
+    var userMarker = function() {
       $cordovaGeolocation.getCurrentPosition({
         timeout: 10000,
         enableHighAccuracy: false
