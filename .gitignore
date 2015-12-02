@@ -10,6 +10,7 @@ client/www/css/ionic.app.min.css
 client/www/lib/
 client/resources/android/
 client/resources/ios/
+client/resources/wp8/
 .io-config.json
 
 # Logs

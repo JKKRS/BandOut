@@ -39,89 +39,90 @@ angular.module('starter.mapBrowse', ['uiGmapgoogle-maps'])
 
     var userMarker = function(){
       $cordovaGeolocation.getCurrentPosition({
-          timeout: 10000,
-          enableHighAccuracy: false
-        })
-        .then(function(pos) {
-          var myLocation = new google.maps.Marker({
-            position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
-            map: map,
-            title: "My Location"
-          });
-    })
-  }
+        timeout: 10000,
+        enableHighAccuracy: false
+      })
+      .then(function(pos) {
+        var myLocation = new google.maps.Marker({
+          position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
+          map: map,
+          title: "My Location"
+        });
+      });
+    };
 
     var liveArtist = function() {
       $cordovaGeolocation.getCurrentPosition({
-          timeout: 10000,
-          enableHighAccuracy: false
-        })
-        .then(function(pos) {
-          map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-          $ionicLoading.hide();
+        timeout: 10000,
+        enableHighAccuracy: false
+      })
+      .then(function(pos) {
+        map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+        $ionicLoading.hide();
 
-          var currentLocation = {
-            location: [pos.coords.longitude, pos.coords.latitude],
-            distance: 50
-          };
+        var currentLocation = {
+          location: [pos.coords.longitude, pos.coords.latitude],
+          distance: 50
+        };
 
-          $http({
-            url: API_URL + '/apis/artists/live',
-            method: "POST",
-            data: currentLocation,
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          }).success(function(data, status) {
-
-            for (var i = 0; i < data.length; i++) {
-              var ArtistName = data[i].name;
-              var marker = new MarkerWithLabel({
-                position: new google.maps.LatLng(data[i].location.coordinates[1], data[i].location.coordinates[0]),
-                map: map,
-                labelContent: ArtistName,
-                labelAnchor: new google.maps.Point(35, 0),
-                labelClass: "labels"
-              });
-
-              (function() {
-                var contentString = '<div id="content">' +
-                  '<div id="siteNotice">' +
-                  '</div>' +
-                  '<h4 id="firstHeading" class="firstHeading">' + data[i].name + '</h4>' +
-                  '<div id="bodyContent">' +
-                  // '<a href="' + data[i].artist_info.paypal_link + '">' +
-                  // 'My PayPal</a> ' +
-                  // '</div>' +
-                  '</div>';
-
-                var infowindow = new google.maps.InfoWindow({
-                  content: contentString
-                });
-
-                marker.addListener('click', function() {
-                  infowindow.open(map, marker);
-                });
-
-              })();
-            }
-          });
+        $http({
+          url: API_URL + '/apis/artists/live',
+          method: "POST",
+          data: currentLocation,
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }).success(function(data, status) {
+          for (var i = 0; i < data.length; i++) {
+            generateMarker(data[i], map);
+          }
         });
+      });
       google.maps.event.addListenerOnce(map, 'idle', resizeMap);
     };
 
     $scope.findMe = function() {
       $cordovaGeolocation.getCurrentPosition({
-          timeout: 1000,
-          enableHighAccuracy: false
-        })
-        .then(function(pos) {
-          map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-          liveArtist();
-        });
+        timeout: 1000,
+        enableHighAccuracy: false
+      })
+      .then(function(pos) {
+        map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+        liveArtist();
+      });
     };
 
     $scope.map = map;
     liveArtist();
     userMarker();
+
+    function generateMarker(item, targetMap) {
+      var ArtistName = item.name;
+      var marker = new MarkerWithLabel({
+        position: new google.maps.LatLng(item.location.coordinates[1], item.location.coordinates[0]),
+        map: targetMap,
+        labelContent: ArtistName,
+        labelAnchor: new google.maps.Point(35, 0),
+        labelClass: "labels"
+      });
+
+      var contentString = '<div id="content">' +
+        '<div id="siteNotice">' +
+        '</div>' +
+        '<h4 id="firstHeading" class="firstHeading">' + item.name + '</h4>' +
+        '<div id="bodyContent">' +
+        // '<a href="' + data[i].artist_info.paypal_link + '">' +
+        // 'My PayPal</a> ' +
+        // '</div>' +
+        '</div>';
+
+      var infowindow = new google.maps.InfoWindow({
+        content: contentString
+      });
+
+      marker.addListener('click', function() {
+        infowindow.open(targetMap, marker);
+      });
+    }
+
   });
