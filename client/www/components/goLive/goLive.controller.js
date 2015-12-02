@@ -1,6 +1,9 @@
 angular.module('starter.goLive', [])
 
 .controller('GoLiveCtrl', function($scope, store, User, $cordovaGeolocation, $ionicModal, $ionicLoading) {
+  $scope.isArtist = function() {
+    return store.get('artist');
+  }
   $scope.artistLive = function() {
     $ionicLoading.show();
     $cordovaGeolocation.getCurrentPosition({
