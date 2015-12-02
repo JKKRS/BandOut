@@ -193,3 +193,10 @@ textarea{
     color: $dark;
   }
 }
+
+.bar.bar-positive {
+  background-color: rgba(255,76,10,.66) !important; /* or transparent, or background:none */
+}
+.scroll-content {
+  overflow: visible !important;
+}
