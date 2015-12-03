@@ -5,6 +5,10 @@ angular.module('starter.favoriteDir', [])
     restrict : 'A',
     link : function(scope, element, attrs) {
       element.bind('click', function() {
+        // Update scope so we know it's been clicked
+        scope.$apply(function(){
+             scope.obj.favClicked = true;
+        });
         if (element.hasClass('ion-ios-heart-outline')) {
           element.removeClass('ion-ios-heart-outline');
           element.addClass('ion-ios-heart');

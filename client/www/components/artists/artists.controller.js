@@ -2,14 +2,17 @@ angular.module('starter.artists', ['starter.services', 'starter.artist'])
 
 .controller('ArtistsCtrl', ArtistsCtrl);
 
-function ArtistsCtrl($scope, $filter, $stateParams, $window, $state, Artist, User, store) {
+function ArtistsCtrl($scope, $stateParams, $window, $state, Artist, User, UserService, store) {
 
   $scope.artists = Artist.query();
 
-  var user = store.get('userData');
+  $scope.user = store.get('userData');
 
   var favToggled = false;
   var liveToggled = false;
+
+  // This object receives info from favorites directive. It needs to be an object because angular inheritance.
+  $scope.obj = { favClicked : false };
 
   $scope.toggleFavorite = function() {
     favToggled = !favToggled;
@@ -17,11 +20,11 @@ function ArtistsCtrl($scope, $filter, $stateParams, $window, $state, Artist, Use
 
   $scope.toggleLive = function() {
     liveToggled = !liveToggled;
-  }
+  };
 
   $scope.filterByFavorite = function(artist) {
     if (favToggled) {
-      if (user.favorite_artists.indexOf(artist.fbid) === -1) {
+      if ($scope.user.favorite_artists.indexOf(artist.fbid) === -1) {
         return false;
       } else {
         return true;
@@ -35,13 +38,13 @@ function ArtistsCtrl($scope, $filter, $stateParams, $window, $state, Artist, Use
       return artist.live;
     }
     return true;
-  }
+  };
 
   // Conditionally set class for heart icon
   $scope.getClass = function(artist) {
     return {
-      'ion-ios-heart' : user.favorite_artists.indexOf(artist.fbid) > -1,
-      'ion-ios-heart-outline' : user.favorite_artists.indexOf(artist.fbid) === -1
+      'ion-ios-heart' : $scope.user.favorite_artists.indexOf(artist.fbid) > -1,
+      'ion-ios-heart-outline' : $scope.user.favorite_artists.indexOf(artist.fbid) === -1
     };
   };
 
@@ -54,6 +57,13 @@ function ArtistsCtrl($scope, $filter, $stateParams, $window, $state, Artist, Use
     Artist.query().$promise.then(function(allArtists) {
       // Stop the ion-refresher from spinning
       $scope.artists = allArtists;
+      // Get user so favorites update, only if user has updated a favorite
+      if ($scope.obj.favClicked === true) {
+        UserService.getUser()
+        .then(function(res) {
+          $scope.user = res;
+        });
+      }
       $scope.$broadcast('scroll.refreshComplete');
     });
   };
@@ -84,7 +94,6 @@ function ArtistsCtrl($scope, $filter, $stateParams, $window, $state, Artist, Use
         });
       }
       currentUser.favorite_artists = favs;
-      console.log('to save', currentUser);
       User.update({ 'fbid' : userID }, currentUser);
     });
   };
