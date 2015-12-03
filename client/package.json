@@ -16,19 +16,29 @@
   },
   "cordovaPlugins": [
     {
-      "locator": "https://github.com/VitaliiBlagodir/cordova-plugin-datepicker.git",
-      "id": "cordova-plugin-datepicker"
+      "id": "phonegap-facebook-plugin",
+      "locator": "../../phonegap-facebook-plugin",
+      "variables": {
+        "APP_ID": "924056997681768",
+        "APP_NAME": "BandOut"
+      }
     },
+    "cordova-plugin-geolocation",
+    "cordova-plugin-dialogs",
     "cordova-plugin-console",
     "cordova-plugin-device",
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
     "cordova-plugin-whitelist",
     "cordova-plugin-keyboard",
-    "cordova-plugin-inappbrowser",
-    "cordova-plugin-geolocation",
     "cordova-plugin-transport-security",
-    "phonegap-plugin-push"
+    {
+      "locator": "https://github.com/VitaliiBlagodir/cordova-plugin-datepicker.git",
+      "id": "cordova-plugin-datepicker"
+    },
+    "cordova-plugin-inappbrowser",
+    "phonegap-plugin-push",
+    "uk.co.workingedge.phonegap.plugin.LaunchNavigator"
   ],
   "cordovaPlatforms": [
     "ios",
