@@ -1,5 +1,5 @@
 angular.module('starter.mapBrowse', ['uiGmapgoogle-maps'])
-  .controller('MapController', function($scope, $timeout, $ionicLoading, $ionicPopup, $cordovaGeolocation, $http, API_URL) {
+  .controller('MapController', function($scope, $timeout, $ionicLoading, $ionicPopup, $cordovaGeolocation, $cordovaInAppBrowser, $cordovaLaunchNavigator, $compile, $http, API_URL) {
     var markersArray = [];
 
     function clearOverlays() {
@@ -45,6 +45,29 @@ angular.module('starter.mapBrowse', ['uiGmapgoogle-maps'])
       google.maps.event.trigger(map, 'resize');
     };
 
+    //destination,start,success,error
+    // launchnavigator.navigate(
+    //   [50.279306, -5.163158], [50.342847, -4.749904],
+    //   function() {
+    //     alert("Plugin success");
+    //   },
+    //   function(error) {
+    //     alert("Plugin error: " + error);
+    //   });
+    var navigateHere = function(endLat, endLong, startLat, startLong) {
+      var end = [endLat, endLong];
+      var begin = [startLat, startLong];
+
+      console.log("working,", end, begin);
+
+      $cordovaLaunchNavigator.navigate(end, begin)
+        .then(function() {
+          console.log("Working?");
+        }, function(err) {
+          console.error(err);
+        });
+    };
+
     var liveArtist = function() {
       loading();
       $cordovaGeolocation.getCurrentPosition({
@@ -77,22 +100,22 @@ angular.module('starter.mapBrowse', ['uiGmapgoogle-maps'])
             }
           }).success(function(data, status) {
             for (var i = 0; i < data.length; i++) {
-              generateMarker(data[i], map);
+              generateMarker(data[i], map, pos.coords.latitude, pos.coords.longitude);
             }
           });
         }, function(err) {
           $timeout(function() {
-            $ionicLoading.hide();
-          }, 0)
-          .then(function() {
-            $ionicPopup.alert({
-              title: 'Unable to Get Location',
-              template: err.message
-            })
-            .then(function(res) {
-              console.log('User Acknowledged Error');
+              $ionicLoading.hide();
+            }, 0)
+            .then(function() {
+              $ionicPopup.alert({
+                  title: 'Unable to Get Location',
+                  template: err.message
+                })
+                .then(function(res) {
+                  console.log('User Acknowledged Error');
+                });
             });
-          });
         });
       google.maps.event.addListenerOnce(map, 'idle', resizeMap);
     };
@@ -113,7 +136,7 @@ angular.module('starter.mapBrowse', ['uiGmapgoogle-maps'])
       });
     }
 
-    function generateMarker(item, targetMap) {
+    function generateMarker(item, targetMap, myLocationLat, myLocationLong) {
       var ArtistName = item.name;
       var marker = new MarkerWithLabel({
         position: new google.maps.LatLng(item.location.coordinates[1], item.location.coordinates[0]),
@@ -123,23 +146,40 @@ angular.module('starter.mapBrowse', ['uiGmapgoogle-maps'])
         labelClass: "labels"
       });
 
-      var contentString = '<div id="content">' +
-        '<div id="siteNotice">' +
-        '</div>' +
-        '<h4 id="firstHeading" class="firstHeading">' + item.name + '</h4>' +
+      console.log("location data", myLocationLat, myLocationLong);
+
+
+      $scope.markerDirection = function() {
+        console.log("Hello?");
+        navigateHere(item.location.coordinates[1], item.location.coordinates[0], myLocationLat, myLocationLong);
+      };
+
+      var contentString = '<div id="container">' +
+        '<h4 class="title">' + item.name + '</h4>' +
         '<div id="bodyContent">' +
-        // '<a href="' + data[i].artist_info.paypal_link + '">' +
-        // 'My PayPal</a> ' +
-        // '</div>' +
+        '<a ng-click="markerDirection()">' +
+        'Directions</a> ' +
+        '</div>' +
         '</div>';
 
+      var compiled = $compile(contentString)($scope);
+
+      console.log('What is being compiled?', compiled);
       var infowindow = new google.maps.InfoWindow({
-        content: contentString
+        content: compiled[0]
       });
 
       marker.addListener('click', function() {
         infowindow.open(targetMap, marker);
       });
-    }
 
+      google.maps.event.addListener(infowindow, 'domready', function() {
+        var iwOuter = $('.gm-style-iw');
+        var iwBackground = iwOuter.prev();
+        iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+        iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+
+      });
+
+    }
   });
