@@ -8,6 +8,7 @@
 angular.module('starter', [
   'ionic',
   'ionic.service.core',
+  'ion-place-tools',
   'ngCordova',
   'auth0',
   'angular-storage',

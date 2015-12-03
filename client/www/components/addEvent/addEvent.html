@@ -63,5 +63,8 @@
     </div>
     <button class="button button-stable button-block  icon-left ion-checkmark" ng-click="saveEvent()" ng-disabled="addEventForm.$invalid">Save Event</button>
     </form>
+    <ion-google-place placeholder="Your Address" ng-model="test"
+          location-changed="locationChanged" />
+
   </ion-content>
   </ion-iew>

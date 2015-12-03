@@ -7,6 +7,9 @@ function addEventCtrl($scope, User, $state, $stateParams, $cordovaDatePicker, Us
   $scope.location = {};
   $scope.location.lat = null;
   $scope.location.long = null;
+  $scope.locationChanged = function(val) {
+    console.log('calling location changed', val);
+  };
 
   $scope.datePicker = function(e) {
     $cordovaDatePicker.show().then(function(date){
