@@ -45,20 +45,9 @@ angular.module('starter.mapBrowse', ['uiGmapgoogle-maps'])
       google.maps.event.trigger(map, 'resize');
     };
 
-    //destination,start,success,error
-    // launchnavigator.navigate(
-    //   [50.279306, -5.163158], [50.342847, -4.749904],
-    //   function() {
-    //     alert("Plugin success");
-    //   },
-    //   function(error) {
-    //     alert("Plugin error: " + error);
-    //   });
     var navigateHere = function(endLat, endLong, startLat, startLong) {
       var end = [endLat, endLong];
       var begin = [startLat, startLong];
-
-      console.log("working,", end, begin);
 
       $cordovaLaunchNavigator.navigate(end, begin)
         .then(function() {
@@ -146,39 +135,37 @@ angular.module('starter.mapBrowse', ['uiGmapgoogle-maps'])
         labelClass: "labels"
       });
 
-      console.log("location data", myLocationLat, myLocationLong);
-
-
       $scope.markerDirection = function() {
-        console.log("Hello?");
         navigateHere(item.location.coordinates[1], item.location.coordinates[0], myLocationLat, myLocationLong);
       };
 
       var contentString = '<div id="container">' +
         '<h4 class="title">' + item.name + '</h4>' +
         '<div id="bodyContent">' +
+        '<br>' +
         '<a ng-click="markerDirection()">' +
         'Directions</a> ' +
         '</div>' +
+        '<div class="iw-bottom-gradient"></div>'+
         '</div>';
 
       var compiled = $compile(contentString)($scope);
-
       console.log('What is being compiled?', compiled);
       var infowindow = new google.maps.InfoWindow({
-        content: compiled[0]
+        content: compiled[0],
+        maxWidth: 200
       });
 
-      marker.addListener('click', function() {
-        infowindow.open(targetMap, marker);
+      // marker.addListener('click', function() {
+      //   infowindow.open(targetMap, marker);
+      // });
+
+      google.maps.event.addListener(marker, 'click', function() {
+        infowindow.open(map, marker);
       });
 
-      google.maps.event.addListener(infowindow, 'domready', function() {
-        var iwOuter = $('.gm-style-iw');
-        var iwBackground = iwOuter.prev();
-        iwBackground.children(':nth-child(2)').css({'display' : 'none'});
-        iwBackground.children(':nth-child(4)').css({'display' : 'none'});
-
+      google.maps.event.addListener(map, 'click', function() {
+        infowindow.close();
       });
 
     }
