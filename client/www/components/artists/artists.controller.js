@@ -2,11 +2,28 @@ angular.module('starter.artists', ['starter.services', 'starter.artist'])
 
 .controller('ArtistsCtrl', ArtistsCtrl);
 
-function ArtistsCtrl($scope, $stateParams, $window, $state, Artist, User, store) {
+function ArtistsCtrl($scope, $filter, $stateParams, $window, $state, Artist, User, store) {
 
   $scope.artists = Artist.query();
 
   var user = store.get('userData');
+
+  var toggled = false;
+
+  $scope.toggleFavorite = function() {
+    toggled = !toggled;
+  };
+
+  $scope.filterByFavorite = function(artist) {
+    if (toggled) {
+      if (user.favorite_artists.indexOf(artist.fbid) === -1) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+    return true;
+  };
 
   // Conditionally set class for heart icon
   $scope.getClass = function(artist) {
