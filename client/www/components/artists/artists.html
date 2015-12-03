@@ -10,8 +10,9 @@
     </div>
     <ion-list show-delete= "false" can-swipe = "true">
     <ion-toggle toggle-class="toggle-positive" ng-click="toggleFavorite()">Show Favorites</ion-toggle>
+    <ion-toggle toggle-class="toggle-positive" ng-click="toggleLive()">Show Live Artists</ion-toggle>
     <div class="list">
-      <ion-item class="item item-thumbnail-left artistList" collection-repeat="artist in artists | filter:searchText | filter:filterByFavorite" collection-item-height = "100px" ng-click="artistDetail(artist)" on-swipe-left="onSwipeLeft(artist)">
+      <ion-item class="item item-thumbnail-left artistList" collection-repeat="artist in artists | filter:searchText | filter:filterByFavorite | filter:filterByLive" collection-item-height = "100px" ng-click="artistDetail(artist)" on-swipe-left="onSwipeLeft(artist)">
         <img ng-src="{{ artist.image }}">
         <h2>{{ artist.artist_info.artist_name || artist.name }}</h2>
         <h4>{{ artist.email }}</h4>
