@@ -15,14 +15,6 @@
     "shelljs": "^0.3.0"
   },
   "cordovaPlugins": [
-    {
-      "id": "phonegap-facebook-plugin",
-      "locator": "../../phonegap-facebook-plugin",
-      "variables": {
-        "APP_ID": "924056997681768",
-        "APP_NAME": "BandOut"
-      }
-    },
     "cordova-plugin-geolocation",
     "cordova-plugin-dialogs",
     "cordova-plugin-console",
