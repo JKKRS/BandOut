@@ -64,12 +64,12 @@ function ArtistsCtrl($scope, $filter, $stateParams, $window, $state, Artist, Use
     });
   };
 
-  $scope.onSwipeLeft = function(artist) {
-    $state.go('app.artists.artist', {
-      artist: artist,
-      artistId: artist.fbid
-    });
-  };
+  // $scope.onSwipeLeft = function(artist) {
+  //   $state.go('app.artists.artist', {
+  //     artist: artist,
+  //     artistId: artist.fbid
+  //   });
+  // };
 
   // Handle favoriting / unfavoriting artists
   $scope.favorite = function(artist) {
