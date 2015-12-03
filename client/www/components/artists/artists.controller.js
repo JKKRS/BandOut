@@ -4,20 +4,16 @@ angular.module('starter.artists', ['starter.services', 'starter.artist'])
 
 function ArtistsCtrl($scope, $stateParams, $window, $state, Artist, User, store) {
 
-
   $scope.artists = Artist.query();
 
-  $scope.init = function() {
-    var user = store.get('userData');
-    Artist.query().$promise.then(function(allArtists) {
-      _.each(allArtists, function(artist) {
-        if (_.intersection(artist.favorite_artists, user.favorite_artists) !== []) {
-          $scope.heartClass = 'ion-ios-heart';
-        } else {
-          $scope.heartClass = 'ion-ios-heart-outline';
-        }
-      });
-    });
+  var user = store.get('userData');
+
+  // Conditionally set class for heart icon
+  $scope.getClass = function(artist) {
+    return {
+      'ion-ios-heart' : user.favorite_artists.indexOf(artist.fbid) > -1,
+      'ion-ios-heart-outline' : user.favorite_artists.indexOf(artist.fbid) === -1
+    };
   };
 
   $scope.payPal = function(link) {
@@ -46,18 +42,20 @@ function ArtistsCtrl($scope, $stateParams, $window, $state, Artist, User, store)
     });
   };
 
+  // Handle favoriting / unfavoriting artists
   $scope.favorite = function(artist) {
     var userID = store.get('profile').user_id;
     User.get( { 'fbid' : userID }, function(currentUser) {
-      var favs = currentUser.favorite_artists;
+      var favs = currentUser.favorite_artists || [];
       if (!_.contains(favs, artist.fbid)) {
         favs.push(artist.fbid);
       } else {
         favs = favs.filter(function(id) {
           return id !== artist.fbid;
         });
-        currentUser.favorite_artists = favs;
       }
+      currentUser.favorite_artists = favs;
+      console.log('to save', currentUser);
       User.update({ 'fbid' : userID }, currentUser);
     });
   };
