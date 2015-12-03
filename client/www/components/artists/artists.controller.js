@@ -8,14 +8,19 @@ function ArtistsCtrl($scope, $filter, $stateParams, $window, $state, Artist, Use
 
   var user = store.get('userData');
 
-  var toggled = false;
+  var favToggled = false;
+  var liveToggled = false;
 
   $scope.toggleFavorite = function() {
-    toggled = !toggled;
+    favToggled = !favToggled;
   };
 
+  $scope.toggleLive = function() {
+    liveToggled = !liveToggled;
+  }
+
   $scope.filterByFavorite = function(artist) {
-    if (toggled) {
+    if (favToggled) {
       if (user.favorite_artists.indexOf(artist.fbid) === -1) {
         return false;
       } else {
@@ -24,6 +29,13 @@ function ArtistsCtrl($scope, $filter, $stateParams, $window, $state, Artist, Use
     }
     return true;
   };
+
+  $scope.filterByLive = function(artist) {
+    if (liveToggled) {
+      return artist.live;
+    }
+    return true;
+  }
 
   // Conditionally set class for heart icon
   $scope.getClass = function(artist) {
