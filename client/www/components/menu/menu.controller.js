@@ -4,7 +4,7 @@ angular.module('starter.menu', ['starter.services'])
 
   $scope.isArtist = function() {
     return store.get('artist');
-  }
+  };
   // Logout Methods
   $scope.showConfirmLogOut = function() {
     var confirmPopup = $ionicPopup.confirm({
