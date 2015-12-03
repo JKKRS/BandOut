@@ -24,6 +24,7 @@ angular.module('starter.menu', ['starter.services'])
         store.remove('artist');
         $ionicLoading.hide();
         $state.go('login');
+        console.log("You are logged out!");
         // if (!window.cordova) {
         //   // we are in browser
         //   facebookConnectPlugin.browserInit(FACEBOOK_APP_ID);
