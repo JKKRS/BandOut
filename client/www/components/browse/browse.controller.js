@@ -1,5 +1,5 @@
 angular.module('starter.mapBrowse', ['uiGmapgoogle-maps'])
-  .controller('MapController', function($scope, $ionicLoading, $cordovaGeolocation, $http, API_URL) {
+  .controller('MapController', function($scope, $timeout, $ionicLoading, $ionicPopup, $cordovaGeolocation, $http, API_URL) {
     var markersArray = [];
 
     function clearOverlays() {
@@ -36,16 +36,17 @@ angular.module('starter.mapBrowse', ['uiGmapgoogle-maps'])
     map.mapTypes.set("noPoi", styledMap);
     map.setMapTypeId("noPoi");
 
-    $scope.loading = $ionicLoading.show({
-      template: "Finding Buskers Near You",
-      showBackdrop: false
-    });
+    // $scope.loading = $ionicLoading.show({
+    //   template: "Finding Buskers Near You",
+    //   showBackdrop: false
+    // });
 
     var resizeMap = function() {
       google.maps.event.trigger(map, 'resize');
     };
 
     var liveArtist = function() {
+      loading();
       $cordovaGeolocation.getCurrentPosition({
           timeout: 10000,
           enableHighAccuracy: false
@@ -79,6 +80,19 @@ angular.module('starter.mapBrowse', ['uiGmapgoogle-maps'])
               generateMarker(data[i], map);
             }
           });
+        }, function(err) {
+          $timeout(function() {
+            $ionicLoading.hide();
+          }, 0)
+          .then(function() {
+            $ionicPopup.alert({
+              title: 'Unable to Get Location',
+              template: err.message
+            })
+            .then(function(res) {
+              console.log('User Acknowledged Error');
+            });
+          });
         });
       google.maps.event.addListenerOnce(map, 'idle', resizeMap);
     };
@@ -90,6 +104,14 @@ angular.module('starter.mapBrowse', ['uiGmapgoogle-maps'])
 
     $scope.map = map;
     liveArtist();
+
+    // Helper Land
+    function loading() {
+      $ionicLoading.show({
+        template: "Finding Local Artists",
+        showBackdrop: true
+      });
+    }
 
     function generateMarker(item, targetMap) {
       var ArtistName = item.name;
