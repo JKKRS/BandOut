@@ -77,7 +77,7 @@ angular.module('starter.mapBrowse', ['uiGmapgoogle-maps'])
 
           var currentLocation = {
             location: [pos.coords.longitude, pos.coords.latitude],
-            distance: 50
+            distance: 1000
           };
 
           $http({
