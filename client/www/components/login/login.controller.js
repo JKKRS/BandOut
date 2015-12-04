@@ -27,7 +27,6 @@ angular.module('starter.fbLogin', ['starter.services'])
   // Method to execute on Login button click
   $scope.login = function() {
     auth.signin({
-      popup: true,
       container: 'login',
       connections: ['facebook'],
       authParams: {
