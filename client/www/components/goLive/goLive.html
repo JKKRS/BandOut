@@ -1,13 +1,17 @@
 <ion-view title="Live">
-<ion-content>
-  <div id="button_padding">
-    <button id="live_button" class='button button-positive large_button' ng-click='artistLive()' ng-disabled='!isArtist()'>
-    <i id="live_icon" class="icon_custom ion-music-note"></i>Go Live</button>
-  </div>
-</ion-content>
+  <ion-content>
+    <div id="button_padding">
+      <button class='button button-positive large_button' id="live_button" ng-hide="liveButton" ng-click='goLive()' ng-disabled='!isArtist()'>
+        <i class="icon_custom ion-music-note" id="live_icon"></i>Go Live!</button>
+        <button class="button button-positive large_button" id="stop_button" ng-show="liveButton" ng-click="goLive()">Event Finished</button>
+        <div ng-show="liveButton">
+          You Are Now Live!
+        </div>
+    </div>
+  </ion-content>
 </ion-view>
 
-<script id="my-modal.html" type="text/ng-template">
+<!-- <script id="my-modal.html" type="text/ng-template">
   <ion-modal-view>
     <ion-header-bar>
       <h1 class="title">Artist Live!</h1>
@@ -17,4 +21,4 @@
       <button class="button button-positive large_button" ng-click="stopEvent()">Event Finished</button>
     </ion-content>
   </ion-modal-view>
-</script>
+</script> -->
