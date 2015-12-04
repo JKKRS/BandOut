@@ -42,20 +42,21 @@ angular.module('ion-place-tools', [])
           scope.dropDownActive = false;
           scope.searchQuery = location.description;
           if (scope.locationChanged) {
-            scope.locationChanged()(location.description);
+            scope.locationChanged()(location);
           }
         };
 
         // console.log(attrs.locationChanged);
 
         scope.$watch('searchQuery', function(query){
-          console.log('watch fired Query:', query);
-          console.log('dropDownActive:', scope.dropDownActive);
+          // console.log('watch fired Query:', query);
+          // console.log('dropDownActive:', scope.dropDownActive);
           if (searchEventTimeout) { $timeout.cancel(searchEventTimeout); }
           searchEventTimeout = $timeout(function() {
             if (!query) { console.log('no query...returning'); return; }
             if (query.length < 3) {
               scope.locations = [];
+              scope.$digest();
               return;
             }
 
@@ -68,15 +69,15 @@ angular.module('ion-place-tools', [])
             service.getQueryPredictions(req, function (predictions, status) {
               if (status == google.maps.places.PlacesServiceStatus.OK) {
                 scope.locations = predictions;
-                console.log(predictions);
+                scope.$digest();
               }
             });
           }, 350); // we're throttling the input by 350ms to be nice to google's API
         });
 
         var onClick = function(e) {
-          // e.preventDefault();
-          // e.stopPropagation();
+          e.preventDefault();
+          e.stopPropagation();
           scope.dropDownActive = true;
           scope.$digest();
           searchInputElement[0].focus();
@@ -92,8 +93,7 @@ angular.module('ion-place-tools', [])
 
         element.find('input').bind('click', onClick);
         // element.find('input').bind('blur', onCancel);
-        // element.find('input').bind('touchend', onClick);
-
+        element.find('input').bind('touchend', onClick);
 
         if(attrs.placeholder){
           element.find('input').attr('placeholder', attrs.placeholder);
