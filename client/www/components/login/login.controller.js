@@ -27,6 +27,7 @@ angular.module('starter.fbLogin', ['starter.services'])
   // Method to execute on Login button click
   $scope.login = function() {
     auth.signin({
+      container: 'login',
       connections: ['facebook'],
       authParams: {
         scope: 'openid offline_access',
