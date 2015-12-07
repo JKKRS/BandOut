@@ -190,17 +190,37 @@ angular.module('main', [
   $ionicConfigProvider.platform.android.tabs.position('bottom').style('standard');
   $ionicConfigProvider.platform.android.navBar.alignTitle('center');
   $ionicConfigProvider.platform.android.backButton.previousTitleText('true');
-
-  $ionicConfigProvider.platform.ios.form.toggle('small');
 })
 
-.run(function($ionicPlatform, $rootScope, $state, $location, UserService, auth, store, jwtHelper, $ionicLoading) {
+.run(function($ionicPlatform, $rootScope, $state, $location, UserService, auth, store, jwtHelper, $ionicLoading, $ionicPopup, $window) {
   $ionicPlatform.ready(function() {
     auth.hookEvents();
 
     // push notifications
     var push = new Ionic.Push({
-      "debug": true
+      debug: true,
+      canShowAlert: true,
+      canSetBadge: true,
+      canRunActionsOnWake: true,
+      onNotification: function(notif) {
+        console.log('notification:', notif);
+        $ionicPopup.show({
+          title: notif.title,
+          template: notif.text,
+          buttons: [
+            { text: 'Close' },
+            {
+              text: '<b>Tip</b>',
+              type: 'button-positive',
+              onTap: function(e) {
+                var link = notif.payload.paypal_link;
+                $window.open(link, '_blank', 'location=yes');
+              }
+            }
+          ]
+        });
+        // $state.go('app.artists.index');
+      }
     });
 
     push.register(function(token) {

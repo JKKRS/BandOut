@@ -26,18 +26,6 @@ function MenuCtrl($scope, $state, store, auth, $ionicPopup, UserService, $ionicL
         $ionicLoading.hide();
         $state.go('login');
         console.log("You are logged out!");
-        // if (!window.cordova) {
-        //   // we are in browser
-        //   facebookConnectPlugin.browserInit(FACEBOOK_APP_ID);
-        // }
-        //
-        // facebookConnectPlugin.logout(function() {
-        //   // logout success
-        //   $ionicLoading.hide();
-        //   $state.go('login');
-        // }, function(err) {
-        //   $ionicLoading.hide();
-        // });
       } else {
         // cancel logout
       }
