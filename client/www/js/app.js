@@ -51,18 +51,6 @@ angular.module('starter', [
     }
   })
 
-  .state('app.search', {
-    url: '/search',
-    views: {
-      'menuContent': {
-        templateUrl: 'components/search/search.html'
-      }
-    },
-    data: {
-      requiresLogin: true
-    }
-  })
-
   .state('app.nearbyArtists', {
     url: '/nearbyArtists',
     cache:false,
