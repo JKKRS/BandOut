@@ -1,6 +1,7 @@
 angular.module('starter.menu', ['starter.services'])
+.controller('MenuCtrl', MenuCtrl);
 
-.controller('MenuCtrl', function($scope, $state, store, auth, $ionicPopup, UserService, $ionicLoading) {
+function MenuCtrl($scope, $state, store, auth, $ionicPopup, UserService, $ionicLoading) {
 
   $scope.isArtist = function() {
     return store.get('artist');
@@ -42,4 +43,4 @@ angular.module('starter.menu', ['starter.services'])
       }
     });
   };
-});
+}
