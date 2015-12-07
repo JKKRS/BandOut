@@ -1,4 +1,4 @@
-angular.module('starter.services', ['ngResource'])
+angular.module('main.services', ['ngResource'])
 
 // .constant("API_URL", "http://localhost:5000")
 .constant("API_URL", "https://bandout.herokuapp.com")

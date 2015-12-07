@@ -1,4 +1,4 @@
-angular.module('starter.editProfile', ['starter.services'])
+angular.module('main.editProfile', ['main.services'])
 
 .controller('editProfileCtrl', editProfileCtrl);
 

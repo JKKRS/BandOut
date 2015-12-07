@@ -1,4 +1,4 @@
-angular.module('starter.editEvent', ['uiGmapgoogle-maps'])
+angular.module('main.editEvent', ['uiGmapgoogle-maps'])
   .controller('editEventCtrl', editEventCtrl);
 
 function editEventCtrl($scope, $state, User, $stateParams, UserService) {

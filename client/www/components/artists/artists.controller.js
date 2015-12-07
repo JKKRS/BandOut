@@ -1,4 +1,4 @@
-angular.module('starter.artists', ['starter.services', 'starter.artist'])
+angular.module('main.artists', ['main.services', 'main.artist'])
 
 .controller('ArtistsCtrl', ArtistsCtrl);
 

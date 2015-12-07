@@ -1,4 +1,4 @@
-angular.module('starter.addEvent', ['uiGmapgoogle-maps'])
+angular.module('main.addEvent', ['uiGmapgoogle-maps'])
 
 .controller('addEventCtrl', addEventCtrl);
 
