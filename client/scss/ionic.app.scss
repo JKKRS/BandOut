@@ -30,7 +30,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 @import "www/lib/ionic/scss/ionic";
 
 .home-background {
-  background: url(../assets/landingLogo.jpg) no-repeat center center fixed;
+  background: linear-gradient(120deg, rgba(148, 47, 13, 0.97) 0%, rgba(20, 32, 77, 0.6) 40%), url(../assets/landingLogo.jpg) no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -213,6 +213,7 @@ textarea{
   padding: -20px;
 }
 
+
 .ion-place-tools-autocomplete {
   position: relative;
   width: 100%;
@@ -241,4 +242,38 @@ textarea{
 
 #stop_button {
   border-radius: 4px;
+}
+
+body #a0-lock.a0-theme-default .a0-panel,
+ body #a0-widget .a0-popup .a0-overlay {
+    background-image: linear-gradient(120deg, rgba(148, 47, 13, 0.97) 0%, rgba(20, 32, 77, 0.6) 100%);
+    background-size: cover;
+    color: white;
+  }
+
+.mapImage{
+  width:50px;
+  height:50px;
+  float: left;
+}
+
+#bodyContent  .title {
+   font-family: 'Open Sans Condensed', sans-serif;
+   font-size: 22px;
+   font-weight: 400;
+   padding: 10px;
+   background-color: #48b5e9;
+   color: white;
+   margin: 1px;
+   border-radius: 2px 2px 0 0; /* In accordance with the rounding of the default infowindow corners. */
+}
+
+.gm-style-iw {
+   width: 350px !important;
+   top: 15px !important; // move the infowindow 15px down
+   left: 0 !important;
+   background-color: #fff;
+   box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
+   border: 1px solid rgba(72, 181, 233, 0.6);
+   border-radius: 2px 2px 0 0;
 }

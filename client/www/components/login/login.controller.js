@@ -29,6 +29,7 @@ function LoginCtrl($scope, $state, $q, $location, UserService, User, $ionicLoadi
   // Method to execute on Login button click
   $scope.login = function() {
     auth.signin({
+      closable: true,
       container: 'login',
       connections: ['facebook'],
       authParams: {
