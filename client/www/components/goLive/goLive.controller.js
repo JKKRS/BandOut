@@ -1,6 +1,7 @@
 angular.module('starter.goLive', [])
+.controller('GoLiveCtrl', GoLiveCtrl);
 
-.controller('GoLiveCtrl', function($scope, store, User, $cordovaGeolocation, $ionicModal, $ionicLoading) {
+function GoLiveCtrl($scope, store, User, $cordovaGeolocation, $ionicModal, $ionicLoading) {
   // check if current user is artist. ng-show functionality
   $scope.isArtist = function() {
     return store.get('artist');
@@ -52,5 +53,4 @@ angular.module('starter.goLive', [])
       };
     }
   };
-
-});
+};
