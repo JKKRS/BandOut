@@ -200,7 +200,14 @@ angular.module('main', [
 
     // push notifications
     var push = new Ionic.Push({
-      "debug": true
+      canShowAlert: true,
+      canSetBadge: true,
+      canRunActionsOnWake: true,
+      "debug": true,
+      onNotification: function(notif) {
+        console.log('notification:', notif);
+        $state.go('app.artists.index');
+      }
     });
 
     push.register(function(token) {
