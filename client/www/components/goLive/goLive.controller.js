@@ -1,16 +1,19 @@
 angular.module('starter.goLive', [])
 
 .controller('GoLiveCtrl', function($scope, store, User, $cordovaGeolocation, $ionicModal, $ionicLoading) {
-
+  // check if current user is artist. ng-show functionality
   $scope.isArtist = function() {
     return store.get('artist');
   };
 
   $scope.liveButton = false;
 
+  // click handler --> artist goes live
+  // I'm not sure this works. Need to refactor
   $scope.goLive = function() {
     $scope.liveButton = !$scope.liveButton;
     if ($scope.liveButton) {
+      // function assignment, but is this actually firing?
       $scope.artistLive = function() {
         $ionicLoading.show();
         $cordovaGeolocation.getCurrentPosition({
@@ -33,6 +36,8 @@ angular.module('starter.goLive', [])
         });
       };
     } else {
+      // click handler --> artist stops broadcasting live
+      // same as above. Is this actually firing?
       $scope.stopEvent = function() {
         $scope.fbid = store.get('profile').user_id;
         User.update({
