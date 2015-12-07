@@ -21,7 +21,7 @@ angular.module('starter', [
   'starter.addEvent',
   'starter.eventView',
   'uiGmapgoogle-maps',
-  'starter.mapBrowse',
+  'starter.nearbyArtists',
   'starter.yourEvents',
   'starter.editEvent',
   'starter.goLive',
@@ -63,12 +63,12 @@ angular.module('starter', [
     }
   })
 
-  .state('app.browse', {
-    url: '/browse',
+  .state('app.nearbyArtists', {
+    url: '/nearbyArtists',
     cache:false,
     views: {
-      'browse': {
-        templateUrl: 'components/browse/browse.html'
+      'nearbyArtists': {
+        templateUrl: 'components/nearbyArtists/nearbyArtists.html'
       }
     },
     controller:'MapCtrl',
