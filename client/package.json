@@ -30,7 +30,7 @@
     },
     "cordova-plugin-inappbrowser",
     "phonegap-plugin-push",
-    "uk.co.workingedge.phonegap.plugin.LaunchNavigator"
+    "uk.co.workingedge.phonegap.plugin.launchnavigator"
   ],
   "cordovaPlatforms": [
     "ios",
