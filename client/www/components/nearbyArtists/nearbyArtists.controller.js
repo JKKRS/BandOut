@@ -1,7 +1,7 @@
 angular.module('main.nearbyArtists', ['uiGmapgoogle-maps'])
 .controller('nearbyArtistsController', NearbyArtistsController);
 
-function NearbyArtistsController($scope, $timeout, $ionicLoading, $ionicPopup, $cordovaGeolocation, $cordovaInAppBrowser, $cordovaLaunchNavigator, $compile, $http, API_URL) {
+function MapController($scope, $stateParams, $window, $timeout, $ionicLoading, $ionicPopup, $cordovaGeolocation, $cordovaInAppBrowser, $cordovaLaunchNavigator, $compile, $http, API_URL) {
   var markersArray = [];
 
   function clearOverlays() {
@@ -141,16 +141,20 @@ function NearbyArtistsController($scope, $timeout, $ionicLoading, $ionicPopup, $
       navigateHere(item.location.coordinates[1], item.location.coordinates[0], myLocationLat, myLocationLong);
     };
 
+  
+  
+
     var contentString = '<ion-item id="container">' +
-      '<div id="bodyContent">' +
-      '<div class="title">' + item.name + '</div>' +
+      // '<div id="bodyContent">' +
+      '<div class="iw-title">' + item.name + '</div>' +
       '<img class= "mapImage" src="'+ item.image +'"/>'+
-      '<a ng-click="markerDirection()">' +
-      'Directions</a> ' +
-      '</div>' +
+      '<i class="icon positive ion-social-usd-outline iw-icon" ng-click="payPal(item.artist_info.paypal_link)"></i>'+
+      '<i class="icon positive ion-ios-checkmark-outline iw-icon"></i>'+
+      '<i class="icon positive ion-ios-navigate-outline iw-icon" ng-click="markerDirection()"></i>'+
+      // '</div>' +
       '<div class="iw-bottom-gradient"></div>'+
       '</ion-item>'
-      console.log("Item info: ", item);
+      console.log("Item info: ", item.artist_info.paypal_link);
         
     var compiled = $compile(contentString)($scope);
       console.log('What is being compiled?', compiled);
@@ -159,13 +163,34 @@ function NearbyArtistsController($scope, $timeout, $ionicLoading, $ionicPopup, $
       maxWidth: 200
     });
 
+
     google.maps.event.addListener(infowindow, 'domready', function() {
-       var iwOuter = $('.gm-style-iw');
-       var iwBackground = iwOuter.prev();
-       iwBackground.children(':nth-child(2)').css({'display' : 'none'});
-       iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+      var iwOuter = $('.gm-style-iw');
+      var iwBackground = iwOuter.prev();
+      // Moves the InfoWindow + or - from current location
+      iwOuter.parent().parent().css({left: '0px'});
+      iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+      iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+      // Moves the shadow of the arrow 76px to the left margin 
+      iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'right: 90px !important;'});
+      // Moves the arrow 76px to the left margin 
+      iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'right: 90px !important;'});
+      iwBackground.children(':nth-child(3)').find('div').children().css({'box-shadow': 'rgba(72, 181, 233, 0.6) 0px 1px 6px', 'z-index' : '1'});
+      var iwCloseBtn = iwOuter.next();
+
+      // Apply the desired effect to the close button
+      iwCloseBtn.css({
+        opacity: '1', // by default the close button has an opacity of 0.7
+        right: '-3px', top: '12px', // button repositioning
+        border: '1px solid #ff4c0a', // increasing button border and new color
+        'border-radius': '13px', // circular effect
+        'box-shadow': '0 0 5px #3990B9' // 3D effect to highlight the button
+        });
+      iwCloseBtn.mouseout(function(){
+        $(this).css({opacity: '1'});
+      });
     });
-    
+
       // marker.addListener('click', function() {
       //   infowindow.open(targetMap, marker);
       // });
@@ -178,4 +203,10 @@ function NearbyArtistsController($scope, $timeout, $ionicLoading, $ionicPopup, $
       infowindow.close();
     });
   }
+
+  $scope.payPal = function(link) {
+  console.log("this is: ", link);
+    link = link.toString();
+    $window.open( link, '_blank', 'location=yes');
+  };
 }
