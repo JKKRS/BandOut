@@ -1,4 +1,4 @@
-angular.module('starter.favoriteDir', [])
+angular.module('main.favoriteDir', [])
 
 .directive('favorite', function() {
   return {

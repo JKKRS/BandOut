@@ -1,4 +1,4 @@
-angular.module('starter.yourEvents', [])
+angular.module('main.yourEvents', [])
 
 .controller('yourEventsCtrl', yourEventsCtrl);
 

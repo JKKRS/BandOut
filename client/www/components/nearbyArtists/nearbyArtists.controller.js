@@ -1,4 +1,4 @@
-angular.module('starter.nearbyArtists', ['uiGmapgoogle-maps'])
+angular.module('main.nearbyArtists', ['uiGmapgoogle-maps'])
 .controller('nearbyArtistsController', NearbyArtistsController);
 
 function NearbyArtistsController($scope, $timeout, $ionicLoading, $ionicPopup, $cordovaGeolocation, $cordovaInAppBrowser, $cordovaLaunchNavigator, $compile, $http, API_URL) {

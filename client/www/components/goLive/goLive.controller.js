@@ -1,4 +1,4 @@
-angular.module('starter.goLive', [])
+angular.module('main.goLive', [])
 .controller('GoLiveCtrl', GoLiveCtrl);
 
 function GoLiveCtrl($scope, store, User, $cordovaGeolocation, $ionicModal, $ionicLoading) {

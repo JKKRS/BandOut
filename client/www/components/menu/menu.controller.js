@@ -1,4 +1,4 @@
-angular.module('starter.menu', ['starter.services'])
+angular.module('main.menu', ['main.services'])
 .controller('MenuCtrl', MenuCtrl);
 
 function MenuCtrl($scope, $state, store, auth, $ionicPopup, UserService, $ionicLoading) {

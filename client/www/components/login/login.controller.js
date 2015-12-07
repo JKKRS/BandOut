@@ -1,4 +1,4 @@
-angular.module('starter.fbLogin', ['starter.services'])
+angular.module('main.fbLogin', ['main.services'])
 
 .controller('LoginCtrl', LoginCtrl);
 

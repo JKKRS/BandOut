@@ -1,11 +1,4 @@
-// Ionic Starter App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.controllers' is found in controllers.js
-
-angular.module('starter', [
+angular.module('main', [
   'ionic',
   'ionic.service.core',
   'ion-place-tools',
@@ -13,19 +6,19 @@ angular.module('starter', [
   'auth0',
   'angular-storage',
   'angular-jwt',
-  'starter.menu',
-  'starter.fbLogin',
-  'starter.artist',
-  'starter.artists',
-  'starter.editProfile',
-  'starter.addEvent',
-  'starter.eventView',
+  'main.menu',
+  'main.fbLogin',
+  'main.artist',
+  'main.artists',
+  'main.editProfile',
+  'main.addEvent',
+  'main.eventView',
   'uiGmapgoogle-maps',
-  'starter.nearbyArtists',
-  'starter.yourEvents',
-  'starter.editEvent',
-  'starter.goLive',
-  'starter.favoriteDir'
+  'main.nearbyArtists',
+  'main.yourEvents',
+  'main.editEvent',
+  'main.goLive',
+  'main.favoriteDir'
 ])
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, authProvider, $httpProvider, jwtInterceptorProvider) {
