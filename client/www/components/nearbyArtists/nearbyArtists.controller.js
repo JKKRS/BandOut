@@ -1,7 +1,7 @@
-angular.module('starter.mapBrowse', ['uiGmapgoogle-maps'])
-.controller('MapController', MapController);
+angular.module('starter.nearbyArtists', ['uiGmapgoogle-maps'])
+.controller('nearbyArtistsController', NearbyArtistsController);
 
-function MapController($scope, $timeout, $ionicLoading, $ionicPopup, $cordovaGeolocation, $cordovaInAppBrowser, $cordovaLaunchNavigator, $compile, $http, API_URL) {
+function NearbyArtistsController($scope, $timeout, $ionicLoading, $ionicPopup, $cordovaGeolocation, $cordovaInAppBrowser, $cordovaLaunchNavigator, $compile, $http, API_URL) {
   var markersArray = [];
 
   function clearOverlays() {
