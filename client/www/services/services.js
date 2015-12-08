@@ -11,7 +11,6 @@ angular.module('main.services', ['ngResource'])
       "image": 'https://graph.facebook.com/' + profile.user_id + '/picture?type=large',
       "email": profile.email
     };
-    console.log('makeUser:', user);
     return user;
   };
 
@@ -81,14 +80,58 @@ angular.module('main.services', ['ngResource'])
     return newVenue;
   }
 
-  // return JSON.parse(window.localStorage.getItem('ionFB_user') || '{}');
   return {
     getUser: getUser,
     setUser: setUser,
     NewEvent: NewEvent,
     NewVenue: NewVenue,
     createTimestamp: createTimestamp
-    // userIsLoggedIn: userIsLoggedIn
+  };
+})
+
+.service('DeviceService', function($http, $q, Device, store) {
+  var setDevice = function(device_data) {
+    // device_data: {
+    //   device_id: 'asdf123', push: bool, 'location.coordinates': [long, lat]
+    // }
+    return $q(function(resolve, reject) {
+      Device.get({
+        'deviceId': device_data.device_id
+      }).$promise.then(function(val) {
+        if (val.nouser) {
+          Device.save(device_data, function(dev) {
+            console.log('saved device', dev);
+            resolve(dev);
+          });
+        }
+        resolve(val);
+      });
+    });
+  };
+
+  var getDevice = function() {
+    return $q(function(resolve, reject) {
+      return Device.get({
+          'deviceId': store.get('device_token')
+        })
+        .$promise
+        .then(function(res) {
+          resolve(res);
+        });
+    });
+  };
+
+  var updateDevice = function(device_data) {
+    // device_data = { push: bool, 'location.coordinates': [long, lat] }
+    Device.update({
+      'deviceId': store.get('device_token')
+    }, device_data);
+  };
+
+  return {
+    setDevice: setDevice,
+    getDevice: getDevice,
+    updateDevice: updateDevice
   };
 })
 
@@ -98,6 +141,14 @@ angular.module('main.services', ['ngResource'])
 
 .factory('User', function($resource, API_URL) {
   return $resource(API_URL + '/apis/users/:fbid', null, {
+    'update': {
+      method: 'PUT'
+    }
+  });
+})
+
+.factory('Device', function($resource, API_URL) {
+  return $resource(API_URL + '/apis/devices/:deviceId', null, {
     'update': {
       method: 'PUT'
     }

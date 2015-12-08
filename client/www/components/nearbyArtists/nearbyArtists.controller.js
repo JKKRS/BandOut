@@ -153,9 +153,8 @@ function NearbyArtistsController($scope, $stateParams, $window, $timeout, $ionic
       console.log("Item: ", item);
       $scope.item = item;
       console.log("Item info: ", item.artist_info.paypal_link);
-        
+
     var compiled = $compile(contentString)($scope);
-      console.log('What is being compiled?', $scope);
     var infowindow = new google.maps.InfoWindow({
       content: compiled[0],
       maxWidth: 200
@@ -174,10 +173,12 @@ function NearbyArtistsController($scope, $stateParams, $window, $timeout, $ionic
       iwOuter.parent().parent().css({left: '0px'});
       iwBackground.children(':nth-child(2)').css({'display' : 'none'});
       iwBackground.children(':nth-child(4)').css({'display' : 'none'});
-      // Moves shadow of arrow 
-      iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'right: 90px !important;'});
-      // Moves arrow  
-      iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'right: 90px !important;'});
+
+      // Moves the shadow of the arrow 76px to the left margin 
+      iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'right: 90px !important;';});
+      // Moves the arrow 76px to the left margin 
+      iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'right: 90px !important;';});
+
       iwBackground.children(':nth-child(3)').find('div').children().css({'box-shadow': 'rgba(72, 181, 233, 0.6) 0px 1px 6px', 'z-index' : '1'});
       var iwCloseBtn = iwOuter.next();
       // Apply the desired effect to the close button
