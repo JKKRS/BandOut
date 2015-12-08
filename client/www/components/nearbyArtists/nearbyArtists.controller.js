@@ -1,7 +1,7 @@
 angular.module('main.nearbyArtists', ['uiGmapgoogle-maps'])
 .controller('nearbyArtistsController', NearbyArtistsController);
 
-function MapController($scope, $stateParams, $window, $timeout, $ionicLoading, $ionicPopup, $cordovaGeolocation, $cordovaInAppBrowser, $cordovaLaunchNavigator, $compile, $http, API_URL) {
+function NearbyArtistsController($scope, $stateParams, $window, $timeout, $ionicLoading, $ionicPopup, $cordovaGeolocation, $cordovaInAppBrowser, $cordovaLaunchNavigator, $compile, $http, API_URL) {
   var markersArray = [];
 
   function clearOverlays() {
@@ -153,16 +153,24 @@ function MapController($scope, $stateParams, $window, $timeout, $ionicLoading, $
       '<i class="icon positive ion-ios-navigate-outline iw-icon" ng-click="markerDirection()"></i>'+
       // '</div>' +
       '<div class="iw-bottom-gradient"></div>'+
-      '</ion-item>'
+      '</ion-item>';
+      console.log("Item: ", item);
+      $scope.item = item;
       console.log("Item info: ", item.artist_info.paypal_link);
         
     var compiled = $compile(contentString)($scope);
-      console.log('What is being compiled?', compiled);
+      console.log('What is being compiled?', $scope);
     var infowindow = new google.maps.InfoWindow({
       content: compiled[0],
       maxWidth: 200
     });
 
+
+    $scope.payPal = function(link) {
+      console.log("this is: ", link);
+      link = link.toString();
+      $window.open( link, '_blank', 'location=yes');
+    };
 
     google.maps.event.addListener(infowindow, 'domready', function() {
       var iwOuter = $('.gm-style-iw');
@@ -181,7 +189,7 @@ function MapController($scope, $stateParams, $window, $timeout, $ionicLoading, $
       // Apply the desired effect to the close button
       iwCloseBtn.css({
         opacity: '1', // by default the close button has an opacity of 0.7
-        right: '-3px', top: '12px', // button repositioning
+        right: '-4px', top: '12px', // button repositioning
         border: '1px solid #ff4c0a', // increasing button border and new color
         'border-radius': '13px', // circular effect
         'box-shadow': '0 0 5px #3990B9' // 3D effect to highlight the button
@@ -202,11 +210,8 @@ function MapController($scope, $stateParams, $window, $timeout, $ionicLoading, $
     google.maps.event.addListener(map, 'click', function() {
       infowindow.close();
     });
+
   }
 
-  $scope.payPal = function(link) {
-  console.log("this is: ", link);
-    link = link.toString();
-    $window.open( link, '_blank', 'location=yes');
-  };
+  
 }

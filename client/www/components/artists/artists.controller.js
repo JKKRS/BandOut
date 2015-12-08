@@ -49,6 +49,7 @@ function ArtistsCtrl($scope, $stateParams, $window, $state, Artist, User, UserSe
   };
 
   $scope.payPal = function(link) {
+    console.log("Artist Pay to: ", link);
     link = link.toString();
     $window.open( link, '_blank', 'location=yes');
   };
