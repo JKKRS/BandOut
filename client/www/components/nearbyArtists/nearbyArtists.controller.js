@@ -161,13 +161,11 @@ function NearbyArtistsController($scope, $stateParams, $window, $timeout, $ionic
       maxWidth: 200
     });
 
-
     $scope.payPal = function(link) {
       console.log("this is: ", link);
       link = link.toString();
       $window.open( link, '_blank', 'location=yes');
     };
-
 
     google.maps.event.addListener(infowindow, 'domready', function() {
       var iwOuter = $('.gm-style-iw');
@@ -182,18 +180,8 @@ function NearbyArtistsController($scope, $stateParams, $window, $timeout, $ionic
       iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'right: 90px !important;'});
       iwBackground.children(':nth-child(3)').find('div').children().css({'box-shadow': 'rgba(72, 181, 233, 0.6) 0px 1px 6px', 'z-index' : '1'});
       var iwCloseBtn = iwOuter.next();
-
       // Apply the desired effect to the close button
       iwCloseBtn.css({'display' : 'none'});
-      //   opacity: '1', // By default the close button has an opacity of 0.7
-      //   right: '-4px', top: '12px', // Button repositioning
-      //   border: '1px solid #ff4c0a', // Increases button border and new color
-      //   'border-radius': '13px', // Circle effect
-      //   'box-shadow': '0 0 5px #3990B9' // 3D effect to highlight the button
-      //   });
-      // iwCloseBtn.mouseout(function(){
-      //   $(this).css({opacity: '1'});
-      // });
     });
 
       // marker.addListener('click', function() {
