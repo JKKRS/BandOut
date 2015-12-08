@@ -1,7 +1,7 @@
 angular.module('main.nearbyArtists', ['uiGmapgoogle-maps'])
 .controller('nearbyArtistsController', NearbyArtistsController);
 
-function NearbyArtistsController($scope, $stateParams, $window, $timeout, $ionicLoading, $ionicPopup, $cordovaGeolocation, $cordovaInAppBrowser, $cordovaLaunchNavigator, $compile, $http, API_URL) {
+function MapController($scope, $stateParams, $window, $timeout, $ionicLoading, $ionicPopup, $cordovaGeolocation, $cordovaInAppBrowser, $cordovaLaunchNavigator, $compile, $http, API_URL) {
   var markersArray = [];
 
   function clearOverlays() {
@@ -153,9 +153,13 @@ function NearbyArtistsController($scope, $stateParams, $window, $timeout, $ionic
       '<i class="icon positive ion-ios-navigate-outline iw-icon" ng-click="markerDirection()"></i>'+
       // '</div>' +
       '<div class="iw-bottom-gradient"></div>'+
+<<<<<<< HEAD
       '</ion-item>';
       console.log("Item: ", item);
       $scope.item = item;
+=======
+      '</ion-item>'
+>>>>>>> 81da4e371d67b82b651bdbb354836a30450c5171
       console.log("Item info: ", item.artist_info.paypal_link);
         
     var compiled = $compile(contentString)($scope);
@@ -166,12 +170,15 @@ function NearbyArtistsController($scope, $stateParams, $window, $timeout, $ionic
     });
 
 
+<<<<<<< HEAD
     $scope.payPal = function(link) {
       console.log("this is: ", link);
       link = link.toString();
       $window.open( link, '_blank', 'location=yes');
     };
 
+=======
+>>>>>>> 81da4e371d67b82b651bdbb354836a30450c5171
     google.maps.event.addListener(infowindow, 'domready', function() {
       var iwOuter = $('.gm-style-iw');
       var iwBackground = iwOuter.prev();
@@ -189,7 +196,11 @@ function NearbyArtistsController($scope, $stateParams, $window, $timeout, $ionic
       // Apply the desired effect to the close button
       iwCloseBtn.css({
         opacity: '1', // by default the close button has an opacity of 0.7
+<<<<<<< HEAD
         right: '-4px', top: '12px', // button repositioning
+=======
+        right: '-3px', top: '12px', // button repositioning
+>>>>>>> 81da4e371d67b82b651bdbb354836a30450c5171
         border: '1px solid #ff4c0a', // increasing button border and new color
         'border-radius': '13px', // circular effect
         'box-shadow': '0 0 5px #3990B9' // 3D effect to highlight the button
@@ -213,5 +224,13 @@ function NearbyArtistsController($scope, $stateParams, $window, $timeout, $ionic
 
   }
 
+<<<<<<< HEAD
   
+=======
+  $scope.payPal = function(link) {
+  console.log("this is: ", link);
+    link = link.toString();
+    $window.open( link, '_blank', 'location=yes');
+  };
+>>>>>>> 81da4e371d67b82b651bdbb354836a30450c5171
 }
