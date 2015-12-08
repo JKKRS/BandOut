@@ -207,7 +207,7 @@ angular.module('main', [
     });
 
     push.register(function(token) {
-      console.log("Device Token:", token.token);
+      store.set('device_token', token.token);
     });
   });
 
@@ -226,7 +226,6 @@ angular.module('main', [
 
   // Authentication Check For UI-Router
   $rootScope.$on("$stateChangeStart", function() {
-    console.log('auth.isAuthenticated:', auth.isAuthenticated);
     if (!auth.isAuthenticated) {
       var token = store.get('token');
       if (token) {
@@ -241,10 +240,7 @@ angular.module('main', [
 
   function notificationHandler(notification) {
     console.log('notification:', notification);
-    console.log('notification title', notification.title);
-    if (notification.title === 'bandout' && notification.payload.title) {
-      notification.title = notification.payload.title;
-    }
+
     IonicClosePopupService.register($ionicPopup.show({
       title: notification.title,
       template: notification.text,
@@ -253,12 +249,11 @@ angular.module('main', [
           text: 'Tip Artist',
           type: 'button-positive',
           onTap: function(e) {
-            var link = notification.payload.paypal_link;
+            var link = notification._raw.additionalData.paypal_link;
             $window.open(link, '_blank', 'location=yes');
           }
         }
       ]
-  }));
-    // $state.go('app.artists.index');
+    }));
   }
 });
