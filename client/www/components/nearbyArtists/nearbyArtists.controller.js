@@ -141,7 +141,7 @@ function NearbyArtistsController($scope, $stateParams, $window, $timeout, $ionic
     $scope.markerDirection = function() {
       navigateHere(item.location.coordinates[1], item.location.coordinates[0], myLocationLat, myLocationLong);
     };
-    
+
     var contentString = '<ion-item id="container">' +
       '<div class="iw-title">' + item.name + '</div>' +
       '<img class= "mapImage" src="'+ item.image +'"/>'+
@@ -184,16 +184,16 @@ function NearbyArtistsController($scope, $stateParams, $window, $timeout, $ionic
       var iwCloseBtn = iwOuter.next();
 
       // Apply the desired effect to the close button
-      iwCloseBtn.css({
-        opacity: '1', // By default the close button has an opacity of 0.7
-        right: '-4px', top: '12px', // Button repositioning
-        border: '1px solid #ff4c0a', // Increases button border and new color
-        'border-radius': '13px', // Circle effect
-        'box-shadow': '0 0 5px #3990B9' // 3D effect to highlight the button
-        });
-      iwCloseBtn.mouseout(function(){
-        $(this).css({opacity: '1'});
-      });
+      iwCloseBtn.css({'display' : 'none'});
+      //   opacity: '1', // By default the close button has an opacity of 0.7
+      //   right: '-4px', top: '12px', // Button repositioning
+      //   border: '1px solid #ff4c0a', // Increases button border and new color
+      //   'border-radius': '13px', // Circle effect
+      //   'box-shadow': '0 0 5px #3990B9' // 3D effect to highlight the button
+      //   });
+      // iwCloseBtn.mouseout(function(){
+      //   $(this).css({opacity: '1'});
+      // });
     });
 
       // marker.addListener('click', function() {
