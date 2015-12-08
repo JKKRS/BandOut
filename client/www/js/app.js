@@ -1,6 +1,7 @@
 angular.module('main', [
   'ionic',
   'ionic.service.core',
+  'ionic.closePopup',
   'ion-place-tools',
   'ngCordova',
   'auth0',
@@ -192,7 +193,7 @@ angular.module('main', [
   $ionicConfigProvider.platform.android.backButton.previousTitleText('true');
 })
 
-.run(function($ionicPlatform, $rootScope, $state, $location, UserService, auth, store, jwtHelper, $ionicLoading, $ionicPopup, $window) {
+.run(function($ionicPlatform, $rootScope, $state, $location, UserService, auth, store, jwtHelper, $ionicLoading, $ionicPopup, IonicClosePopupService, $window) {
   $ionicPlatform.ready(function() {
     auth.hookEvents();
 
@@ -202,25 +203,7 @@ angular.module('main', [
       canShowAlert: true,
       canSetBadge: true,
       canRunActionsOnWake: true,
-      onNotification: function(notif) {
-        console.log('notification:', notif);
-        $ionicPopup.show({
-          title: notif.title,
-          template: notif.text,
-          buttons: [
-            { text: 'Close' },
-            {
-              text: '<b>Tip</b>',
-              type: 'button-positive',
-              onTap: function(e) {
-                var link = notif.payload.paypal_link;
-                $window.open(link, '_blank', 'location=yes');
-              }
-            }
-          ]
-        });
-        // $state.go('app.artists.index');
-      }
+      onNotification: notificationHandler
     });
 
     push.register(function(token) {
@@ -229,6 +212,7 @@ angular.module('main', [
   });
 
   $ionicPlatform.on("resume", function() {
+    console.log('ionicPlatform on resume called...');
   });
 
   //Loading Overlay
@@ -254,4 +238,27 @@ angular.module('main', [
       }
     }
   });
+
+  function notificationHandler(notification) {
+    console.log('notification:', notification);
+    console.log('notification title', notification.title);
+    if (notification.title === 'bandout' && notification.payload.title) {
+      notification.title = notification.payload.title;
+    }
+    IonicClosePopupService.register($ionicPopup.show({
+      title: notification.title,
+      template: notification.text,
+      buttons: [
+        {
+          text: 'Tip Artist',
+          type: 'button-positive',
+          onTap: function(e) {
+            var link = notification.payload.paypal_link;
+            $window.open(link, '_blank', 'location=yes');
+          }
+        }
+      ]
+  }));
+    // $state.go('app.artists.index');
+  }
 });
