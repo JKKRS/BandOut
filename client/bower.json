@@ -13,7 +13,8 @@
     "moment": "~2.10.6",
     "auth0-angular": "4.*",
     "a0-angular-storage": ">= 0.0.12",
-    "angular-jwt": ">= 0.0.9"
+    "angular-jwt": ">= 0.0.9",
+    "ionic-close-popup": "~0.0.1"
   },
   "resolutions": {
     "angular-simple-logger": "~0.0.1",
