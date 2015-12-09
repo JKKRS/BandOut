@@ -12,6 +12,7 @@
   <allow-navigation href="https://www.paypal.me"/>
   <allow-navigation href="https://bandout.herokuapp.com"/>
   <content src="index.html"/>
+  <preference name="orientation" value="portrait"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
