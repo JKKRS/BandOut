@@ -14,10 +14,12 @@ function GoLiveCtrl($scope, store, User, $cordovaGeolocation, $ionicModal, $ioni
     $scope.liveButton = !$scope.liveButton;
     if ($scope.liveButton) {
       $ionicLoading.show();
+      // get current user location
       $cordovaGeolocation.getCurrentPosition({
         timeout: 10000,
         enableHighAccuracy: false
       }).then(function(pos) {
+        // update current location in database. set live = true
         $scope.fbid = store.get('profile').user_id;
         $scope.coords = [pos.coords.longitude, pos.coords.latitude];
         console.log($scope.coords);
@@ -27,13 +29,10 @@ function GoLiveCtrl($scope, store, User, $cordovaGeolocation, $ionicModal, $ioni
           live: true,
           'location.coordinates': $scope.coords
         });
-        // .$promise.then(function() {
-        // $ionicLoading.hide();
-        // $scope.openModal();
-        // });
       });
     } else {
       // click handler --> artist stops broadcasting live
+      // set live to false. reset location so location information not stored
       $scope.fbid = store.get('profile').user_id;
       User.update({
         'fbid': $scope.fbid
@@ -41,9 +40,6 @@ function GoLiveCtrl($scope, store, User, $cordovaGeolocation, $ionicModal, $ioni
         live: false,
         'location.coordinates': [0, 0]
       });
-      // .$promise.then(function() {
-      // $scope.closeModal();
-      //  });
     }
   };
 }

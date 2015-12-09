@@ -3,25 +3,32 @@ angular.module('main.artists', ['main.services', 'main.artist'])
 .controller('ArtistsCtrl', ArtistsCtrl);
 
 function ArtistsCtrl($scope, $stateParams, $window, $state, Artist, User, UserService, store) {
-
+  // initial call to populate artists list
   $scope.artists = Artist.query();
 
+  // grab user information for store data
   $scope.user = store.get('userData');
 
+  // variables for favorite / live toggles
   var favToggled = false;
   var liveToggled = false;
 
   // This object receives info from favorites directive. It needs to be an object because angular inheritance.
-  $scope.obj = { favClicked : false };
+  $scope.obj = {
+    favClicked: false
+  };
 
+  // click handler for favorites toggle
   $scope.toggleFavorite = function() {
     favToggled = !favToggled;
   };
 
+  // click handler for live toggle
   $scope.toggleLive = function() {
     liveToggled = !liveToggled;
   };
 
+  // custom filter for user favorites
   $scope.filterByFavorite = function(artist) {
     if (favToggled) {
       if ($scope.user.favorite_artists.indexOf(artist.fbid) === -1) {
@@ -33,6 +40,7 @@ function ArtistsCtrl($scope, $stateParams, $window, $state, Artist, User, UserSe
     return true;
   };
 
+  // custom filter for live artists
   $scope.filterByLive = function(artist) {
     if (liveToggled) {
       return artist.live;
@@ -43,31 +51,35 @@ function ArtistsCtrl($scope, $stateParams, $window, $state, Artist, User, UserSe
   // Conditionally set class for heart icon
   $scope.getClass = function(artist) {
     return {
-      'ion-ios-heart' : $scope.user.favorite_artists.indexOf(artist.fbid) > -1,
-      'ion-ios-heart-outline' : $scope.user.favorite_artists.indexOf(artist.fbid) === -1
+      'ion-ios-heart': $scope.user.favorite_artists.indexOf(artist.fbid) > -1,
+      'ion-ios-heart-outline': $scope.user.favorite_artists.indexOf(artist.fbid) === -1
     };
   };
 
+  // click handler for paypal redirect
   $scope.payPal = function(link) {
-    console.log("Artist Pay to: ", link);
     link = link.toString();
-    $window.open( link, '_blank', 'location=yes');
+    $window.open(link, '_blank', 'location=yes');
   };
 
+  // pull to refresh functionality
   $scope.refresh = function() {
+    // re-populate artists list with new data
     Artist.query().$promise.then(function(allArtists) {
       // Stop the ion-refresher from spinning
       $scope.artists = allArtists;
       // Get user so favorites update, only if user has updated a favorite
       if ($scope.obj.favClicked === true) {
         UserService.getUser()
-        .then(function(res) {
-          $scope.user = res;
-        });
+          .then(function(res) {
+            $scope.user = res;
+          });
       }
       $scope.$broadcast('scroll.refreshComplete');
     });
   };
+
+  // click handler for state transition. passing artist for $stateparams
   $scope.artistDetail = function(artist) {
     $state.go('app.artists.artist', {
       artist: artist,
@@ -75,17 +87,12 @@ function ArtistsCtrl($scope, $stateParams, $window, $state, Artist, User, UserSe
     });
   };
 
-  // $scope.onSwipeLeft = function(artist) {
-  //   $state.go('app.artists.artist', {
-  //     artist: artist,
-  //     artistId: artist.fbid
-  //   });
-  // };
-
   // Handle favoriting / unfavoriting artists
   $scope.favorite = function(artist) {
     var userID = store.get('profile').user_id;
-    User.get( { 'fbid' : userID }, function(currentUser) {
+    User.get({
+      'fbid': userID
+    }, function(currentUser) {
       var favs = currentUser.favorite_artists || [];
       if (!_.contains(favs, artist.fbid)) {
         favs.push(artist.fbid);
@@ -95,7 +102,9 @@ function ArtistsCtrl($scope, $stateParams, $window, $state, Artist, User, UserSe
         });
       }
       currentUser.favorite_artists = favs;
-      User.update({ 'fbid' : userID }, currentUser);
+      User.update({
+        'fbid': userID
+      }, currentUser);
     });
   };
 }
