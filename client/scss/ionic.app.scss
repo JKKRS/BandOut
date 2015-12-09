@@ -14,13 +14,35 @@ $assertive:                       #ef473a !default;
 $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
+
+// Start of custom Saas 
 $positive:                        #ff4c0a !default; //#387ef5
+$item-light-text:                 #fff !default;
+
+$base-background-color:           #2b2b2b !default; //#fff
+
 $button-stable-bg:                #ff4c0a !default; //$stable
+$button-stable-border:            #ff4c0a !default;
 $button-stable-text:              #fff !default;
 
-$item-default-bg:                 #fff !default;
+$item-default-bg:                 #3a3a3a !default;
+$item-default-active-bg:          #2b2b2b !default;
+$item-default-border:             #4a4a4a !default;
+$item-default-text:               #fff !default;
+$item-default-active-border:      #2b2b2b !default;
 
-$base-background-color:           #fff !default; //#fff
+
+$item-divider-bg:                 #6a6a6a !default;
+
+$input-bg:                        #3a3a3a !default;
+$input-color:                     #fff !default;
+$input-color-placeholder:         #fff !default;
+$input-label-color:               #fff !default;
+
+$card-body-bg:                    #3a3a3a !default;
+$card-border-color:               #2b2b2b !default;
+
+
 
 
 // The path for our ionicons font files, relative to the built CSS in www/css
@@ -29,9 +51,14 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+
 .home-background {
   background: linear-gradient(120deg, rgba(148, 47, 13, 0.97) 0%, rgba(20, 32, 77, 0.6) 40%), url(../assets/landingLogo.jpg) no-repeat center center fixed;
   background-size: cover;
+}
+
+h2, h4 {
+  color: #fff;
 }
 
 .brandName{
@@ -53,7 +80,6 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 .logout{
   border: none;
-  background: 
   background-color: rgba(255,76,10,.66) !important;
 }
 
@@ -105,6 +131,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     font-size: 14px;
   }
 }
+
 img {
   width: 200px;
   height: 200px;
@@ -250,12 +277,12 @@ textarea{
   border-radius: 4px;
 }
 
-/*body #a0-lock.a0-theme-default .a0-panel,
+body #a0-lock.a0-theme-default .a0-panel,
  body #a0-widget .a0-popup .a0-overlay {
-    background-image: linear-gradient(120deg, rgba(148, 47, 13, 0.97) 0%, rgba(20, 32, 77, 0.6) 100%);
+    background-color: #3a3a3a; 
     background-size: cover;
     color: white;
-  }*/
+  }
   
 #container{
   item-height:200px;
