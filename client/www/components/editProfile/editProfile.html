@@ -1,4 +1,4 @@
-<ion-view class="edit-profile" title="Edit Profile" ng-init="retrieveUser()">
+<ion-view class="edit-profile" title="Edit Profile">
     <ion-content padding="true" class="has-header">
         <div class="card">
             <ion-toggle toggle-class="toggle-positive" ng-checked="user.artist" name="ArtistToggle" ng-click='toggleArtist()'>Artist</ion-toggle>
@@ -20,7 +20,7 @@
             <form nonvalidate class="artist-profile list " ng-show='user.artist' name="Paypal">
                 <div class="item-input" name="Artist_name">
                     <i class="ion-ios-person positive"></i>
-                    <input type="text" placeholder="Artist Name" ng-model='user.artist_name'>
+                    <input type="text" placeholder="Artist Name" ng-model='user.artist_info.artist_name'>
                     <!-- <span class="email">{{user.twitter}}</span> -->
                 </div>
                 <div class="item-input">
@@ -28,14 +28,14 @@
                         <i class="ion-social-usd positive"></i>
                         <!-- <label for="paypal-input">Paypal.me ID</label> -->
                     </div>
-                    <input type="text" name="paypal-input" placeholder="Paypal.me ID" ng-model='user.paypal' ng-pattern="/^[a-zA-Z0-9]+$/">
+                    <input type="text" name="paypal-input" placeholder="Paypal.me ID" ng-model='user.artist_info.paypal_link' ng-pattern="/^[a-zA-Z0-9]+$/">
                 </div>
                 <div class="paypal-id-error" ng-show="Paypal.$invalid">
                     Paypal.me IDs may only contain letters and numbers
                 </div>
                 <div class="item-input" name="Website">
                     <i class="ion-ios-world positive"></i>
-                    <input type="text" placeholder="Website" ng-model='user.website'>
+                    <input type="text" placeholder="Website" ng-model='user.artist_info.website'>
                 </div>
             </form>
         </div>
