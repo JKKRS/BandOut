@@ -145,7 +145,6 @@ function NearbyArtistsController($scope, $stateParams, $window, $timeout, $ionic
     var contentString = '<ion-item id="container">' +
       '<div class="iw-title">' + item.name + '</div>' +
       '<img class= "mapImage" src="'+ item.image +'"/>'+
-      '<i class="icon positive ion-social-usd-outline iw-icon" ng-click="payPal(item.artist_info.paypal_link)"></i>'+
       '<i class="icon positive ion-ios-checkmark-outline iw-icon"></i>'+
       '<i class="icon positive ion-ios-navigate-outline iw-icon" ng-click="markerDirection()"></i>'+
       '<div class="iw-bottom-gradient"></div>'+
@@ -159,12 +158,6 @@ function NearbyArtistsController($scope, $stateParams, $window, $timeout, $ionic
       content: compiled[0],
       maxWidth: 200
     });
-
-    $scope.payPal = function(link) {
-      console.log("this is: ", link);
-      link = link.toString();
-      $window.open( link, '_blank', 'location=yes');
-    };
 
     google.maps.event.addListener(infowindow, 'domready', function() {
       var iwOuter = $('.gm-style-iw');
