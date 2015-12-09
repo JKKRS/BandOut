@@ -2,7 +2,6 @@
   <ion-content padding="true" class="has-header">
     <div class="list card">
       <div class="item item-divider">Event Information</div>
-      <div class="item item-body">
         <form name ="editEventForm" class="list" ng-model='event' novalidate>
 
           <div class="form-group">
@@ -63,7 +62,6 @@
         </div>
         <button class="button button-stable button-block icon-left ion-ios-checkmark-outline" ng-click="updateEvent()" ng-disabled="editEventForm.$invalid">Update Event</button>
         </form>
-      </div>
     </div>
   </ion-content>
 </ion-view>
