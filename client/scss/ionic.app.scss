@@ -51,6 +51,12 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     padding-top: 20px;
 }
 
+.logout{
+  border: none;
+  background: 
+  background-color: rgba(255,76,10,.66) !important;
+}
+
 .artist{
   align: center;
 }
@@ -196,7 +202,7 @@ textarea{
 }
 
 .bar.bar-positive {
-  background-color: rgba(255,76,10,.66) !important; /* or transparent, or background:none */
+  background-color: rgba(255,76,10,.66) !important; 
 }
 
 .scroll-content {
