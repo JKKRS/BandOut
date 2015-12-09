@@ -3,10 +3,31 @@ angular.module('main.editProfile', ['main.services'])
 .controller('editProfileCtrl', editProfileCtrl);
 
 function editProfileCtrl($scope, $state, User, UserService, store) {
-  // Default user values
+
   $scope.user = store.get('userData');
-  console.log($scope.user);
+
+
+  // Strip the beginning of the paypal URL
+  if ($scope.user.artist_info) {
+    url = $scope.user.artist_info.paypal_link;
+    if (url) {
+      var index = url.lastIndexOf('/');
+      pp_id = url.substr(index + 1);
+      $scope.user.artist_info.paypal_link = pp_id;
+    }
+  }
+
+  $scope.initialState = [
+    $scope.user.artist_info.artist_name,
+    $scope.user.artist_info.paypal_link,
+    $scope.user.twitter,
+    $scope.user.artist_info.website,
+    $scope.user.artist
+  ];
+
+  $scope.disableSave = true;
   $scope.initialLoad = true;
+
 
   // Watch these fields for changes, disable save if nothing has changed
   $scope.$watchGroup([
@@ -25,46 +46,18 @@ function editProfileCtrl($scope, $state, User, UserService, store) {
       }
   });
 
-  // Get the current logged in user using FB.getLoginStatus(); and set scope vars
-  $scope.retrieveUser = function() {
-    UserService.getUser()
-    .then(function(res) {
-      var pp_id, url;
-
-      $scope.user = res;
-
-      // Strip the beginning of the paypal URL
-      if (res.artist_info) {
-        url = $scope.user.artist_info.paypal_link;
-        if (url) {
-          var index = url.lastIndexOf('/');
-          pp_id = url.substr(index + 1);
-          $scope.user.artist_info.paypal_link = pp_id;
-        }
-      }
-    }).then(function() {
-      $scope.disableSave = true;
-      $scope.initialState = [
-        $scope.user.artist_info.artist_name,
-        $scope.user.artist_info.paypal_link,
-        $scope.user.twitter,
-        $scope.user.artist_info.website,
-        $scope.user.artist
-      ];
-    });
-  };
-
   // Create new user from scope vars, and submit PUT request to server
   $scope.saveUser = function() {
 
     var paypal = 'https://paypal.me/' + $scope.user.artist_info.paypal_link;
+
     var user = NewUser(
-        $scope.user.artist,
-        $scope.user.artist_info.artist_name,
-        $scope.user.twitter,
-        paypal,
-        $scope.user.artist_info.website,
-        $scope.user.artist_info.upcoming_events
+      $scope.user.artist,
+      $scope.user.artist_info.artist_name,
+      $scope.user.twitter,
+      paypal,
+      $scope.user.artist_info.website,
+      $scope.user.artist_info.upcoming_events
     );
 
     User.update({ 'fbid' : $scope.user.fbid }, user);
@@ -91,9 +84,6 @@ function editProfileCtrl($scope, $state, User, UserService, store) {
     var current = $scope.user.artist;
     $scope.user.artist = !current;
   };
-
-
-  $scope.retrieveUser();
 }
 
 // Constructor function to create new users
