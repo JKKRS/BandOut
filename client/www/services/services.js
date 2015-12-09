@@ -98,7 +98,7 @@ angular.module('main.services', ['ngResource'])
       Device.get({
         'deviceId': device_data.device_id
       }).$promise.then(function(val) {
-        if (val.nouser) {
+        if (val.noDevice) {
           Device.save(device_data, function(dev) {
             console.log('saved device', dev);
             resolve(dev);

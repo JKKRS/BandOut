@@ -1,7 +1,7 @@
 angular.module('main.nearbyArtists', ['uiGmapgoogle-maps'])
 .controller('nearbyArtistsController', NearbyArtistsController);
 
-function NearbyArtistsController($scope, $stateParams, $window, $timeout, $ionicLoading, $ionicPopup, $cordovaGeolocation, $cordovaInAppBrowser, $cordovaLaunchNavigator, $compile, $http, API_URL) {
+function NearbyArtistsController($scope, $stateParams, $window, $timeout, $ionicLoading, $ionicPopup, $cordovaGeolocation, $cordovaInAppBrowser, $cordovaLaunchNavigator, $compile, $http, API_URL, store, DeviceService) {
   var markersArray = [];
 
   function clearOverlays() {
@@ -66,6 +66,10 @@ function NearbyArtistsController($scope, $stateParams, $window, $timeout, $ionic
       enableHighAccuracy: false
     })
       .then(function(pos) {
+        var device_info = {
+          'location.coordinates': [pos.coords.longitude, pos.coords.latitude]
+        };
+        DeviceService.updateDevice(device_info);
         map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
         $ionicLoading.hide();
 
