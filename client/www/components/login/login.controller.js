@@ -2,12 +2,15 @@ angular.module('main.fbLogin', ['main.services'])
 
 .controller('LoginCtrl', LoginCtrl);
 
-function LoginCtrl($scope, $state, $q, $location, UserService, User, $ionicLoading, store, auth) {
+function LoginCtrl($scope, $state, $q, $location, UserService, DeviceService, User, $ionicLoading, store, auth) {
 
   // Success callback for login
   var loginSuccess = function(profile, token, accessToken, state, refreshToken) {
     // Success callback
     profile.user_id = profile.user_id.substr(9);
+    var device_id = store.get('device_token');
+    console.log(device_id);
+    DeviceService.setDevice({device_id: device_id});
     UserService.setUser(profile).then(function(user) {
       store.set('userData', user);
       store.set('artist', store.get('userData').artist);
