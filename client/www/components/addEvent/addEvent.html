@@ -1,73 +1,44 @@
 <ion-view class="addEvent" title="Add Show">
-  <ion-content overflow-scroll="false" padding="true" class="has-header">
+  <ion-content class="has-header" overflow-scroll="false" padding="true">
+    <!-- Forms for adding new events  -->
     <div class="card">
       <h4>Event Info</h4>
-      <!-- Ng-submit?? Ng-click -->
       <form name="addEventForm" novalidate>
 
         <div class="form-group">
           <label class="item item-input" name="Title">Title
-            <input type="text" class="form-control" ng-model="user.title" required>
+            <input class="form-control" ng-model="user.title" required type="text">
           </label>
         </div>
 
         <div class="form-group">
           <label class="item item-input" name="Date">Event Date
-            <input type="date" class="form-control" ng-model="user.date" value="Event Date" required>
+            <input class="form-control" ng-model="user.date" required type="date" value="Event Date">
           </label>
         </div>
 
         <div class="form-group">
           <label class="item item-input" name="Time">Event Time
-            <input type="time" class="form-control" ng-model="user.time" value="Time" required>
+            <input class="form-control" ng-model="user.time" required type="time" value="Time">
           </label>
         </div>
 
         <div class="form-group">
           <label class="item item-input" name="Description">Description
-            <textarea type="text" class= "form-control" ng-model="user.description" maxLength= "140"></textarea>
+            <textarea class="form-control" maxLength="140" ng-model="user.description" type="text"></textarea>
           </label>
         </div>
 
+        <!-- Google autocomplete services -->
         <h4>Location</h4>
+        <div>
+          <ion-google-place location-changed="locationChanged" ng-model="user.locQuery" placeholder="Your Address"/>
+        </div>
 
-      <!--   <div class="form&#45;group"> -->
-      <!--     <label class="item item&#45;input" name="VenueName">Venue Name -->
-      <!--       <input type="text" class="form&#45;control" ng&#45;model="user.venueName" required> -->
-      <!--     </label> -->
-      <!--   </div> -->
-      <!--  -->
-      <!--   <div class="form&#45;group"> -->
-      <!--     <label class="item item&#45;input" name="VenueAddress">Venue Address -->
-      <!--       <input type="text" class="form&#45;control" ng&#45;model="user.venueAddress" required> -->
-      <!--     </label> -->
-      <!--   </div> -->
-      <!--  -->
-      <!--   <div class="form&#45;group"> -->
-      <!--     <label class="item item&#45;input" name="VenueCity">City -->
-      <!--       <input type="text" class="form&#45;control" ng&#45;model="user.venueCity" required> -->
-      <!--     </label> -->
-      <!--   </div> -->
-      <!--  -->
-      <!--   <!&#45;&#45; Country not neccessarily needed, here -->
-      <!--   <label class="item item&#45;input" name="VenueCountry"> -->
-      <!--   <input type="text" placeholder="Country" ng&#45;model="user.venueCountry"> -->
-      <!-- </label> -->
-      <!--   &#45;&#45;> -->
-      <!--   <div class="form&#45;group"> -->
-      <!--     <label class="item item&#45;input" name="VenueZip">Zip -->
-      <!--       <input type="text" class="form&#45;control" ng&#45;model="user.venueZip" required> -->
-      <!--     </label> -->
-      <!--   </div> -->
-      <!-- </div> -->
-    <div>
-      <ion-google-place placeholder="Your Address" ng-model="user.locQuery"
-      location-changed="locationChanged" />
+        <button class="button button-stable button-block  icon-left ion-checkmark" ng-click="saveEvent()" ng-disabled="addEventForm.$invalid">Save Event</button>
+
+      </form>
     </div>
-    <button class="button button-stable button-block  icon-left ion-checkmark" ng-click="saveEvent()" ng-disabled="addEventForm.$invalid">Save Event</button>
-
-    </form>
-  </div>
 
   </ion-content>
-  </ion-iew>
+</ion-iew>
