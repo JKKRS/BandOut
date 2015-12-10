@@ -76,7 +76,6 @@ h2, h4 {
   .brandName{
     color: white;
   }
-
   .login-container {
       display: -webkit-flex;
       -webkit-flex-direction: column;
@@ -161,8 +160,8 @@ h2, h4 {
 }
 
 img {
-  width: 100%;
-  height: 100%;
+  width: 300px;
+  height: 300px;
 }
 
 .artistList{
@@ -321,6 +320,7 @@ body #a0-lock.a0-theme-default .a0-panel,
 .mapImage{
   width:70px;
   height:70px;
+  margin: auto;
 }
 
 .iw-icon{
@@ -330,11 +330,11 @@ body #a0-lock.a0-theme-default .a0-panel,
   top: 15px;
 }
 #container  .iw-title {
-  width: 200px;
+  width: auto;
   font-family: 'Open Sans Condensed', sans-serif;
   font-size: 22px;
   font-weight: 400;
-  padding: 10px;
+  padding: 5px;
   background-color: $positive;
   color: white;
   margin: 1px;
@@ -345,7 +345,7 @@ body #a0-lock.a0-theme-default .a0-panel,
   text-align: center;
 }
 .gm-style-iw {
-   width: 200px !important;
+   width: auto !important;
    top: 15px !important;
    left: 0 !important;
    background-color: #3a3a3a;

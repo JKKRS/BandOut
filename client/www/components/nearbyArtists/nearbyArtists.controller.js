@@ -150,7 +150,7 @@ function NearbyArtistsController($scope, $stateParams, $window, $timeout, $ionic
     var contentString = '<ion-item id="container">' +
       '<div class="iw-title">' + item.name + '</div>' +
       '<div class= "mapImage"><img class= "mapImage" src="'+ item.image +'"/></div>'+
-      // '<i class="icon positive ion-ios-navigate-outline iw-icon" ng-click="markerDirection()"></i>'+
+      '<i class="icon positive ion-ios-navigate-outline iw-icon" ng-click="markerDirection()"></i>'+
       // '<div class="iw-bottom-gradient"></div>'+
       '</ion-item>';
       console.log("Item: ", item);
@@ -176,12 +176,11 @@ function NearbyArtistsController($scope, $stateParams, $window, $timeout, $ionic
       // Moves the arrow 76px to the left margin
       iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'right: 90px !important;';});
 
-      iwBackground.children(':nth-child(3)').find('div').children().css({'box-shadow': 'rgba(72, 181, 233, 0.6) 0px 1px 6px', 'z-index' : '1'});
+      iwBackground.children(':nth-child(3)').find('div').children().css({'background-color' : '#3a3a3a', 'z-index' : '1'});
       var iwCloseBtn = iwOuter.next();
       // Apply the desired effect to the close button
       iwCloseBtn.css({'display' : 'none'});
     });
-
       // marker.addListener('click', function() {
       //   infowindow.open(targetMap, marker);
       // });
