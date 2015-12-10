@@ -27,8 +27,8 @@ $item-light-text:                 $light !default;
 
 $base-background-color:           $darkColor !default; // #fff
 
-$button-stable-bg:                $positive!default; //$stable
-$button-stable-border:            $positive!default;
+$button-stable-bg:                $positive !default; //$stable
+$button-stable-border:            $positive !default;
 $button-stable-text:              $light !default;
 
 $item-default-bg:                 $midColor !default;
@@ -71,31 +71,29 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 h2, h4 {
   color: #fff;
 }
+// Styling exclusive to login.html
+.login-page{
+  .brandName{
+    color: white;
+  }
 
-.brandName{
-  color: white;
-}
-
-.login-container {
-    display: -webkit-flex;
-    -webkit-flex-direction: column;
-    height: 100%;
-}
-.login-container > .button-row img {
-    max-width: 80%;
-}
-.login-container > .header {
-    -webkit-flex: 4;
-    padding-top: 20px;
+  .login-container {
+      display: -webkit-flex;
+      -webkit-flex-direction: column;
+      height: 100%;
+  }
+  .login-container > .button-row img {
+      max-width: 80%;
+  }
+  .login-container > .header {
+      -webkit-flex: 4;
+      padding-top: 20px;
+  }
 }
 
 .logout{
   border: none;
   background-color: rgba(255,76,10,.66) !important;
-}
-
-.artist{
-  align: center;
 }
 
 .item-left {
@@ -105,6 +103,7 @@ h2, h4 {
   float: right;
 }
 
+// Styling exclusive for editProfile.html
 .edit-profile {
   .username-label {
     font-weight: 700;
@@ -153,8 +152,8 @@ h2, h4 {
 }
 
 img {
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  height: 100%;
 }
 
 .artistList{
@@ -208,7 +207,7 @@ input{
   text-align: right;
 }
 
-textarea{
+textarea {
   text-align: right;
   resize: none;
 }
@@ -313,7 +312,6 @@ body #a0-lock.a0-theme-default .a0-panel,
 .mapImage{
   width:70px;
   height:70px;
-  float: left;
 }
 
 .iw-icon{
@@ -323,21 +321,22 @@ body #a0-lock.a0-theme-default .a0-panel,
   top: 15px;
 }
 #container  .iw-title {
-   font-family: 'Open Sans Condensed', sans-serif;
-   font-size: 22px;
-   font-weight: 400;
-   padding: 10px;
-   background-color: $positive;
-   color: white;
-   margin: 1px;
-   border-radius: 2px 2px 0 0; /* In accordance with the rounding of the default infowindow corners. */
+  width: 200px;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  padding: 10px;
+  background-color: $positive;
+  color: white;
+  margin: 1px;
+  border-radius: 2px 2px 0 0; /* In accordance with the rounding of the default infowindow corners. */
 }
 
 .iw-title{
   text-align: center;
 }
 .gm-style-iw {
-   width: auto !important;
+   width: 200px !important;
    top: 15px !important;
    left: 0 !important;
    background-color: #3a3a3a;
