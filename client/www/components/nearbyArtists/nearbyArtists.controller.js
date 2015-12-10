@@ -176,7 +176,7 @@ function NearbyArtistsController($scope, $stateParams, $window, $timeout, $ionic
       // Moves the arrow 76px to the left margin
       iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'right: 90px !important;';});
 
-      iwBackground.children(':nth-child(3)').find('div').children().css({'background-color' : '#3a3a3a'});
+      iwBackground.children(':nth-child(3)').find('div').children().css({'background-color' : '#3a3a3a', 'z-index' : '1'});
       var iwCloseBtn = iwOuter.next();
       // Apply the desired effect to the close button
       iwCloseBtn.css({'display' : 'none'});
