@@ -326,3 +326,12 @@ body #a0-lock.a0-theme-default .a0-panel,
    border: 1px solid rgba(255, 76, 10, 1);
    border-radius: 2px 2px 10px 10px;
 }
+
+.edit-event, .add-event {
+  input {
+    text-align: left;
+  }
+  .input-label {
+    font-size: 18px;
+  }
+}
