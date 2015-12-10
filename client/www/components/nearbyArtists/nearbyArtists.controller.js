@@ -149,7 +149,6 @@ function NearbyArtistsController($scope, $stateParams, $window, $timeout, $ionic
     var contentString = '<ion-item id="container">' +
       '<div class="iw-title">' + item.name + '</div>' +
       '<img class= "mapImage" src="'+ item.image +'"/>'+
-      '<i class="icon positive ion-ios-checkmark-outline iw-icon"></i>'+
       '<i class="icon positive ion-ios-navigate-outline iw-icon" ng-click="markerDirection()"></i>'+
       '<div class="iw-bottom-gradient"></div>'+
       '</ion-item>';
