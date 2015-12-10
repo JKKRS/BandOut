@@ -51,7 +51,7 @@ function eventViewCtrl($scope, $stateParams, $cordovaGeolocation, $cordovaLaunch
       console.log(from, to);
       $cordovaLaunchNavigator.navigate(to, from)
         .then(function(res) {
-          console.log(res);
+
         }, function(err) {
           console.error(err);
         });
