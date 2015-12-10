@@ -27,7 +27,7 @@ angular.module('ion-place-tools', [])
         locationChanged: '&'
       },
       link: function(scope, element, attrs, ngModel) {
-        scope.dropDownActive = true;
+        scope.dropDownActive = false;
         var service = new google.maps.places.AutocompleteService();
         var searchEventTimeout;
         var latLng = null;
