@@ -17,37 +17,41 @@ $dark:                            #444 !default;
 
 // Start of custom Saas 
 $positive:                        #ff4c0a !default; //#387ef5
-$light                            #fff !default;
+$light:                           #fff !default;
+$lightColor:                      #4a4a4a !default;
+$midColor:                        #3a3a3a !default;
+$darkColor:                       #2b2b2b !default;
+
 
 $item-light-text:                 $light !default;
 
-$base-background-color:           #2b2b2b !default; // #fff
+$base-background-color:           $darkColor !default; // #fff
 
 $button-stable-bg:                $positive!default; //$stable
 $button-stable-border:            $positive!default;
 $button-stable-text:              $light !default;
 
-$item-default-bg:                 #3a3a3a !default;
-$item-default-active-bg:          #2b2b2b !default;
-$item-default-border:             #4a4a4a !default;
+$item-default-bg:                 $midColor !default;
+$item-default-active-bg:          $darkColor !default;
+$item-default-border:             $lightColor !default;
 $item-default-text:               $light !default;
-$item-default-active-border:      #2b2b2b !default;
+$item-default-active-border:      $darkColor !default;
 
 
 $item-divider-bg:                 #6a6a6a !default;
 
-$input-bg:                        #3a3a3a !default;
+$input-bg:                        $midColor !default;
 $input-color:                     $light !default;
 $input-color-placeholder:         $light !default;
 $input-label-color:               $light !default;
 
-$card-body-bg:                    #3a3a3a !default;
-$card-border-color:               #2b2b2b !default;
+$card-body-bg:                    $midColor !default;
+$card-border-color:               $darkColor !default;
 
 $toggle-handle-off-bg-color:      #5a5a5a !default;
 $toggle-handle-on-bg-color:       $positive !default;
-$toggle-off-bg-color:             #3a3a3a !default;
-$toggle-off-border-color:         #4a4a4a !default;
+$toggle-off-bg-color:             $midColor !default;
+$toggle-off-border-color:         $lightColor !default;
 
 
 
@@ -101,15 +105,6 @@ h2, h4 {
   float: right;
 }
 
-.edit-event, .add-event {
-  input {
-    text-align: left;
-  }
-  .input-label {
-    font-size: 18px;
-  }
-}
-
 .edit-profile {
   .username-label {
     font-weight: 700;
@@ -145,6 +140,15 @@ h2, h4 {
     color: red;
     text-align: center;
     font-size: 14px;
+  }
+}
+
+.edit-event, .add-event {
+  input {
+    text-align: left;
+  }
+  .input-label {
+    font-size: 18px;
   }
 }
 
@@ -341,3 +345,4 @@ body #a0-lock.a0-theme-default .a0-panel,
    border: 1px solid rgba(255, 76, 10, 1);
    border-radius: 2px 2px 10px 10px;
 }
+
