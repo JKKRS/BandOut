@@ -17,30 +17,37 @@ $dark:                            #444 !default;
 
 // Start of custom Saas 
 $positive:                        #ff4c0a !default; //#387ef5
-$item-light-text:                 #fff !default;
+$light                            #fff !default;
 
-$base-background-color:           #2b2b2b !default; //#fff
+$item-light-text:                 $light !default;
 
-$button-stable-bg:                #ff4c0a !default; //$stable
-$button-stable-border:            #ff4c0a !default;
-$button-stable-text:              #fff !default;
+$base-background-color:           #2b2b2b !default; // #fff
+
+$button-stable-bg:                $positive!default; //$stable
+$button-stable-border:            $positive!default;
+$button-stable-text:              $light !default;
 
 $item-default-bg:                 #3a3a3a !default;
 $item-default-active-bg:          #2b2b2b !default;
 $item-default-border:             #4a4a4a !default;
-$item-default-text:               #fff !default;
+$item-default-text:               $light !default;
 $item-default-active-border:      #2b2b2b !default;
 
 
 $item-divider-bg:                 #6a6a6a !default;
 
 $input-bg:                        #3a3a3a !default;
-$input-color:                     #fff !default;
-$input-color-placeholder:         #fff !default;
-$input-label-color:               #fff !default;
+$input-color:                     $light !default;
+$input-color-placeholder:         $light !default;
+$input-label-color:               $light !default;
 
 $card-body-bg:                    #3a3a3a !default;
 $card-border-color:               #2b2b2b !default;
+
+$toggle-handle-off-bg-color:      #5a5a5a !default;
+$toggle-handle-on-bg-color:       $positive !default;
+$toggle-off-bg-color:             #3a3a3a !default;
+$toggle-off-border-color:         #4a4a4a !default;
 
 
 
@@ -301,7 +308,6 @@ body #a0-lock.a0-theme-default .a0-panel,
   padding: 5px;
   position: relative;
   top: 15px;
-
 }
 #container  .iw-title {
    font-family: 'Open Sans Condensed', sans-serif;
@@ -321,7 +327,7 @@ body #a0-lock.a0-theme-default .a0-panel,
    width: auto !important;
    top: 15px !important;
    left: 0 !important;
-   background-color: #fff;
+   background-color: #3a3a3a;
    box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
    border: 1px solid rgba(255, 76, 10, 1);
    border-radius: 2px 2px 10px 10px;
