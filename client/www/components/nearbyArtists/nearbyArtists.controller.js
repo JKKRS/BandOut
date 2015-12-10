@@ -77,6 +77,7 @@ function NearbyArtistsController($scope, $stateParams, $window, $timeout, $ionic
         var myLocation = new google.maps.Marker({
           position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
           map: map,
+          icon:"https://goo.gl/CmeqRi",
           title: "My Location"
         });
 
