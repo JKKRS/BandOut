@@ -9,10 +9,10 @@
       </label>
     </div>
     <ion-list show-delete="false" can-swipe="true">
-    <ion-toggle toggle-class="toggle-positive" ng-click="toggleFavorite()">Show Favorites</ion-toggle>
-    <ion-toggle toggle-class="toggle-positive" ng-click="toggleLive()">Show Live Artists</ion-toggle>
+    <ion-toggle toggle-class="toggle-positive" ng-click="toggleFavorite()" style="width: 50%; float: right">Favorites</ion-toggle>
+    <ion-toggle toggle-class="toggle-positive" ng-click="toggleLive()" style="width: 50%">Live</ion-toggle>
     <div class="list">
-      <ion-item 
+      <ion-item
       class="item item-thumbnail-left artistList"
       collection-repeat="artist in artists | filter:searchText | filter:filterByFavorite | filter:filterByLive"
       collection-item-height = "100px"
@@ -20,7 +20,7 @@
         <img ng-src="{{ artist.image }}">
         <h2>{{ artist.artist_info.artist_name || artist.name }}</h2>
         <h4>{{ artist.email }}</h4>
-        <h4>{{ artist.twitter }}</h4>  
+        <h4>{{ artist.twitter }}</h4>
         <h4>Upcoming Event: {{ artist.artist_info.upcoming_events[0].datetime | date: 'MMM d, y' }} </h4>
         <h4 class="defaultValue" ng-hide="artist.artist_info.upcoming_events[0].datetime"> None Yet!</h4>
         <div class="item-icon-right">
