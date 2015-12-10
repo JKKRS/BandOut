@@ -181,7 +181,6 @@ function NearbyArtistsController($scope, $stateParams, $window, $timeout, $ionic
       // Apply the desired effect to the close button
       iwCloseBtn.css({'display' : 'none'});
     });
-// 'box-shadow': 'rgba(255, 76, 10 1) 0px 1px 6px', 'z-index' : '1'
       // marker.addListener('click', function() {
       //   infowindow.open(targetMap, marker);
       // });
