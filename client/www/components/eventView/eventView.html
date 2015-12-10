@@ -1,47 +1,31 @@
-<ion-view title="Event">
-<ion-content padding="true" class="has-header">
-<div class="list card event-view" ng-model="event">
-    <div class="item item-divider">Event Information</div>
-    <!-- <div class="item item-body"> -->
-        <!-- <div class="list" ng-model='event'> -->
-            <div class="item" name="title">
-                <div class="item-left">Title</div>
-                <div class="item-right">{{event.title}}</div>
-            </div>
-            <div class="item" name="date">
-                <div class="item-left">Date</div>
-                <div class="item-right">{{ event.datetime | date: 'fullDate' }}</div>
-            </div>
-            <div class="item" name="time">
-                <div class="item-left">Time</div>
-                <div class="item-right">{{ event.datetime | date: 'h:mm a' }}</div>
-            </div>
-            <div class="item" name="description">
-                <div class="item-left">Description</div>
-                <textarea class="item-right" row= "4">{{event.description}}</textarea>
-            </div>
-        <!-- </div> -->
-    <!-- </div> -->
-    <div class="item item-divider">Venue Information</div>
-    <!-- <div class="item item-body"> -->
-        <!-- <div class="list"> -->
-            <div class="item" name="venueName">
-                <div class="item-left">Name</div>
-                <div class="item-right">{{event.venue.name}}</div>
-            </div>
-            <div class="item" name="venueCity">
-                <div class="item-left">City</div>
-                <div class="item-right">{{event.venue.city}}</div>
-            </div>
-            <div class="item" name="venueCountry">
-                <div class="item-left">Country</div>
-                <div class="item-right">{{event.venue.country}}</div>
-            </div>
-        <!-- </div> -->
-    <!-- </div> -->
-</div>
-<div>
-<div id="map" style="height:250px;" data-tap-disabled="true"></div>
-</div>
-</ion-content>
+<ion-view title="Event" class="event-view">
+  <ion-content padding="true" class="has-header">
+    <div class="list card event-view" ng-model="event">
+      <div class="item item-divider">Event Information</div>
+      <div class="item" name="title">
+        <div class="item-left">Title</div>
+        <div class="item-right">{{event.title}}</div>
+      </div>
+      <div class="item" name="date">
+        <div class="item-left">Date</div>
+        <div class="item-right">{{ event.datetime | date: 'fullDate' }}</div>
+      </div>
+      <div class="item" name="time">
+        <div class="item-left">Time</div>
+        <div class="item-right">{{ event.datetime | date: 'h:mm a' }}</div>
+      </div>
+      <div class="item" name="description">
+        <div class="item-left">Description</div>
+        <div class="item-right">{{event.description}}</div>
+      </div>
+      <div class="item item-divider">Venue Information</div>
+      <div class="item item-input item-stacked-label" name="venueName">
+        <span class="input-label event-address">Address</span>
+        <div class="event-address">{{event.venue.name}}</div>
+      </div>
+    </div>
+    <div>
+      <div id="map" style="height:250px;" data-tap-disabled="true"></div>
+    </div>
+  </ion-content>
 </ion-view>

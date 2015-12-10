@@ -10,14 +10,12 @@ function editEventCtrl($scope, $state, User, $stateParams, UserService) {
   $scope.event.date = new Date($scope.event.datetime);
   $scope.event.time = new Date($scope.event.datetime);
 
-  // console.log('date',$scope.event.date);
-  // console.log('time',$scope.event.time);
-
   var geocoder = new google.maps.Geocoder();
 
   $scope.updateEvent = function() {
     geocoder.geocode({
-      'address': $scope.event.venue.address + ' ' + $scope.event.venue.city + ' ' + $scope.event.venue.zip
+      'address': $scope.event.venue.name
+      // Name is actually address ^
     }, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
         $scope.location.lat = results[0].geometry.location.lat();
@@ -28,7 +26,6 @@ function editEventCtrl($scope, $state, User, $stateParams, UserService) {
       }
 
       var timestamp = UserService.createTimestamp($scope.event.date, $scope.event.time);
-      // console.log(timestamp);
 
       UserService.getUser()
         .then(function(res) {
@@ -48,5 +45,10 @@ function editEventCtrl($scope, $state, User, $stateParams, UserService) {
         });
 
     });
+  };
+
+  //Google location completion
+  $scope.locationChanged = function(val) {
+    $scope.event.venueName = val.description;
   };
 }

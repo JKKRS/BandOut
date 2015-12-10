@@ -25,25 +25,10 @@
 
 
       <div class="item item-divider">Venue Information</div>
-          <label class="item item-input item-stacked-label" name="venueName">
-            <span class="input-label">Name</span>
-            <input type="text" class="form-control" ng-model="event.venue.name" required>
-          </label>
-
-          <label class="item item-input item-stacked-label" name="venueCity">
+          <div class="item item-input item-stacked-label" name="venueAddress">
             <span class="input-label">Address</span>
-            <input type="text" class="form-control" ng-model="event.venue.address" required>
-          </label>
-
-          <label class="item item-input item-stacked-label" name="venueCity">
-            <span class="input-label">City</span>
-            <input type="text" class="form-control" ng-model="event.venue.city" required>
-          </label>
-
-          <label class="item item-input item-stacked-label" name="venueZip">
-            <span class="input-label">Zip Code</span>
-            <input type="text" class="form-control" g-model="event.venue.zip" required>
-          </label>
+            <ion-google-place location-changed="locationChanged" ng-model="event.venue.name" class="address"/>
+          </div>
         <button class="button button-stable button-block icon-left ion-ios-checkmark-outline" ng-click="updateEvent()" ng-disabled="editEventForm.$invalid">Update Event</button>
         </form>
     </div>
