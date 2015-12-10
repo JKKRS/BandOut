@@ -1,41 +1,33 @@
 <ion-view class="addEvent" title="Add Show">
   <ion-content class="has-header" overflow-scroll="false" padding="true">
     <!-- Forms for adding new events  -->
-    <div class="card">
+    <div class="card add-event">
       <div class="item item-divider">Event Info</div>
       <!-- Ng-submit?? Ng-click -->
       <form name="addEventForm" novalidate>
 
-        <div class="form-group">
-          <label class="item item-input" name="Title">Title
+          <label class="item item-input item-stacked-label" name="Title">Title
             <input class="form-control" ng-model="user.title" required type="text">
           </label>
-        </div>
 
-        <div class="form-group">
-          <label class="item item-input" name="Date">Event Date
+          <label class="item item-input item-stacked-label" name="Date">Event Date
             <input class="form-control" ng-model="user.date" required type="date" value="Event Date">
           </label>
-        </div>
 
-        <div class="form-group">
-          <label class="item item-input" name="Time">Event Time
+          <label class="item item-input item-stacked-label" name="Time">Event Time
             <input class="form-control" ng-model="user.time" required type="time" value="Time">
           </label>
-        </div>
 
-        <div class="form-group">
-          <label class="item item-input" name="Description">Description
-            <textarea class="form-control" maxLength="140" ng-model="user.description" type="text"></textarea>
+          <label class="item item-input item-stacked-label" name="Description">Description
+            <input class="form-control" maxLength="140" ng-model="user.description" type="text">
           </label>
-        </div>
 
         <!-- Google autocomplete services -->
         <div class="item item-divider">Location</div>
         <div>
           <ion-google-place location-changed="locationChanged" ng-model="user.locQuery" placeholder="Your Address"/>
         </div>
-        <button class="button button-stable button-block  icon-left ion-checkmark" ng-click="saveEvent()" ng-disabled="addEventForm.$invalid">Save Event</button>
+        <button class="button button-stable button-block icon-left ion-checkmark" ng-click="saveEvent()" ng-disabled="addEventForm.$invalid">Save Event</button>
 
       </form>
     </div>
