@@ -101,6 +101,15 @@ h2, h4 {
   float: right;
 }
 
+.edit-event, .add-event {
+  input {
+    text-align: left;
+  }
+  .input-label {
+    font-size: 18px;
+  }
+}
+
 .edit-profile {
   .username-label {
     font-weight: 700;
@@ -331,13 +340,4 @@ body #a0-lock.a0-theme-default .a0-panel,
    box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
    border: 1px solid rgba(255, 76, 10, 1);
    border-radius: 2px 2px 10px 10px;
-}
-
-.edit-event, .add-event {
-  input {
-    text-align: left;
-  }
-  .input-label {
-    font-size: 18px;
-  }
 }
