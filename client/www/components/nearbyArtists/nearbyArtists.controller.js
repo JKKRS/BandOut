@@ -3,6 +3,7 @@ angular.module('main.nearbyArtists', ['uiGmapgoogle-maps'])
 
 function NearbyArtistsController($scope, $stateParams, $window, $timeout, $ionicLoading, $ionicPopup, $cordovaGeolocation, $cordovaInAppBrowser, $cordovaLaunchNavigator, $compile, $http, API_URL, store, DeviceService) {
   var markersArray = [];
+  $scope.currentWindow = null;
 
   function clearOverlays() {
     for (var i = 0; i < markersArray.length; i++) {
@@ -170,9 +171,9 @@ function NearbyArtistsController($scope, $stateParams, $window, $timeout, $ionic
       iwBackground.children(':nth-child(2)').css({'display' : 'none'});
       iwBackground.children(':nth-child(4)').css({'display' : 'none'});
 
-      // Moves the shadow of the arrow 76px to the left margin 
+      // Moves the shadow of the arrow 76px to the left margin
       iwBackground.children(':nth-child(1)').attr('style', function(i,s){ return s + 'right: 90px !important;';});
-      // Moves the arrow 76px to the left margin 
+      // Moves the arrow 76px to the left margin
       iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'right: 90px !important;';});
 
       iwBackground.children(':nth-child(3)').find('div').children().css({'box-shadow': 'rgba(72, 181, 233, 0.6) 0px 1px 6px', 'z-index' : '1'});
@@ -186,7 +187,9 @@ function NearbyArtistsController($scope, $stateParams, $window, $timeout, $ionic
       // });
 
     google.maps.event.addListener(marker, 'click', function() {
+      if ($scope.currentWindow !== null) { $scope.currentWindow.close(); }
       infowindow.open(map, marker);
+      $scope.currentWindow = infowindow;
     });
 
     google.maps.event.addListener(map, 'click', function() {
