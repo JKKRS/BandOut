@@ -1,11 +1,37 @@
 angular.module('main.goLive', [])
   .controller('GoLiveCtrl', GoLiveCtrl);
 
-function GoLiveCtrl($scope, store, User, $cordovaGeolocation, $ionicModal, $ionicLoading) {
+function GoLiveCtrl($scope, store, User, $cordovaGeolocation, $ionicModal, $ionicLoading, Artist, $window) {
   // check if current user is artist. ng-show functionality
   $scope.isArtist = function() {
     return store.get('artist');
   };
+
+  // conditional title depending on user artist boolean
+  $scope.title = function() {
+    return $scope.isArtist() ? 'Go Live' : 'Live Artists';
+  };
+
+  // populate artists
+  $scope.artists = Artist.query();
+
+  // click handler to open artist paypal link
+  $scope.payPal = function(link) {
+    console.log(link);
+    link = link.toString();
+    $window.open(link, '_blank', 'location=yes');
+  };
+
+  // pull to refresh functionality
+  $scope.refresh = function() {
+    // re-populate artists list with new data
+    Artist.query().$promise.then(function(allArtists) {
+      // Stop the ion-refresher from spinning
+      $scope.artists = allArtists;
+      $scope.$broadcast('scroll.refreshComplete');
+    });
+  };
+
 
   $scope.liveButton = false;
 
