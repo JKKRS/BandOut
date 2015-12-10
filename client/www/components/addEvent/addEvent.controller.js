@@ -28,7 +28,6 @@ function addEventCtrl($scope, User, $state, $stateParams, $cordovaDatePicker, Us
         if (status == google.maps.GeocoderStatus.OK) {
           $scope.location.lat = results[0].geometry.location.lat();
           $scope.location.long = results[0].geometry.location.lng();
-          console.log($scope.location.lat, $scope.location.long);
         } else {
           $scope.location.lat = 34.0775;
           $scope.location.long = 118.4750;

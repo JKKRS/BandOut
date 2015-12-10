@@ -21,12 +21,12 @@
           <label class="item item-input item-stacked-label" name="Description">Description
             <input class="form-control" maxLength="140" ng-model="user.description" type="text">
           </label>
-
         <!-- Google autocomplete services -->
         <div class="item item-divider">Location</div>
-        <div>
-          <ion-google-place location-changed="locationChanged" ng-model="user.locQuery" placeholder="Your Address"/>
-        </div>
+          <div class="item item-input item-stacked-label" name="venueAddress">
+            <span class="input-label">Address</span>
+            <ion-google-place location-changed="locationChanged" ng-model="event.venue.name" class="address"/>
+          </div>
         <button class="button button-stable button-block icon-left ion-checkmark" ng-click="saveEvent()" ng-disabled="addEventForm.$invalid">Save Event</button>
 
       </form>
