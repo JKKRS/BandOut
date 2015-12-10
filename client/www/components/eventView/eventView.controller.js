@@ -33,11 +33,12 @@ function eventViewCtrl($scope, $stateParams, $cordovaGeolocation, $cordovaLaunch
   $scope.map = map;
   resizeMap();
 
-  //Google location completion
+  // Google location completion
   $scope.locationChanged = function(val) {
     $scope.event.venueName = val.description;
   };
 
+  // Open directions from map
   $scope.getDirections = function(eventLatitude, eventLongitude) {
     $cordovaGeolocation.getCurrentPosition({
       timeout: 10000,
@@ -48,7 +49,7 @@ function eventViewCtrl($scope, $stateParams, $cordovaGeolocation, $cordovaLaunch
 
       var from = [currentLatitude, currentLongitude];
       var to = [eventLatitude, eventLongitude];
-      console.log(from, to);
+
       $cordovaLaunchNavigator.navigate(to, from)
         .then(function(res) {
 
