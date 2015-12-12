@@ -6,7 +6,7 @@
       <button class='button button-positive large_button' id="live_button" ng-hide="liveButton" ng-click='goLive()'>
         <i class="icon_custom ion-music-note" id="live_icon"></i>Go Live!</button>
         <button class="button button-positive large_button" id="stop_button" ng-show="liveButton" ng-click="goLive()">Event Finished</button>
-        <div ng-show="liveButton">
+        <div id= "stop_button_text" ng-show="liveButton">
           You Are Now Live!
         </div>
     </div>
