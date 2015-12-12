@@ -309,10 +309,11 @@ textarea {
 
 body #a0-lock.a0-theme-default .a0-panel,
  body #a0-widget .a0-popup .a0-overlay {
-    background: transparent; 
-    background-size: cover;
-    color: white;
-    box-shadow: none;
+  top: 100px;
+  background: transparent; 
+  background-size: cover;
+  color: white;
+  box-shadow: none;
   }
   
 #container{
@@ -321,16 +322,17 @@ body #a0-lock.a0-theme-default .a0-panel,
   padding: 0px
 }
 .mapImage{
+padding: 3px;
   width:70px;
   height:70px;
-  margin: auto;
+  float: left;
 }
 
 .iw-icon{
   font-size: 34px;
-  padding: 5px;
+  padding: 8px;
   position: relative;
-  top: 15px;
+  top: 20px;
 }
 #container  .iw-title {
   width: auto;
