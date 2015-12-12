@@ -301,10 +301,22 @@ textarea {
 
 #live_button {
   border-radius: 4px;
+  position: relative;
+  top: 50%;
+  transform: translateY(150%);
 }
-
 #stop_button {
   border-radius: 4px;
+  position: relative;
+  top: 50%;
+  transform: translateY(425%);
+}
+
+#stop_button_text{
+  color: #fff;
+  position: relative;
+  top: 50%;
+  transform: translateY(1050%);
 }
 
 body #a0-lock.a0-theme-default .a0-panel,
@@ -358,4 +370,5 @@ padding: 3px;
    border: 1px solid rgba(255, 76, 10, 1);
    border-radius: 2px 2px 10px 10px;
 }
+
 
