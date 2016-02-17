@@ -1,11 +1,10 @@
-angular.module('main.artists', ['main.services', 'main.artist'])
+angular.module('main.artists', ['main.services', 'main.artist', 'main.artistList'])
 
 .controller('ArtistsCtrl', ArtistsCtrl);
 
 function ArtistsCtrl($scope, $stateParams, $window, $state, Artist, User, UserService, store) {
   // initial call to populate artists list
   $scope.artists = Artist.query();
-
   // grab user information for store data
   $scope.user = store.get('userData');
 
@@ -56,11 +55,6 @@ function ArtistsCtrl($scope, $stateParams, $window, $state, Artist, User, UserSe
     };
   };
 
-  // click handler for paypal redirect
-  $scope.payPal = function(link) {
-    link = link.toString();
-    $window.open(link, '_blank', 'location=yes');
-  };
 
   // pull to refresh functionality
   $scope.refresh = function() {
@@ -76,14 +70,6 @@ function ArtistsCtrl($scope, $stateParams, $window, $state, Artist, User, UserSe
           });
       }
       $scope.$broadcast('scroll.refreshComplete');
-    });
-  };
-
-  // click handler for state transition. passing artist for $stateparams
-  $scope.artistDetail = function(artist) {
-    $state.go('app.artists.artist', {
-      artist: artist,
-      artistId: artist.fbid
     });
   };
 
