@@ -1,6 +1,6 @@
 <ion-item
       class="item item-thumbnail-left artistList"
-      collection-repeat="artist in listItem.artists | filter: $parent.searchText | filter: $parent.filterByFavorite | filter: $parent.filterByLive"
+      collection-repeat="artist in listItem.artists | filter: $parent.vm.searchText | filter: $parent.vm.filterByFavorite | filter: $parent.vm.filterByLive"
       collection-item-height = "100px"
       ng-click="listItem.artistDetail(artist)">
   <img ng-src="{{ artist.image }}">

@@ -2,35 +2,37 @@ angular.module('main.artists', ['main.services', 'main.artist', 'main.artistList
 
 .controller('ArtistsCtrl', ArtistsCtrl);
 
-function ArtistsCtrl($scope, $stateParams, $window, $state, Artist, User, UserService, store) {
+function ArtistsCtrl($stateParams, $window, $state, Artist, User, UserService, store) {
   // initial call to populate artists list
-  $scope.artists = Artist.query();
+  this.artists = Artist.query();
   // grab user information for store data
-  $scope.user = store.get('userData');
+  this.user = store.get('userData');
 
   // variables for favorite / live toggles
   var favToggled = false;
   var liveToggled = false;
 
   // This object receives info from favorites directive. It needs to be an object because angular inheritance.
-  $scope.obj = {
+  this.obj = {
     favClicked: false
   };
 
   // click handler for favorites toggle
-  $scope.toggleFavorite = function() {
+  this.toggleFavorite = function() {
+    console.log('toggle favorite fired')
     favToggled = !favToggled;
   };
 
   // click handler for live toggle
-  $scope.toggleLive = function() {
+  this.toggleLive = function() {
+    console.log('toggle live fired')
     liveToggled = !liveToggled;
   };
 
   // custom filter for user favorites
-  $scope.filterByFavorite = function(artist) {
+  this.filterByFavorite = artist => {
     if (favToggled) {
-      if ($scope.user.favorite_artists.indexOf(artist.fbid) === -1) {
+      if (this.user.favorite_artists.indexOf(artist.fbid) === -1) {
         return false;
       } else {
         return true;
@@ -40,7 +42,7 @@ function ArtistsCtrl($scope, $stateParams, $window, $state, Artist, User, UserSe
   };
 
   // custom filter for live artists
-  $scope.filterByLive = function(artist) {
+  this.filterByLive = function(artist) {
     if (liveToggled) {
       return artist.live;
     }
@@ -48,19 +50,19 @@ function ArtistsCtrl($scope, $stateParams, $window, $state, Artist, User, UserSe
   };
 
   // pull to refresh functionality
-  $scope.refresh = function() {
+  this.refresh = () => {
     // re-populate artists list with new data
     Artist.query().$promise.then(function(allArtists) {
       // Stop the ion-refresher from spinning
-      $scope.artists = allArtists;
+      this.artists = allArtists;
       // Get user so favorites update, only if user has updated a favorite
-      if ($scope.obj.favClicked === true) {
+      if (this.obj.favClicked === true) {
         UserService.getUser()
           .then(function(res) {
-            $scope.user = res;
+            this.user = res;
           });
       }
-      $scope.$broadcast('scroll.refreshComplete');
+      this.$broadcast('scroll.refreshComplete');
     });
   };
 }
