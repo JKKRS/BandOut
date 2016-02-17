@@ -19,13 +19,11 @@ function ArtistsCtrl($stateParams, $window, $state, Artist, User, UserService, s
 
   // click handler for favorites toggle
   this.toggleFavorite = function() {
-    console.log('toggle favorite fired')
     favToggled = !favToggled;
   };
 
   // click handler for live toggle
   this.toggleLive = function() {
-    console.log('toggle live fired')
     liveToggled = !liveToggled;
   };
 

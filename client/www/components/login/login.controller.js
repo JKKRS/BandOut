@@ -9,18 +9,15 @@ function LoginCtrl($scope, $state, $q, $location, UserService, DeviceService, Us
     // Success callback
     profile.user_id = profile.user_id.substr(9);
     var device_id = store.get('device_token');
-    console.log(device_id);
     DeviceService.setDevice({device_id: device_id});
     UserService.setUser(profile).then(function(user) {
       store.set('userData', user);
       store.set('artist', store.get('userData').artist);
       $state.go('app.artists.index');
     });
-    console.log('Login profile:', profile);
     store.set('profile', profile);
     store.set('token', token);
     store.set('refreshToken', refreshToken);
-    console.log('Login Success');
   };
 
   // Failure callback for login
