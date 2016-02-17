@@ -9,10 +9,10 @@ function editProfileCtrl($scope, $state, User, UserService, store) {
 
   // Strip the beginning of the paypal URL
   if ($scope.user.artist_info) {
-    url = $scope.user.artist_info.paypal_link;
+    var url = $scope.user.artist_info.paypal_link;
     if (url) {
       var index = url.lastIndexOf('/');
-      pp_id = url.substr(index + 1);
+      var pp_id = url.substr(index + 1);
       $scope.user.artist_info.paypal_link = pp_id;
     }
   }
@@ -39,10 +39,10 @@ function editProfileCtrl($scope, $state, User, UserService, store) {
     ], function(newVal, oldVal, scope) {
       if ($scope.initialLoad === true) {
         $scope.initialLoad = false;
-      } else if (JSON.stringify($scope.initialState) !== JSON.stringify(newVal)) {
-        $scope.disableSave = false;
-      } else {
+      } else if (_.isEqual($scope.initialState, newVal)) {
         $scope.disableSave = true;
+      } else {
+        $scope.disableSave = false;
       }
   });
 
