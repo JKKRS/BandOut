@@ -77,6 +77,7 @@ angular.module('main', [
     url: '',
     templateUrl: 'components/artists/artists.html',
     controller: 'ArtistsCtrl',
+    controllerAs: 'vm',
     data: {
       requiresLogin: true
     }

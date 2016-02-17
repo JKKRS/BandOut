@@ -1,20 +1,18 @@
 <ion-view view-title="Artists" ng-init="init()">
   <ion-content>
-    <ion-refresher pulling-text="Pull to refresh..." on-refresh="refresh()">
+    <ion-refresher pulling-text="Pull to refresh..." on-refresh="vm.refresh()">
     </ion-refresher>
     <div class="list list-inset">
       <label class="item item-input">
         <i class="icon ion-search placeholder-icon"></i>
-        <input type="text" style="text-align:center;" placeholder="Search" ng-model="searchText">
+        <input type="text" style="text-align:center;" placeholder="Search" ng-model="vm.searchText">
       </label>
     </div>
     <ion-list show-delete="false" can-swipe="true">
-    <ion-toggle toggle-class="toggle-positive" ng-click="toggleFavorite()" style="width: 50%; float: right">Favorites</ion-toggle>
-    <ion-toggle toggle-class="toggle-positive" ng-click="toggleLive()" style="width: 50%">Live</ion-toggle>
+    <ion-toggle toggle-class="toggle-positive" ng-click="vm.toggleFavorite()" style="width: 50%; float: right">Favorites</ion-toggle>
+    <ion-toggle toggle-class="toggle-positive" ng-click="vm.toggleLive()" style="width: 50%">Live</ion-toggle>
     <div class="list">
-      <artist-list artists="artists"
-      obj= "obj"
-      ></artist-list>
+      <artist-list artists="vm.artists"></artist-list>
     </div>
   </ion-list>
   </ion-content>

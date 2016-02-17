@@ -9,7 +9,7 @@ angular.module('main.artistList', ['main.services'])
     },
     controller: ArtistListItemCtrl,
     controllerAs: 'listItem',
-    templateUrl: '../components/artistListItem/artistList.html'
+    templateUrl: '../components/artistList/artistList.html'
   };
 });
 
