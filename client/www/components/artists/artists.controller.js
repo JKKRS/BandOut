@@ -47,15 +47,6 @@ function ArtistsCtrl($scope, $stateParams, $window, $state, Artist, User, UserSe
     return true;
   };
 
-  // Conditionally set class for heart icon
-  $scope.getClass = function(artist) {
-    return {
-      'ion-ios-heart': $scope.user.favorite_artists.indexOf(artist.fbid) > -1,
-      'ion-ios-heart-outline': $scope.user.favorite_artists.indexOf(artist.fbid) === -1
-    };
-  };
-
-
   // pull to refresh functionality
   $scope.refresh = function() {
     // re-populate artists list with new data
@@ -70,27 +61,6 @@ function ArtistsCtrl($scope, $stateParams, $window, $state, Artist, User, UserSe
           });
       }
       $scope.$broadcast('scroll.refreshComplete');
-    });
-  };
-
-  // Handle favoriting / unfavoriting artists
-  $scope.favorite = function(artist) {
-    var userID = store.get('profile').user_id;
-    User.get({
-      'fbid': userID
-    }, function(currentUser) {
-      var favs = currentUser.favorite_artists || [];
-      if (!_.contains(favs, artist.fbid)) {
-        favs.push(artist.fbid);
-      } else {
-        favs = favs.filter(function(id) {
-          return id !== artist.fbid;
-        });
-      }
-      currentUser.favorite_artists = favs;
-      User.update({
-        'fbid': userID
-      }, currentUser);
     });
   };
 }
