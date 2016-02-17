@@ -14,7 +14,7 @@ angular.module('main.artistList', ['main.services'])
 });
 
 
-function ArtistListItemCtrl($window, $state, store) {
+function ArtistListItemCtrl($window, $state, store, User) {
   this.user = store.get('userData');
 
   this.payPal = function(link) {
@@ -23,7 +23,6 @@ function ArtistListItemCtrl($window, $state, store) {
   };
 
   this.artistDetail = function(artist) {
-    console.log('artist detail fired');
     $state.go('app.artists.artist', {
       artist: artist,
       artistId: artist.fbid
@@ -38,7 +37,6 @@ function ArtistListItemCtrl($window, $state, store) {
   };
 
   this.favorite = function(artist) {
-    console.log('favorite fired');
     var userID = store.get('profile').user_id;
     User.get({
       'fbid': userID
@@ -58,15 +56,6 @@ function ArtistListItemCtrl($window, $state, store) {
     });
   };
 
-
-
-  // function(artist) {
-  //   console.log('get class fired');
-  //   return {
-  //     'ion-ios-heart': $scope.user.favorite_artists.indexOf(artist.fbid) > -1,
-  //     'ion-ios-heart-outline': $scope.user.favorite_artists.indexOf(artist.fbid) === -1
-  //   };
-  // };
 
 }
 
