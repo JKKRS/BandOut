@@ -19,7 +19,8 @@ angular.module('main', [
   'main.yourEvents',
   'main.editEvent',
   'main.goLive',
-  'main.favoriteDir'
+  'main.favoriteDir',
+  'main.artistList'
 ])
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, authProvider, $httpProvider, jwtInterceptorProvider) {

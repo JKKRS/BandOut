@@ -1,0 +1,17 @@
+<ion-item
+      class="item item-thumbnail-left artistList"
+      collection-repeat="artist in listItem.artists | filter: $parent.searchText | filter: $parent.filterByFavorite | filter: $parent.filterByLive"
+      collection-item-height = "100px"
+      ng-click="listItem.artistDetail(artist)">
+  <img ng-src="{{ artist.image }}">
+  <h2>{{ artist.artist_info.artist_name || artist.name }}</h2>
+  <h4>{{ artist.email }}</h4>
+  <h4>{{ artist.twitter }}</h4>
+  <h4>Upcoming Event: {{ artist.artist_info.upcoming_events[0].datetime | date: 'MMM d, y' }} </h4>
+  <h4 class="defaultValue" ng-hide="artist.artist_info.upcoming_events[0].datetime"> None Yet!</h4>
+  <div class="item-icon-right">
+    <i class="icon ion-ios-arrow-left item-right positive"></i>
+  </div>
+  <ion-option-button ng-click="listItem.payPal(artist.artist_info.paypal_link)" class="button-positive icon ion-social-usd"></ion-option-button>
+  <ion-option-button favorite class="{{ heartClass }}" ng-class="$parent.getClass(artist)" ng-click="$parent.favorite(artist)"></ion-option-button>
+</ion-item>
