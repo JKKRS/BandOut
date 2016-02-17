@@ -13,5 +13,5 @@
     <i class="icon ion-ios-arrow-left item-right positive"></i>
   </div>
   <ion-option-button ng-click="listItem.payPal(artist.artist_info.paypal_link)" class="button-positive icon ion-social-usd"></ion-option-button>
-  <ion-option-button favorite class="{{ heartClass }}" ng-class="$parent.getClass(artist)" ng-click="$parent.favorite(artist)"></ion-option-button>
+  <ion-option-button favorite class="{{ heartClass }}" ng-class="listItem.getClass(artist)" ng-click="listItem.favorite(artist)"></ion-option-button>
 </ion-item>
