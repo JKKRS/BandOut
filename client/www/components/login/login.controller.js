@@ -1,6 +1,17 @@
 angular.module('main.fbLogin', ['main.services'])
 
-.controller('LoginCtrl', LoginCtrl);
+.controller('LoginCtrl', LoginCtrl)
+.config(function($stateProvider) {
+  $stateProvider
+  .state('login', {
+    url: '/',
+    templateUrl: 'components/login/login.html',
+    controller: 'LoginCtrl',
+    data: {
+      requiresLogin: false
+    }
+  });
+});
 
 function LoginCtrl($scope, $state, $q, $location, UserService, DeviceService, User, $ionicLoading, store, auth) {
 

@@ -1,5 +1,17 @@
 angular.module('main.goLive', [])
-  .controller('GoLiveCtrl', GoLiveCtrl);
+  .controller('GoLiveCtrl', GoLiveCtrl)
+  .config(function($stateProvider) {
+    $stateProvider
+    .state('app.goLive', {
+      url: '/live',
+      views: {
+        'live': {
+          templateUrl: 'components/goLive/goLive.html',
+          controller: 'GoLiveCtrl'
+        }
+      }
+    });
+  });
 
 function GoLiveCtrl($scope, store, User, $cordovaGeolocation, $ionicModal, $ionicLoading, Artist, $window) {
   // check if current user is artist. ng-show functionality
@@ -17,7 +29,6 @@ function GoLiveCtrl($scope, store, User, $cordovaGeolocation, $ionicModal, $ioni
 
   // click handler to open artist paypal link
   $scope.payPal = function(link) {
-    console.log(link);
     link = link.toString();
     $window.open(link, '_blank', 'location=yes');
   };
@@ -48,7 +59,6 @@ function GoLiveCtrl($scope, store, User, $cordovaGeolocation, $ionicModal, $ioni
         // update current location in database. set live = true
         $scope.fbid = store.get('profile').user_id;
         $scope.coords = [pos.coords.longitude, pos.coords.latitude];
-        console.log($scope.coords);
         User.update({
           'fbid': $scope.fbid
         }, {
