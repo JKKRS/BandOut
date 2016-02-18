@@ -17,7 +17,6 @@ function GoLiveCtrl($scope, store, User, $cordovaGeolocation, $ionicModal, $ioni
 
   // click handler to open artist paypal link
   $scope.payPal = function(link) {
-    console.log(link);
     link = link.toString();
     $window.open(link, '_blank', 'location=yes');
   };
@@ -48,7 +47,6 @@ function GoLiveCtrl($scope, store, User, $cordovaGeolocation, $ionicModal, $ioni
         // update current location in database. set live = true
         $scope.fbid = store.get('profile').user_id;
         $scope.coords = [pos.coords.longitude, pos.coords.latitude];
-        console.log($scope.coords);
         User.update({
           'fbid': $scope.fbid
         }, {

@@ -25,7 +25,6 @@ function MenuCtrl($scope, $state, store, auth, $ionicPopup, UserService, $ionicL
         store.remove('artist');
         $ionicLoading.hide();
         $state.go('login');
-        console.log("You are logged out!");
       } else {
         // cancel logout
       }
