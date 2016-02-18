@@ -1,5 +1,17 @@
 angular.module('main.goLive', [])
-  .controller('GoLiveCtrl', GoLiveCtrl);
+  .controller('GoLiveCtrl', GoLiveCtrl)
+  .config(function($stateProvider) {
+    $stateProvider
+    .state('app.goLive', {
+      url: '/live',
+      views: {
+        'live': {
+          templateUrl: 'components/goLive/goLive.html',
+          controller: 'GoLiveCtrl'
+        }
+      }
+    });
+  });
 
 function GoLiveCtrl($scope, store, User, $cordovaGeolocation, $ionicModal, $ionicLoading, Artist, $window) {
   // check if current user is artist. ng-show functionality

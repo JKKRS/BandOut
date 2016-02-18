@@ -26,7 +26,6 @@ angular.module('main', [
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, authProvider, $httpProvider, jwtInterceptorProvider) {
 
   $stateProvider
-
   .state('app', {
     url: '/app',
     abstract: true,
@@ -35,119 +34,8 @@ angular.module('main', [
     data: {
       requiresLogin: true
     }
-  })
-
-  .state('login', {
-    url: '/',
-    templateUrl: 'components/login/login.html',
-    controller: 'LoginCtrl',
-    data: {
-      requiresLogin: false
-    }
-  })
-
-  .state('app.nearbyArtists', {
-    url: '/nearbyArtists',
-    cache:false,
-    views: {
-      'nearbyArtists': {
-        templateUrl: 'components/nearbyArtists/nearbyArtists.html'
-      }
-    },
-    controller:'MapCtrl',
-    data: {
-      requiresLogin: true
-    }
-  })
-
-  .state('app.artists', {
-    url: '/artists',
-    abstract: true,
-    views: {
-      'artists': {
-        template: '<ion-nav-view></ion-nav-view>'
-      }
-    },
-    data: {
-      requiresLogin: true
-    }
-  })
-
-  .state('app.artists.index', {
-    url: '',
-    templateUrl: 'components/artists/artists.html',
-    controller: 'ArtistsCtrl',
-    controllerAs: 'vm',
-    data: {
-      requiresLogin: true
-    }
-  })
-
-  .state('app.artists.artist', {
-    url: '/:artistId',
-    params: {artist: null},
-    templateUrl: 'components/artist/artist.html',
-    controller: 'ArtistCtrl'
-  })
-
-  .state('app.artists.artist-event', {
-    url: '/:eventId',
-    params: {event: null},
-    templateUrl: 'components/eventView/eventView.html',
-    controller: 'eventViewCtrl'
-  })
-
-  .state('app.editProfile', {
-    url: '/editProfile',
-    abstract: true,
-    views: {
-      'editProfile': {
-        template: '<ion-nav-view></ion-nav-view>'
-      }
-    },
-    data: {
-      requiresLogin: true
-    }
-  })
-
-  .state('app.goLive', {
-    url: '/live',
-    views: {
-      'live': {
-        templateUrl: 'components/goLive/goLive.html',
-        controller: 'GoLiveCtrl'
-      }
-    }
-  })
-
-  .state('app.editProfile.index', {
-    url: '',
-    templateUrl: 'components/editProfile/editProfile.html',
-    controller: 'editProfileCtrl'
-  })
-
-  .state('app.editProfile.editEvent-addEvent', {
-    url: '/addEvent',
-    params: {user: null},
-    templateUrl: 'components/addEvent/addEvent.html',
-    controller: 'addEventCtrl'
-  })
-
-  .state('app.editProfile.yourEvents', {
-    url:'/editEvent',
-    params:{user: null},
-    templateUrl: 'components/yourEvents/yourEvents.html',
-    controller:'yourEventsCtrl'
-  })
-
-  .state('app.editProfile.editEvent-editEvent', {
-    url: '/:eventId',
-    params: {event: null, eventId: null},
-    templateUrl: 'components/editEvent/editEvent.html',
-    controller: 'editEventCtrl'
   });
 
-  //
   authProvider.init({
     domain: 'rso3.auth0.com',
     clientID: 'xjfTO2HFDpHNw34WPK1FUL5UBsczCXs6',

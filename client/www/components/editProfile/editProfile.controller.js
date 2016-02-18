@@ -1,6 +1,47 @@
 angular.module('main.editProfile', ['main.services'])
 
-.controller('editProfileCtrl', editProfileCtrl);
+.controller('editProfileCtrl', editProfileCtrl)
+.config(function($stateProvider) {
+  $stateProvider
+  .state('app.editProfile', {
+    url: '/editProfile',
+    abstract: true,
+    views: {
+      'editProfile': {
+        template: '<ion-nav-view></ion-nav-view>'
+      }
+    },
+    data: {
+      requiresLogin: true
+    }
+  })
+  .state('app.editProfile.index', {
+    url: '',
+    templateUrl: 'components/editProfile/editProfile.html',
+    controller: 'editProfileCtrl'
+  })
+
+  .state('app.editProfile.editEvent-addEvent', {
+    url: '/addEvent',
+    params: {user: null},
+    templateUrl: 'components/addEvent/addEvent.html',
+    controller: 'addEventCtrl'
+  })
+
+  .state('app.editProfile.yourEvents', {
+    url:'/editEvent',
+    params:{user: null},
+    templateUrl: 'components/yourEvents/yourEvents.html',
+    controller:'yourEventsCtrl'
+  })
+
+  .state('app.editProfile.editEvent-editEvent', {
+    url: '/:eventId',
+    params: {event: null, eventId: null},
+    templateUrl: 'components/editEvent/editEvent.html',
+    controller: 'editEventCtrl'
+  });
+});
 
 function editProfileCtrl($scope, $state, User, UserService, store) {
 

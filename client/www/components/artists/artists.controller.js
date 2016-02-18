@@ -1,6 +1,49 @@
 angular.module('main.artists', ['main.services', 'main.artist', 'main.artistList'])
 
-.controller('ArtistsCtrl', ArtistsCtrl);
+.controller('ArtistsCtrl', ArtistsCtrl)
+.config(function($stateProvider) {
+  $stateProvider
+  .state('app.artists', {
+    url: '/artists',
+    abstract: true,
+    views: {
+      'artists': {
+        template: '<ion-nav-view></ion-nav-view>'
+      }
+    },
+    data: {
+      requiresLogin: true
+    }
+  })
+
+  .state('app.artists.index', {
+    url: '',
+    templateUrl: 'components/artists/artists.html',
+    controller: 'ArtistsCtrl',
+    controllerAs: 'vm',
+    data: {
+      requiresLogin: true
+    }
+  })
+
+  .state('app.artists.artist', {
+    url: '/:artistId',
+    params: {artist: null},
+    templateUrl: 'components/artist/artist.html',
+    controller: 'ArtistCtrl'
+  })
+
+  .state('app.artists.artist-event', {
+    url: '/:eventId',
+    params: {event: null},
+    templateUrl: 'components/eventView/eventView.html',
+    controller: 'eventViewCtrl'
+  });
+});
+
+
+
+
 
 function ArtistsCtrl($stateParams, $window, $state, Artist, User, UserService, store) {
   // initial call to populate artists list
